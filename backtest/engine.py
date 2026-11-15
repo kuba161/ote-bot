@@ -1,7 +1,7 @@
 """Silnik backtestu strategii "Fib OTE 0.79 + bias struktury rynku" na MNQ.
 
 Port 1:1 logiki z indykatora Pine "ICT Setup — NQ All-In-One"
-(pine/ict_setup_nq_all_in_one.pine):
+(sam skrypt Pine nie jest czescia tego repo):
 - bias per TF: struktura rynku (BOS / HH-HL, opcjonalnie EMA20) z ostatniego ZAMKNIETEGO bara
   danego TF (semantyka [1]+lookahead), zgodnosc na BIAS_TFS,
 - noga Fib 15m: f_fib_state (pivoty 5/5, running extremes, stan z zamknietych barow),

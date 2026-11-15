@@ -12,3 +12,6 @@ venv/
 node_modules/
 
 .DS_Store
+
+# outputs written by the scripts
+site/

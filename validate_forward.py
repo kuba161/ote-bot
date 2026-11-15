@@ -29,8 +29,20 @@ sys.path.insert(0, str(ROOT / "backtest"))
 import config
 import engine
 from engine import _et, _stats, load_csv, make_config, run_segmented
-from merge_data import MNQU_FRONT
-from validate_wf import _row
+
+# Plik samowystarczalny (bez merge_data/validate_wf), bo w publicznym repo zostaje sam.
+# Rolka MNQU2026 -> MNQZ2026 (14.09.2026 22:00 UTC) = merge_data.MNQU_FRONT[1]; test pilnuje zgodnosci.
+ROLL_TS = 1789423200
+
+
+def _pf(s) -> str:
+    return " inf" if s["profit_factor"] is None else f"{s['profit_factor']:.2f}"
+
+
+def _row(label, s) -> str:
+    """Wiersz statystyk do wydruku (ta sama postac co validate_wf._row)."""
+    return (f"  {label:<22} {s['trades']:>3} tr  PnL ${s['pnl_total']:>8.0f}  "
+            f"PF {_pf(s):>5}  WR {s['winrate']:>4.0f}%  exp ${s['expectancy']:>6.1f}/tr")
 
 DATA = ROOT / "data"
 SITE = ROOT / "site"
@@ -96,7 +108,7 @@ def bootstrap_ci(pnls: list[float], n_boot: int = 10000, seed: int = 42) -> dict
             "hi": round(means[int(0.975 * n_boot) - 1], 2), "n": n, "n_boot": n_boot}
 
 
-def buy_hold_pct(m15, lo: int, hi: int, skip_ts=(MNQU_FRONT[1],)) -> float:
+def buy_hold_pct(m15, lo: int, hi: int, skip_ts=(ROLL_TS,)) -> float:
     """Zwrot % trzymania MNQ w [lo, hi], z pominieciem skoku na rolce kontraktu (MNQ1! jest
     nieadjustowany: 14.09 cena przeskakuje o spread wrzesien->grudzien, to nie ruch rynku)."""
     bars = [b for b in m15 if lo <= b.ts <= hi]
