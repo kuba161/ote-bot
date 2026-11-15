@@ -2,6 +2,8 @@
 
 [![tests](https://github.com/kuba161/ote-bot/actions/workflows/tests.yml/badge.svg)](https://github.com/kuba161/ote-bot/actions/workflows/tests.yml)
 
+**Live dashboard:** https://kuba161.github.io/ote-bot/ (equity curve, every trade, forward-test card; labels in Polish)
+
 A research project that takes a discretionary trading idea I drew by hand on TradingView, turns it
 into a Pine Script indicator, ports the logic **1:1 to Python**, and then tries hard to prove it
 **doesn't** work. It's a test of how I do the research, not a signal service.
