@@ -1,0 +1,14 @@
+# market data (licensed, not redistributable)
+data/**/*.csv
+
+# python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+venv/
+.venv/
+
+# node
+node_modules/
+
+.DS_Store

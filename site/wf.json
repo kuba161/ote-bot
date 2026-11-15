@@ -1,0 +1,502 @@
+{
+ "frac": 0.6,
+ "split_ts": 1786437000,
+ "split_date": "2026-08-11 04:30",
+ "from": "2026-03-01",
+ "to": "2026-11-13",
+ "default": {
+  "train": {
+   "trades": 30,
+   "wins": 12,
+   "losses": 18,
+   "winrate": 40.0,
+   "pnl_total": 2901.99,
+   "profit_factor": 2.47,
+   "expectancy": 96.73,
+   "avg_r": 0.654,
+   "max_drawdown": 594.0
+  },
+  "test": {
+   "trades": 21,
+   "wins": 4,
+   "losses": 17,
+   "winrate": 19.0,
+   "pnl_total": -934.89,
+   "profit_factor": 0.56,
+   "expectancy": -44.52,
+   "avg_r": -0.25,
+   "max_drawdown": 1130.19
+  },
+  "degradation_exp": "-46% ($97->$-45/tr)  ZNAK ODWROCONY"
+ },
+ "scans": [
+  {
+   "param": "ENTRY_FIB",
+   "values": [
+    "0.7",
+    "0.72",
+    "0.75",
+    "0.77",
+    "0.79",
+    "0.81",
+    "0.83",
+    "0.85"
+   ],
+   "train_pnl": [
+    871.39,
+    139.18,
+    281.58,
+    1714.2,
+    2901.99,
+    2413.75,
+    1174.95,
+    1319.5
+   ],
+   "test_pnl": [
+    -72.0,
+    -198.16,
+    -346.45,
+    -701.01,
+    -934.89,
+    -191.58,
+    256.64,
+    -516.35
+   ],
+   "train_pf": [
+    1.3,
+    1.04,
+    1.11,
+    1.89,
+    2.47,
+    2.15,
+    1.6,
+    1.73
+   ],
+   "test_pf": [
+    0.95,
+    0.85,
+    0.77,
+    0.63,
+    0.56,
+    0.9,
+    1.17,
+    0.69
+   ],
+   "default_i": 4,
+   "argmax_i": 4,
+   "plateau_i": 4,
+   "fragility": 0.2887725319522121,
+   "pick_holds": false
+  },
+  {
+   "param": "PIVOT_LEN",
+   "values": [
+    "3",
+    "4",
+    "5",
+    "6",
+    "7"
+   ],
+   "train_pnl": [
+    1614.47,
+    2634.42,
+    2901.99,
+    2340.42,
+    1807.5
+   ],
+   "test_pnl": [
+    -1152.08,
+    -375.57,
+    -934.89,
+    -948.71,
+    -681.4
+   ],
+   "train_pf": [
+    1.57,
+    2.15,
+    2.47,
+    2.2,
+    2.2
+   ],
+   "test_pf": [
+    0.66,
+    0.86,
+    0.56,
+    0.63,
+    0.72
+   ],
+   "default_i": 2,
+   "argmax_i": 2,
+   "plateau_i": 2,
+   "fragility": 0.14285714285714277,
+   "pick_holds": true
+  },
+  {
+   "param": "SL_BUFFER_TICKS",
+   "values": [
+    "2",
+    "4",
+    "6",
+    "8"
+   ],
+   "train_pnl": [
+    3103.89,
+    2901.99,
+    2865.99,
+    2898.84
+   ],
+   "test_pnl": [
+    -645.46,
+    -934.89,
+    -962.15,
+    -428.53
+   ],
+   "train_pf": [
+    2.62,
+    2.47,
+    2.43,
+    2.47
+   ],
+   "test_pf": [
+    0.7,
+    0.56,
+    0.55,
+    0.79
+   ],
+   "default_i": 1,
+   "argmax_i": 0,
+   "plateau_i": 1,
+   "fragility": -0.028583833851942915,
+   "pick_holds": true
+  },
+  {
+   "param": "TP_MIN_R",
+   "values": [
+    "0.5",
+    "1.0",
+    "1.5",
+    "2.0"
+   ],
+   "train_pnl": [
+    2901.99,
+    2901.99,
+    3089.49,
+    3287.99
+   ],
+   "test_pnl": [
+    -934.89,
+    -934.89,
+    -1300.39,
+    -1300.39
+   ],
+   "train_pf": [
+    2.47,
+    2.47,
+    2.57,
+    2.67
+   ],
+   "test_pf": [
+    0.56,
+    0.56,
+    0.43,
+    0.43
+   ],
+   "default_i": 1,
+   "argmax_i": 3,
+   "plateau_i": 1,
+   "fragility": -0.03230541800626467,
+   "pick_holds": false
+  },
+  {
+   "param": "TP_MAX_R",
+   "values": [
+    "3.0",
+    "4.0",
+    "5.0",
+    "6.0"
+   ],
+   "train_pnl": [
+    2414.37,
+    2901.99,
+    2901.99,
+    2901.99
+   ],
+   "test_pnl": [
+    -1144.13,
+    -934.89,
+    -853.89,
+    -772.89
+   ],
+   "train_pf": [
+    2.28,
+    2.47,
+    2.47,
+    2.47
+   ],
+   "test_pf": [
+    0.46,
+    0.56,
+    0.6,
+    0.64
+   ],
+   "default_i": 1,
+   "argmax_i": 1,
+   "plateau_i": 2,
+   "fragility": 0.08401476228381213,
+   "pick_holds": false
+  }
+ ],
+ "categorical": [
+  {
+   "param": "BIAS_TFS",
+   "default": "1h+4h+1d",
+   "rows": [
+    {
+     "val": "1h+4h+1d",
+     "train": {
+      "trades": 30,
+      "wins": 12,
+      "losses": 18,
+      "winrate": 40.0,
+      "pnl_total": 2901.99,
+      "profit_factor": 2.47,
+      "expectancy": 96.73,
+      "avg_r": 0.654,
+      "max_drawdown": 594.0
+     },
+     "test": {
+      "trades": 21,
+      "wins": 4,
+      "losses": 17,
+      "winrate": 19.0,
+      "pnl_total": -934.89,
+      "profit_factor": 0.56,
+      "expectancy": -44.52,
+      "avg_r": -0.25,
+      "max_drawdown": 1130.19
+     }
+    },
+    {
+     "val": "15m+1h+4h+1d",
+     "train": {
+      "trades": 25,
+      "wins": 8,
+      "losses": 17,
+      "winrate": 32.0,
+      "pnl_total": 557.33,
+      "profit_factor": 1.3,
+      "expectancy": 22.29,
+      "avg_r": 0.205,
+      "max_drawdown": 701.29
+     },
+     "test": {
+      "trades": 15,
+      "wins": 2,
+      "losses": 13,
+      "winrate": 13.3,
+      "pnl_total": -1236.76,
+      "profit_factor": 0.3,
+      "expectancy": -82.45,
+      "avg_r": -0.55,
+      "max_drawdown": 1236.76
+     }
+    },
+    {
+     "val": "4h+1d",
+     "train": {
+      "trades": 42,
+      "wins": 13,
+      "losses": 29,
+      "winrate": 31.0,
+      "pnl_total": 2046.79,
+      "profit_factor": 1.65,
+      "expectancy": 48.73,
+      "avg_r": 0.283,
+      "max_drawdown": 1298.81
+     },
+     "test": {
+      "trades": 27,
+      "wins": 5,
+      "losses": 22,
+      "winrate": 18.5,
+      "pnl_total": -1030.04,
+      "profit_factor": 0.6,
+      "expectancy": -38.15,
+      "avg_r": -0.254,
+      "max_drawdown": 1114.42
+     }
+    },
+    {
+     "val": "1h+4h",
+     "train": {
+      "trades": 44,
+      "wins": 15,
+      "losses": 29,
+      "winrate": 34.1,
+      "pnl_total": 2842.95,
+      "profit_factor": 1.88,
+      "expectancy": 64.61,
+      "avg_r": 0.445,
+      "max_drawdown": 922.32
+     },
+     "test": {
+      "trades": 38,
+      "wins": 7,
+      "losses": 31,
+      "winrate": 18.4,
+      "pnl_total": -1060.25,
+      "profit_factor": 0.69,
+      "expectancy": -27.9,
+      "avg_r": -0.298,
+      "max_drawdown": 1441.28
+     }
+    }
+   ]
+  },
+  {
+   "param": "EXIT_MODE",
+   "default": "liquidity",
+   "rows": [
+    {
+     "val": "liquidity",
+     "train": {
+      "trades": 30,
+      "wins": 12,
+      "losses": 18,
+      "winrate": 40.0,
+      "pnl_total": 2901.99,
+      "profit_factor": 2.47,
+      "expectancy": 96.73,
+      "avg_r": 0.654,
+      "max_drawdown": 594.0
+     },
+     "test": {
+      "trades": 21,
+      "wins": 4,
+      "losses": 17,
+      "winrate": 19.0,
+      "pnl_total": -934.89,
+      "profit_factor": 0.56,
+      "expectancy": -44.52,
+      "avg_r": -0.25,
+      "max_drawdown": 1130.19
+     }
+    },
+    {
+     "val": "fib",
+     "train": {
+      "trades": 29,
+      "wins": 13,
+      "losses": 16,
+      "winrate": 44.8,
+      "pnl_total": 2436.81,
+      "profit_factor": 2.31,
+      "expectancy": 84.03,
+      "avg_r": 0.623,
+      "max_drawdown": 634.61
+     },
+     "test": {
+      "trades": 21,
+      "wins": 3,
+      "losses": 18,
+      "winrate": 14.3,
+      "pnl_total": -1237.0,
+      "profit_factor": 0.46,
+      "expectancy": -58.9,
+      "avg_r": -0.451,
+      "max_drawdown": 1237.0
+     }
+    }
+   ]
+  },
+  {
+   "param": "BIAS_METHOD",
+   "default": "BOS",
+   "rows": [
+    {
+     "val": "BOS",
+     "train": {
+      "trades": 30,
+      "wins": 12,
+      "losses": 18,
+      "winrate": 40.0,
+      "pnl_total": 2901.99,
+      "profit_factor": 2.47,
+      "expectancy": 96.73,
+      "avg_r": 0.654,
+      "max_drawdown": 594.0
+     },
+     "test": {
+      "trades": 21,
+      "wins": 4,
+      "losses": 17,
+      "winrate": 19.0,
+      "pnl_total": -934.89,
+      "profit_factor": 0.56,
+      "expectancy": -44.52,
+      "avg_r": -0.25,
+      "max_drawdown": 1130.19
+     }
+    },
+    {
+     "val": "HH/HL",
+     "train": {
+      "trades": 2,
+      "wins": 1,
+      "losses": 1,
+      "winrate": 50.0,
+      "pnl_total": 406.68,
+      "profit_factor": 5.0,
+      "expectancy": 203.34,
+      "avg_r": 1.323,
+      "max_drawdown": 101.63
+     },
+     "test": {
+      "trades": 0,
+      "wins": 0,
+      "losses": 0,
+      "winrate": 0,
+      "pnl_total": 0,
+      "profit_factor": null,
+      "expectancy": 0,
+      "avg_r": 0,
+      "max_drawdown": 0.0
+     }
+    },
+    {
+     "val": "EMA20",
+     "train": {
+      "trades": 32,
+      "wins": 9,
+      "losses": 23,
+      "winrate": 28.1,
+      "pnl_total": -1.77,
+      "profit_factor": 1.0,
+      "expectancy": -0.06,
+      "avg_r": 0.016,
+      "max_drawdown": 923.49
+     },
+     "test": {
+      "trades": 26,
+      "wins": 2,
+      "losses": 24,
+      "winrate": 7.7,
+      "pnl_total": -1929.79,
+      "profit_factor": 0.26,
+      "expectancy": -74.22,
+      "avg_r": -0.709,
+      "max_drawdown": 1929.79
+     }
+    }
+   ]
+  }
+ ],
+ "overfit_proxy": 0.6,
+ "verdict": "NO-GO (przewaga prawdopodobnie dopasowana \u2014 najpierw #1 dane)",
+ "reasons": [
+  "OOS NIE dodatni: $-935, PF 0.56",
+  "Wybor train->test trzyma sie w 2/5 parametrach (slabo)",
+  "Default na/przy plateau w 5/5 parametrach (OK)"
+ ],
+ "instrument": "mnq"
+}

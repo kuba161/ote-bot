@@ -1,0 +1,795 @@
+//@version=6
+indicator("ICT Setup — NQ All-In-One", overlay=true,
+     max_boxes_count=500, max_lines_count=500, max_labels_count=500)
+
+// ── Rejection Block ──
+rb_wick_min = input.int(25, "Min Wick (pts)",    group="Rejection Block", minval=1)
+rb_max      = input.int(10, "Max Active Blocks", group="Rejection Block", minval=1, maxval=30)
+
+rb_bg     = color.new(#000000, 82)
+rb_border = color.new(#000000, 65)
+rb_mid    = color.new(#000000, 70)
+
+// ── Session Opens ──
+sess_show = input.bool(true, "Show Session Opens", group="Session Opens")
+col_00    = input.color(#2196F3, "00:00 ET",        group="Session Opens")
+col_10    = input.color(#FFD700, "10:00 ET",        group="Session Opens")
+col_18    = input.color(#9C27B0, "18:00 ET",        group="Session Opens")
+sess_lw   = input.int(1, "Line Width",              group="Session Opens", minval=1, maxval=4)
+
+// ── FVG / IFVG ──
+fvg_show      = input.bool(true,  "Show FVG",   group="FVG / IFVG")
+ifvg_show     = input.bool(true,  "Show IFVG",  group="FVG / IFVG")
+fvg_bull_col  = input.color(color.new(#00BCD4, 80), "Bullish FVG",  group="FVG / IFVG")
+fvg_bear_col  = input.color(color.new(#FF5722, 80), "Bearish FVG",  group="FVG / IFVG")
+ifvg_bull_col = input.color(color.new(#4CAF50, 70), "Bullish IFVG", group="FVG / IFVG")
+ifvg_bear_col = input.color(color.new(#F44336, 70), "Bearish IFVG", group="FVG / IFVG")
+fvg_max       = input.int(20, "Max FVGs", group="FVG / IFVG", minval=1, maxval=50)
+fvg_min       = input.float(8.0, "Min FVG size (pts, 0=off)", group="FVG / IFVG", minval=0, step=0.5)
+
+// ── MTF FVG ──
+mtf_show     = input.bool(true, "Show MTF FVG",            group="MTF FVG")
+mtf_tf       = input.timeframe("15", "Source Timeframe",   group="MTF FVG")
+mtf_bull_col = input.color(color.new(#8B0000, 75), "Bullish MTF FVG", group="MTF FVG")
+mtf_bear_col = input.color(color.new(#EF5350, 80), "Bearish MTF FVG", group="MTF FVG")
+mtf_ce_show  = input.bool(true, "Show CE (50%) line",      group="MTF FVG")
+mtf_max      = input.int(12, "Max MTF FVGs",               group="MTF FVG", minval=1, maxval=30)
+
+// ── Session H/L ──
+shl_show   = input.bool(true, "Show Session H/L",          group="Session H/L")
+shl_extend = input.bool(true, "Extend H/L until swept",    group="Session H/L")
+
+// ── Sweep Wick ──
+sw_show      = input.bool(true,  "Show Sweep Wicks",           group="Sweep Wick")
+sw_wick_min  = input.float(0.6,  "Min wick % of range",        group="Sweep Wick", minval=0.1, maxval=0.99, step=0.05)
+sw_lookback  = input.int(20,     "Swing lookback (bars)",       group="Sweep Wick", minval=5, maxval=100)
+sw_ema_len   = input.int(20,     "Bias EMA length (4H)",        group="Sweep Wick", minval=5, maxval=200)
+sw_bear_show = input.bool(true,  "Show bearish-bias sweeps",    group="Sweep Wick")
+
+// ── Dashboard ──
+dash_show = input.bool(true, "Show Bias Dashboard", group="Dashboard")
+fib_show    = input.bool(true,      "Show Fib 15m row",       group="Dashboard")
+fib_tf      = input.timeframe("15", "Fib timeframe",          group="Dashboard")
+fib_piv_len = input.int(5,          "Fib swing pivot length", group="Dashboard", minval=2, maxval=20)
+fib_dir_src = input.string("Bias 15m", "Fib leg direction",   group="Dashboard", options=["Bias 15m", "Bias 1H", "Bias 4H", "Bias 1D", "Ostatni swing"])
+bias_method    = input.string("BOS", "Metoda biasu",          group="Dashboard", options=["BOS", "HH/HL", "EMA20"], tooltip="BOS = break of structure (close łamie ostatni swing H/L → flip; zawsze LONG/SHORT). HH/HL = porównanie 2 ostatnich swingów (HH+HL=LONG, LH+LL=SHORT, inaczej NEUTRAL). EMA20 = stara logika cena vs EMA20.")
+struct_piv_len = input.int(5,        "Bias swing pivot length", group="Dashboard", minval=2, maxval=20, tooltip="Długość pivota N/N do detekcji swingów biasu (BOS / HH-HL).")
+
+// ── SMT Divergence ──
+smt_show     = input.bool(true, "Show SMT", group="SMT")
+smt_sym      = input.symbol("CME_MINI_DL:ES1!", "Symbol odniesienia", group="SMT", tooltip="Skorelowany indeks (ES dla NQ). Trzymaj TEN SAM feed co wykres — mieszanie opóźnionego (_DL) z realtime przesuwa bary.")
+smt_piv_len  = input.int(5, "Pivot length", group="SMT", minval=2, maxval=20, tooltip="Rozbieżność potwierdza się dopiero smt_piv_len barów po fakcie (tak działa pivot). Mniej = szybciej, ale więcej szumu.")
+smt_win      = input.int(1, "Okno dopasowania (bary)", group="SMT", minval=0, maxval=5, tooltip="Ekstremum symbolu odniesienia szukane w oknie ±N barów wokół pivota wykresu — tick potrafi wypaść bar wcześniej/później.")
+smt_min_pt   = input.float(0.0, "Min. rozbieżność (pkt odniesienia, 0=off)", group="SMT", minval=0, step=0.25, tooltip="Odsiewa 'niższy szczyt o 0,25 pkt' jako szum. Mierzone w punktach symbolu odniesienia.")
+smt_bull_col = input.color(#2E7D32, "Bullish SMT", group="SMT")
+smt_bear_col = input.color(#C62828, "Bearish SMT", group="SMT")
+smt_max      = input.int(10, "Max markerów", group="SMT", minval=1, maxval=30)
+
+// ══════════════════════════════════════════════════════════
+// SESSION OPENS
+// ══════════════════════════════════════════════════════════
+
+inA = not na(time(timeframe.period, "0000-1000:23456", "America/New_York"))
+inB = not na(time(timeframe.period, "1000-1800:23456", "America/New_York"))
+inC = not na(time(timeframe.period, "1800-0000:1234567", "America/New_York"))
+
+startA = inA and not inA[1]
+startB = inB and not inB[1]
+startC = inC and not inC[1]
+
+var line ln_00 = na
+var line ln_10 = na
+var line ln_18 = na
+
+if sess_show and startA
+    if not na(ln_00)
+        line.delete(ln_00)
+    ln_00 := line.new(bar_index, open, bar_index + 1, open, color=col_00,
+                      width=sess_lw, style=line.style_solid, extend=extend.right)
+
+if sess_show and startB
+    if not na(ln_10)
+        line.delete(ln_10)
+    ln_10 := line.new(bar_index, open, bar_index + 1, open, color=col_10,
+                      width=sess_lw, style=line.style_solid, extend=extend.right)
+
+if sess_show and startC
+    if not na(ln_18)
+        line.delete(ln_18)
+    ln_18 := line.new(bar_index, open, bar_index + 1, open, color=col_18,
+                      width=sess_lw, style=line.style_solid, extend=extend.right)
+
+// ══════════════════════════════════════════════════════════
+// SESSION DETECTION (used by Session H/L + dashboard Killzone row)
+// ══════════════════════════════════════════════════════════
+
+inLondon = not na(time(timeframe.period, "0200-0500:23456", "America/New_York"))
+inNYAM   = not na(time(timeframe.period, "0830-1100:23456", "America/New_York"))
+inLunch  = not na(time(timeframe.period, "1130-1300:23456", "America/New_York"))
+inNYPM   = not na(time(timeframe.period, "1330-1600:23456", "America/New_York"))
+inAsian  = not na(time(timeframe.period, "2000-0000:1234567", "America/New_York"))
+
+// ══════════════════════════════════════════════════════════
+// SESSION H/L — liquidity lines, extended until swept
+// ══════════════════════════════════════════════════════════
+
+isNewDay = ta.change(time("D")) > 0
+
+var float ldn_h   = na, var float ldn_l   = na
+var float nyam_h  = na, var float nyam_l  = na
+var float lch_h   = na, var float lch_l   = na
+var float nypm_h  = na, var float nypm_l  = na
+var float asian_h = na, var float asian_l = na
+
+var int     shl_day       = 0
+var line[]  shl_ln_arr    = array.new<line>()
+var label[] shl_lb_arr    = array.new<label>()
+var int[]   shl_day_arr   = array.new<int>()
+var float[] shl_price_arr = array.new<float>()
+var bool[]  shl_high_arr  = array.new<bool>()
+var bool[]  shl_swept_arr = array.new<bool>()
+
+if isNewDay
+    shl_day += 1
+    while array.size(shl_day_arr) > 0 and (shl_day - array.get(shl_day_arr, 0)) > 1
+        line.delete(array.shift(shl_ln_arr))
+        label.delete(array.shift(shl_lb_arr))
+        array.shift(shl_day_arr)
+        array.shift(shl_price_arr)
+        array.shift(shl_high_arr)
+        array.shift(shl_swept_arr)
+
+_shl_draw_one(lbl, price, isHigh) =>
+    ext = shl_extend ? extend.right : extend.none
+    ln  = line.new(bar_index, price, bar_index + 3, price, color=color.black, width=1, extend=ext)
+    lb  = label.new(bar_index + 3, price, lbl, color=color.new(color.white, 100),
+              textcolor=color.black, style=label.style_label_left, size=size.tiny)
+    array.push(shl_ln_arr, ln)
+    array.push(shl_lb_arr, lb)
+    array.push(shl_day_arr, shl_day)
+    array.push(shl_price_arr, price)
+    array.push(shl_high_arr, isHigh)
+    array.push(shl_swept_arr, not shl_extend)
+
+_shl_draw(lbl, h, l) =>
+    _shl_draw_one(lbl, h, true)
+    _shl_draw_one(lbl, l, false)
+
+if inLondon
+    ldn_h := na(ldn_h) ? high : math.max(ldn_h, high)
+    ldn_l := na(ldn_l) ? low  : math.min(ldn_l, low)
+else if inLondon[1]
+    if shl_show and not na(ldn_h)
+        _shl_draw("London", ldn_h, ldn_l)
+    ldn_h := na
+    ldn_l := na
+
+if inNYAM
+    nyam_h := na(nyam_h) ? high : math.max(nyam_h, high)
+    nyam_l := na(nyam_l) ? low  : math.min(nyam_l, low)
+else if inNYAM[1]
+    if shl_show and not na(nyam_h)
+        _shl_draw("NY AM", nyam_h, nyam_l)
+    nyam_h := na
+    nyam_l := na
+
+if inLunch
+    lch_h := na(lch_h) ? high : math.max(lch_h, high)
+    lch_l := na(lch_l) ? low  : math.min(lch_l, low)
+else if inLunch[1]
+    if shl_show and not na(lch_h)
+        _shl_draw("Lunch", lch_h, lch_l)
+    lch_h := na
+    lch_l := na
+
+if inNYPM
+    nypm_h := na(nypm_h) ? high : math.max(nypm_h, high)
+    nypm_l := na(nypm_l) ? low  : math.min(nypm_l, low)
+else if inNYPM[1]
+    if shl_show and not na(nypm_h)
+        _shl_draw("NY PM", nypm_h, nypm_l)
+    nypm_h := na
+    nypm_l := na
+
+if inAsian
+    asian_h := na(asian_h) ? high : math.max(asian_h, high)
+    asian_l := na(asian_l) ? low  : math.min(asian_l, low)
+else if inAsian[1]
+    if shl_show and not na(asian_h)
+        _shl_draw("Asian", asian_h, asian_l)
+    asian_h := na
+    asian_l := na
+
+// Sweep detection on extended session H/L lines
+shl_sweep_event = false
+if shl_show and shl_extend and array.size(shl_ln_arr) > 0
+    for i = 0 to array.size(shl_ln_arr) - 1
+        if not array.get(shl_swept_arr, i)
+            p       = array.get(shl_price_arr, i)
+            isHigh  = array.get(shl_high_arr, i)
+            sweptNow = isHigh ? high > p : low < p
+            if sweptNow
+                array.set(shl_swept_arr, i, true)
+                ln = array.get(shl_ln_arr, i)
+                line.set_extend(ln, extend.none)
+                line.set_x2(ln, bar_index)
+                line.set_color(ln, color.new(#9E9E9E, 40))
+                label.set_textcolor(array.get(shl_lb_arr, i), color.new(#9E9E9E, 30))
+                shl_sweep_event := true
+
+alertcondition(shl_sweep_event and barstate.isconfirmed, "Session H/L Sweep", "Session liquidity swept")
+
+// ══════════════════════════════════════════════════════════
+// DAILY EMA (1D) — for EMA20 bias fallback (b1d)
+// ══════════════════════════════════════════════════════════
+
+ema_1d = request.security(syminfo.tickerid, "D", ta.ema(close, sw_ema_len)[1], lookahead=barmerge.lookahead_on)
+
+// ══════════════════════════════════════════════════════════
+// REJECTION BLOCKS (czarne)
+// ══════════════════════════════════════════════════════════
+
+upperWick = high - math.max(open, close)
+lowerWick = math.min(open, close) - low
+
+isBearRB = upperWick >= rb_wick_min and close < open
+isBullRB = lowerWick >= rb_wick_min and close > open
+
+var box[]   rb_boxes   = array.new<box>()
+var line[]  rb_mids    = array.new<line>()
+var bool[]  rb_bull    = array.new<bool>()
+var float[] rb_inv     = array.new<float>()
+var bool[]  rb_invalid = array.new<bool>()
+var bool[]  rb_touched = array.new<bool>()
+var int[]   rb_created = array.new<int>()
+
+if isBearRB
+    wickTop  = high
+    wickBase = math.max(open, close)
+    wickMid  = wickBase + (wickTop - wickBase) / 2.0
+    bx = box.new(bar_index - 1, wickTop, bar_index + 2, wickBase,
+                 border_color=rb_border, bgcolor=rb_bg, border_width=1,
+                 extend=extend.right)
+    ml = line.new(bar_index - 1, wickMid, bar_index + 1, wickMid,
+                  color=rb_mid, width=1, style=line.style_dashed, extend=extend.right)
+    array.push(rb_boxes, bx)
+    array.push(rb_mids,  ml)
+    array.push(rb_bull,  false)
+    array.push(rb_inv,   wickTop)
+    array.push(rb_invalid, false)
+    array.push(rb_touched, false)
+    array.push(rb_created, bar_index)
+
+if isBullRB
+    wickBot  = low
+    wickBase = math.min(open, close)
+    wickMid  = wickBot + (wickBase - wickBot) / 2.0
+    bx = box.new(bar_index - 1, wickBase, bar_index + 2, wickBot,
+                 border_color=rb_border, bgcolor=rb_bg, border_width=1,
+                 extend=extend.right)
+    ml = line.new(bar_index - 1, wickMid, bar_index + 1, wickMid,
+                  color=rb_mid, width=1, style=line.style_dashed, extend=extend.right)
+    array.push(rb_boxes, bx)
+    array.push(rb_mids,  ml)
+    array.push(rb_bull,  true)
+    array.push(rb_inv,   wickBot)
+    array.push(rb_invalid, false)
+    array.push(rb_touched, false)
+    array.push(rb_created, bar_index)
+
+rb_retest_event = false
+if array.size(rb_boxes) > 0
+    for i = 0 to array.size(rb_boxes) - 1
+        bx    = array.get(rb_boxes, i)
+        ml    = array.get(rb_mids, i)
+        bull  = array.get(rb_bull, i)
+        inv   = array.get(rb_inv, i)
+        inval = array.get(rb_invalid, i)
+        if not inval
+            hit = bull ? low < inv : high > inv
+            if hit
+                array.set(rb_invalid, i, true)
+                box.set_bgcolor(bx, color.new(#9E9E9E, 90))
+                box.set_border_color(bx, color.new(#9E9E9E, 60))
+                box.set_extend(bx, extend.none)
+                box.set_right(bx, bar_index)
+                line.set_color(ml, color.new(#9E9E9E, 70))
+                line.set_extend(ml, extend.none)
+            else if bar_index > array.get(rb_created, i) and not array.get(rb_touched, i)
+                touchedRB = bull ? low <= box.get_top(bx) : high >= box.get_bottom(bx)
+                if touchedRB
+                    array.set(rb_touched, i, true)
+                    rb_retest_event := true
+
+while array.size(rb_boxes) > rb_max
+    box.delete(array.shift(rb_boxes))
+    line.delete(array.shift(rb_mids))
+    array.shift(rb_bull)
+    array.shift(rb_inv)
+    array.shift(rb_invalid)
+    array.shift(rb_touched)
+    array.shift(rb_created)
+
+// ══════════════════════════════════════════════════════════
+// FVG / IFVG
+// state: 0 = active, 1 = mitigated (touched), 2 = inverted (close through)
+// ══════════════════════════════════════════════════════════
+
+isBullFVG = high[2] < low[0] and (low[0] - high[2]) >= fvg_min
+isBearFVG = low[2]  > high[0] and (low[2] - high[0]) >= fvg_min
+
+var box[]  fvg_boxes   = array.new<box>()
+var bool[] fvg_bull    = array.new<bool>()
+var int[]  fvg_state   = array.new<int>()
+var int[]  fvg_created = array.new<int>()
+
+if fvg_show and isBullFVG
+    bx = box.new(bar_index - 2, low[0], bar_index + 2, high[2],
+                 border_color=color.new(fvg_bull_col, 30), bgcolor=fvg_bull_col, border_width=1,
+                 extend=extend.right)
+    array.push(fvg_boxes, bx)
+    array.push(fvg_bull,  true)
+    array.push(fvg_state, 0)
+    array.push(fvg_created, bar_index)
+
+if fvg_show and isBearFVG
+    bx = box.new(bar_index - 2, low[2], bar_index + 2, high[0],
+                 border_color=color.new(fvg_bear_col, 30), bgcolor=fvg_bear_col, border_width=1,
+                 extend=extend.right)
+    array.push(fvg_boxes, bx)
+    array.push(fvg_bull,  false)
+    array.push(fvg_state, 0)
+    array.push(fvg_created, bar_index)
+
+if array.size(fvg_boxes) > 0
+    for i = 0 to array.size(fvg_boxes) - 1
+        st = array.get(fvg_state, i)
+        if st < 2 and bar_index > array.get(fvg_created, i)
+            bx   = array.get(fvg_boxes, i)
+            bull = array.get(fvg_bull, i)
+            fTop = box.get_top(bx)
+            fBot = box.get_bottom(bx)
+            inverted = ifvg_show and (bull ? close < fBot : close > fTop)
+            touched  = bull ? low <= fTop : high >= fBot
+            if inverted
+                newCol = bull ? ifvg_bear_col : ifvg_bull_col
+                box.set_bgcolor(bx, newCol)
+                box.set_border_color(bx, color.new(newCol, 20))
+                box.set_extend(bx, extend.right)
+                array.set(fvg_state, i, 2)
+            else if st == 0 and touched
+                base = bull ? fvg_bull_col : fvg_bear_col
+                box.set_bgcolor(bx, color.new(base, 92))
+                box.set_border_color(bx, color.new(base, 60))
+                box.set_extend(bx, extend.none)
+                box.set_right(bx, bar_index + 2)
+                array.set(fvg_state, i, 1)
+
+while array.size(fvg_boxes) > fvg_max
+    box.delete(array.shift(fvg_boxes))
+    array.shift(fvg_bull)
+    array.shift(fvg_state)
+    array.shift(fvg_created)
+
+alertcondition(isBullRB and barstate.isconfirmed, "Bullish Rejection Block", "Bullish RB detected")
+alertcondition(isBearRB and barstate.isconfirmed, "Bearish Rejection Block", "Bearish RB detected")
+alertcondition(rb_retest_event and barstate.isconfirmed, "RB Retest", "Price retested an active Rejection Block")
+
+// ══════════════════════════════════════════════════════════
+// MTF FVG (HTF gaps on LTF chart) + CE line
+// non-repainting: confirmed HTF bars only (offset [1] + lookahead_on)
+// ══════════════════════════════════════════════════════════
+
+f_mtf() =>
+    bull = high[3] < low[1]
+    bear = low[3]  > high[1]
+    [bull, bear, low[1], high[3], low[3], high[1], time[3]]
+
+[m_bull, m_bear, m_bTop, m_bBot, m_sTop, m_sBot, m_t0] =
+     request.security(syminfo.tickerid, mtf_tf, f_mtf(), lookahead=barmerge.lookahead_on)
+
+mtf_ok     = timeframe.in_seconds(timeframe.period) < timeframe.in_seconds(mtf_tf)
+m_newbar   = m_t0 != m_t0[1]
+
+var box[]  mtf_boxes   = array.new<box>()
+var line[] mtf_lines   = array.new<line>()
+var bool[] mtf_bull_a  = array.new<bool>()
+var int[]  mtf_state   = array.new<int>()
+var int[]  mtf_created = array.new<int>()
+var bool[] mtf_ce_hit  = array.new<bool>()
+
+_mtf_new(isBull, top, bot, t0) =>
+    col = isBull ? mtf_bull_col : mtf_bear_col
+    bx = box.new(t0, top, time, bot, xloc=xloc.bar_time,
+                 border_color=color.new(col, 30), bgcolor=col, border_width=1,
+                 extend=extend.right)
+    mid = (top + bot) / 2.0
+    ln = mtf_ce_show ?
+         line.new(t0, mid, time, mid, xloc=xloc.bar_time,
+                  color=color.new(col, 20), width=1, style=line.style_dashed, extend=extend.right) : na
+    array.push(mtf_boxes, bx)
+    array.push(mtf_lines, ln)
+    array.push(mtf_bull_a, isBull)
+    array.push(mtf_state, 0)
+    array.push(mtf_created, bar_index)
+    array.push(mtf_ce_hit, false)
+
+if mtf_show and mtf_ok and m_newbar
+    if m_bull and (m_bTop - m_bBot) >= fvg_min
+        _mtf_new(true, m_bTop, m_bBot, m_t0)
+    if m_bear and (m_sTop - m_sBot) >= fvg_min
+        _mtf_new(false, m_sTop, m_sBot, m_t0)
+
+mtf_touch_event = false
+mtf_ce_event    = false
+if array.size(mtf_boxes) > 0
+    for i = 0 to array.size(mtf_boxes) - 1
+        st = array.get(mtf_state, i)
+        if st < 2 and bar_index > array.get(mtf_created, i)
+            bx   = array.get(mtf_boxes, i)
+            ln   = array.get(mtf_lines, i)
+            bull = array.get(mtf_bull_a, i)
+            fTop = box.get_top(bx)
+            fBot = box.get_bottom(bx)
+            inverted = bull ? close < fBot : close > fTop
+            touched  = bull ? low <= fTop : high >= fBot
+            if inverted
+                newCol = bull ? ifvg_bear_col : ifvg_bull_col
+                box.set_bgcolor(bx, newCol)
+                box.set_border_color(bx, color.new(newCol, 20))
+                box.set_extend(bx, extend.right)
+                if not na(ln)
+                    line.set_color(ln, color.new(newCol, 20))
+                array.set(mtf_state, i, 2)
+            else if st == 0 and touched
+                base = bull ? mtf_bull_col : mtf_bear_col
+                box.set_bgcolor(bx, color.new(base, 92))
+                box.set_border_color(bx, color.new(base, 60))
+                box.set_extend(bx, extend.none)
+                box.set_right(bx, time)
+                if not na(ln)
+                    line.set_extend(ln, extend.none)
+                    line.set_x2(ln, time)
+                array.set(mtf_state, i, 1)
+                mtf_touch_event := true
+            ceMid = (fTop + fBot) / 2.0
+            if not inverted and not array.get(mtf_ce_hit, i) and low <= ceMid and high >= ceMid
+                array.set(mtf_ce_hit, i, true)
+                mtf_ce_event := true
+
+while array.size(mtf_boxes) > mtf_max
+    box.delete(array.shift(mtf_boxes))
+    line.delete(array.shift(mtf_lines))
+    array.shift(mtf_bull_a)
+    array.shift(mtf_state)
+    array.shift(mtf_created)
+    array.shift(mtf_ce_hit)
+
+alertcondition(mtf_touch_event and barstate.isconfirmed, "MTF FVG Touched", "Price touched an active MTF FVG")
+alertcondition(mtf_ce_event and barstate.isconfirmed, "MTF FVG CE Hit", "Price hit CE (50%) of an MTF FVG")
+
+// ══════════════════════════════════════════════════════════
+// SMT DIVERGENCE (wykres vs symbol odniesienia, np. NQ vs ES)
+// TF wykresu → request.security na TYM SAMYM TF, więc brak repaintu/lookahead
+// (inaczej niż wiersze biasu/Fib, które muszą mieć guard "—")
+// ══════════════════════════════════════════════════════════
+
+[cmpH, cmpL, cmpT] = request.security(smt_sym, timeframe.period, [high, low, time])
+
+// gaps_off (domyślne) forward-filluje ostatnią wartość, gdy odniesienie nie ma danego bara →
+// porównywalibyśmy świeży szczyt wykresu ze STARYM szczytem odniesienia = fałszywe SMT.
+smt_aligned = not na(cmpT) and cmpT == time
+
+smt_w      = math.min(smt_win, smt_piv_len)
+smt_holes  = math.sum(smt_aligned ? 0.0 : 1.0, smt_w * 2 + 1)
+smt_win_ok = nz(smt_holes[smt_piv_len - smt_w], 1.0) == 0.0
+
+// zły symbol / inne godziny sesji = systematyczne dziury, nie pojedynczy brakujący bar
+smt_feed_bad = nz(math.sum(smt_aligned ? 0.0 : 1.0, 50)) > 25
+
+smt_ph = ta.pivothigh(high, smt_piv_len, smt_piv_len)
+smt_pl = ta.pivotlow(low,  smt_piv_len, smt_piv_len)
+
+// ekstremum odniesienia w oknie ±smt_w wokół bara pivota (pivot leży smt_piv_len barów wstecz)
+cmpHiWin = ta.highest(cmpH, smt_w * 2 + 1)[smt_piv_len - smt_w]
+cmpLoWin = ta.lowest(cmpL,  smt_w * 2 + 1)[smt_piv_len - smt_w]
+
+var float smt_ph1 = na, var float smt_ph2 = na      // 2 ostatnie swing high wykresu
+var float smt_ch1 = na, var float smt_ch2 = na      // odniesienie w tych samych punktach
+var int   smt_ph1_bi = na, var int smt_ph2_bi = na
+var float smt_pl1 = na, var float smt_pl2 = na      // 2 ostatnie swing low wykresu
+var float smt_cl1 = na, var float smt_cl2 = na
+var int   smt_pl1_bi = na, var int smt_pl2_bi = na
+
+var label[]  smt_lb_arr = array.new<label>()
+var line[]   smt_ln_arr = array.new<line>()
+var int      smt_dir    = 0    // +1 bullish, -1 bearish, 0 = brak
+var int      smt_bar    = na
+var string   smt_note   = ""
+
+_smt_draw(isBull, p1, bi1, p2, bi2, note) =>
+    col = isBull ? smt_bull_col : smt_bear_col
+    ln = line.new(bi2, p2, bi1, p1, color=color.new(col, 20), width=1, style=line.style_dotted)
+    lb = label.new(bi1, p1, "SMT", color=color.new(col, 100), textcolor=col,
+              style=isBull ? label.style_label_up : label.style_label_down,
+              size=size.tiny, tooltip=note)
+    array.push(smt_ln_arr, ln)
+    array.push(smt_lb_arr, lb)
+
+_smt_note(kind, cName, a2, a1, b2, b1, failed) =>
+    kind + "\nWykres: " + str.tostring(a2, format.mintick) + " → " + str.tostring(a1, format.mintick) +
+     "\n" + cName + ": " + str.tostring(b2, "#.##") + " → " + str.tostring(b1, "#.##") +
+     "\nNie potwierdził: " + failed +
+     "\nPivot potwierdza się " + str.tostring(smt_piv_len) + " barów po fakcie."
+
+smt_bull_event = false
+smt_bear_event = false
+
+// ── szczyty: kierunki się rozjeżdżają → SMT bearish ──
+if smt_show and not na(smt_ph) and smt_win_ok
+    smt_ph2 := smt_ph1
+    smt_ch2 := smt_ch1
+    smt_ph2_bi := smt_ph1_bi
+    smt_ph1 := smt_ph
+    smt_ch1 := cmpHiWin
+    smt_ph1_bi := bar_index - smt_piv_len
+    if not na(smt_ph2) and not na(smt_ch2) and not na(smt_ch1)
+        dChart = smt_ph1 - smt_ph2
+        dCmp   = smt_ch1 - smt_ch2
+        if dChart * dCmp < 0 and math.abs(dCmp) >= smt_min_pt
+            note = _smt_note("SMT bearish — szczyty się nie potwierdzają", smt_sym,
+                     smt_ph2, smt_ph1, smt_ch2, smt_ch1, dChart > 0 ? smt_sym : "wykres")
+            _smt_draw(false, smt_ph1, smt_ph1_bi, smt_ph2, smt_ph2_bi, note)
+            smt_dir  := -1
+            smt_bar  := smt_ph1_bi
+            smt_note := note
+            smt_bear_event := true
+
+// ── dołki: kierunki się rozjeżdżają → SMT bullish ──
+if smt_show and not na(smt_pl) and smt_win_ok
+    smt_pl2 := smt_pl1
+    smt_cl2 := smt_cl1
+    smt_pl2_bi := smt_pl1_bi
+    smt_pl1 := smt_pl
+    smt_cl1 := cmpLoWin
+    smt_pl1_bi := bar_index - smt_piv_len
+    if not na(smt_pl2) and not na(smt_cl2) and not na(smt_cl1)
+        dChart = smt_pl1 - smt_pl2
+        dCmp   = smt_cl1 - smt_cl2
+        if dChart * dCmp < 0 and math.abs(dCmp) >= smt_min_pt
+            note = _smt_note("SMT bullish — dołki się nie potwierdzają", smt_sym,
+                     smt_pl2, smt_pl1, smt_cl2, smt_cl1, dChart < 0 ? smt_sym : "wykres")
+            _smt_draw(true, smt_pl1, smt_pl1_bi, smt_pl2, smt_pl2_bi, note)
+            smt_dir  := 1
+            smt_bar  := smt_pl1_bi
+            smt_note := note
+            smt_bull_event := true
+
+while array.size(smt_lb_arr) > smt_max
+    label.delete(array.shift(smt_lb_arr))
+    line.delete(array.shift(smt_ln_arr))
+
+alertcondition(smt_bull_event and barstate.isconfirmed, "SMT Bullish", "Bullish SMT divergence (dołki)")
+alertcondition(smt_bear_event and barstate.isconfirmed, "SMT Bearish", "Bearish SMT divergence (szczyty)")
+
+// ══════════════════════════════════════════════════════════
+// SWEEP WICK
+// ══════════════════════════════════════════════════════════
+
+// ── Bias per TF: struktura rynku (BOS / HH-HL) lub EMA20 (input "Metoda biasu") ──
+// stan/EMA z zamkniętych barów HTF ([1] + lookahead_on); zwraca -1/0/+1 (SHORT/NEUTRAL/LONG)
+f_struct_bias(len) =>
+    float ph = ta.pivothigh(high, len, len)
+    float pl = ta.pivotlow(low, len, len)
+    var float ph1 = na   // 2 ostatnie potwierdzone swing high
+    var float ph2 = na
+    var float pl1 = na   // 2 ostatnie potwierdzone swing low
+    var float pl2 = na
+    var int   bosdir = 0
+    if not na(ph)
+        ph2 := ph1
+        ph1 := ph
+    if not na(pl)
+        pl2 := pl1
+        pl1 := pl
+    if not na(ph1) and close > ph1
+        bosdir := 1
+    if not na(pl1) and close < pl1
+        bosdir := -1
+    int hhhl = (not na(ph2) and not na(pl2) and ph1 > ph2 and pl1 > pl2) ?  1 :
+               (not na(ph2) and not na(pl2) and ph1 < ph2 and pl1 < pl2) ? -1 : 0
+    [bosdir[1], hhhl[1]]
+
+// EMA20 per TF (używane tylko gdy bias_method == "EMA20"; ema_1d z tupli "D" powyżej)
+sw_ema = request.security(syminfo.tickerid, "240", ta.ema(close, sw_ema_len)[1], lookahead=barmerge.lookahead_on)
+ema_15 = request.security(syminfo.tickerid, "15",  ta.ema(close, sw_ema_len)[1], lookahead=barmerge.lookahead_on)
+ema_1h = request.security(syminfo.tickerid, "60",  ta.ema(close, sw_ema_len)[1], lookahead=barmerge.lookahead_on)
+
+// struktura per TF (BOS + HH/HL)
+[bos15, hh15] = request.security(syminfo.tickerid, "15",  f_struct_bias(struct_piv_len), lookahead=barmerge.lookahead_on)
+[bos1h, hh1h] = request.security(syminfo.tickerid, "60",  f_struct_bias(struct_piv_len), lookahead=barmerge.lookahead_on)
+[bos4h, hh4h] = request.security(syminfo.tickerid, "240", f_struct_bias(struct_piv_len), lookahead=barmerge.lookahead_on)
+[bos1d, hh1d] = request.security(syminfo.tickerid, "D",   f_struct_bias(struct_piv_len), lookahead=barmerge.lookahead_on)
+
+f_resolve_bias(bosV, hhhlV, emaVal) =>
+    bias_method == "BOS"   ? bosV  :
+     bias_method == "HH/HL" ? hhhlV :
+     (close > emaVal ? 1 : -1)
+
+b15 = f_resolve_bias(bos15, hh15, ema_15)   // -1/0/+1
+b1h = f_resolve_bias(bos1h, hh1h, ema_1h)
+b4h = f_resolve_bias(bos4h, hh4h, sw_ema)
+b1d = f_resolve_bias(bos1d, hh1d, ema_1d)
+
+// wiarygodność biasu: request.security na strukturze (var/pivoty) jest OK tylko dla TF >= TF wykresu
+// TF niższy niż wykres → skaczące wartości; wtedy dashboard pokaże "—" (jak wiersz Fib)
+_chart_s  = timeframe.in_seconds(timeframe.period)
+bias_ok15 = _chart_s <= timeframe.in_seconds("15")
+bias_ok1h = _chart_s <= timeframe.in_seconds("60")
+bias_ok4h = _chart_s <= timeframe.in_seconds("240")
+bias_ok1d = _chart_s <= timeframe.in_seconds("D")
+
+// sweep wick idzie za biasem 4H (zachowuje boolowy interfejs)
+sw_bull_bias = b4h > 0
+sw_bear_bias = b4h < 0
+
+// ── Fib 15m: noga od ostatniego potwierdzonego pivota do ekstremum kroczącego ──
+// non-repainting: stan z zamkniętych barów 15m ([1] + lookahead_on)
+f_fib_state(len) =>
+    float ph = ta.pivothigh(high, len, len)
+    float pl = ta.pivotlow(low, len, len)
+    hh = ta.highest(high, len + 1)
+    ll = ta.lowest(low, len + 1)
+    var float swH = na
+    var int   swHt = na
+    var float swL = na
+    var int   swLt = na
+    var float runMax = na
+    var float runMin = na
+    if not na(ph)
+        swH := ph
+        swHt := time[len]
+        runMin := ll
+    if not na(pl)
+        swL := pl
+        swLt := time[len]
+        runMax := hh
+    runMax := na(runMax) ? high : math.max(runMax, high)
+    runMin := na(runMin) ? low  : math.min(runMin, low)
+    [swH[1], swL[1], swHt[1], swLt[1], runMax[1], runMin[1]]
+
+[fib_swh, fib_swl, fib_ht, fib_lt, fib_rmax, fib_rmin] = request.security(syminfo.tickerid, fib_tf, f_fib_state(fib_piv_len), lookahead=barmerge.lookahead_on)
+
+// kierunek nogi: za biasem wybranego TF (OTE zawsze w kierunku biasu); NEUTRAL/"Ostatni swing" → ostatni potwierdzony swing
+fib_bias_v = fib_dir_src == "Bias 15m" ? b15 :
+     fib_dir_src == "Bias 1H"  ? b1h :
+     fib_dir_src == "Bias 4H"  ? b4h :
+     fib_dir_src == "Bias 1D"  ? b1d : 0
+fib_bull_leg = fib_bias_v > 0 ? true : fib_bias_v < 0 ? false : (fib_lt > fib_ht)
+fib_h        = fib_bull_leg ? fib_rmax : fib_swh
+fib_l        = fib_bull_leg ? fib_swl  : fib_rmin
+fib_ok       = timeframe.in_seconds(timeframe.period) <= timeframe.in_seconds(fib_tf)
+     and not na(fib_h) and not na(fib_l) and not na(fib_ht) and not na(fib_lt) and fib_h > fib_l
+fib_retr     = fib_bull_leg ? (fib_h - close) / (fib_h - fib_l) : (close - fib_l) / (fib_h - fib_l)
+fib_in_ote   = fib_ok and fib_retr >= 0.618 and fib_retr <= 0.786
+fib_premium  = close > (fib_h + fib_l) / 2.0
+
+f_fib_band(r) =>
+    r < 0     ? "ekspansja"   :
+     r < 0.236 ? "0–0.236"     :
+     r < 0.382 ? "0.236–0.382" :
+     r < 0.5   ? "0.382–0.5"   :
+     r < 0.618 ? "0.5–0.618"   :
+     r < 0.786 ? "0.618–0.786" :
+     r <= 1.0  ? "0.786–1.0"   : "poza (>1.0)"
+
+fib_ote_enter = fib_in_ote and not fib_in_ote[1]
+alertcondition(fib_ote_enter and barstate.isconfirmed, "Fib 15m OTE", "Price entered 15m OTE (0.618–0.786)")
+
+total_range   = high - low
+sw_swing_low  = ta.lowest(low,  sw_lookback)[1]
+sw_swing_high = ta.highest(high, sw_lookback)[1]
+
+sw_bull = sw_show
+     and sw_bull_bias
+     and close < open
+     and total_range > 0
+     and lowerWick / total_range >= sw_wick_min
+     and low < sw_swing_low
+     and close > sw_swing_low
+     and barstate.isconfirmed
+
+sw_bear = sw_show
+     and sw_bear_show
+     and sw_bear_bias
+     and close > open
+     and total_range > 0
+     and upperWick / total_range >= sw_wick_min
+     and high > sw_swing_high
+     and close < sw_swing_high
+     and barstate.isconfirmed
+
+if sw_bull
+    _top = math.min(open, close)
+    _bot = low
+    box.new(bar_index, _top, bar_index + 1, _bot,
+            border_color=color.black, border_width=1, bgcolor=color.new(color.black, 60))
+    line.new(bar_index, (_top + _bot) / 2, bar_index + 1, (_top + _bot) / 2,
+             color=color.black, width=1)
+
+if sw_bear
+    _top = high
+    _bot = math.max(open, close)
+    box.new(bar_index, _top, bar_index + 1, _bot,
+            border_color=color.black, border_width=1, bgcolor=color.new(color.black, 60))
+    line.new(bar_index, (_top + _bot) / 2, bar_index + 1, (_top + _bot) / 2,
+             color=color.black, width=1)
+
+alertcondition(sw_bull, "Sweep Wick Bullish", "Bullish sweep wick detected")
+alertcondition(sw_bear, "Sweep Wick Bearish", "Bearish sweep wick detected")
+
+// ══════════════════════════════════════════════════════════
+// BIAS DASHBOARD
+// ══════════════════════════════════════════════════════════
+
+var table dash = na
+
+_bias_cell(tbl, row, name, b, ok) =>
+    table.cell(tbl, 0, row, name, text_color=color.new(#212121, 0), text_size=size.small, text_halign=text.align_left)
+    string lab = not ok ? "—" : b > 0 ? "LONG" : b < 0 ? "SHORT" : "NEUTRAL"
+    color  col = not ok ? color.new(#9E9E9E, 0) : b > 0 ? color.new(#2E7D32, 0) : b < 0 ? color.new(#C62828, 0) : color.new(#9E9E9E, 0)
+    tip = ok ? "" : "Bias liczony tylko na TF ≥ wykres. Przełącz na niższy TF (np. 15m), by zobaczyć ten bias."
+    table.cell(tbl, 1, row, lab, text_color=col, text_size=size.small, tooltip=tip)
+
+if dash_show and barstate.islast
+    if na(dash)
+        dash := table.new(position.top_right, 2, 9,
+                          bgcolor=color.new(#FFFFFF, 20),
+                          border_width=1, border_color=color.new(color.gray, 80),
+                          frame_width=1, frame_color=color.new(color.gray, 60))
+    kzName = inLondon ? "London" : inNYAM ? "NY AM" : inLunch ? "NY Lunch" : inNYPM ? "NY PM" : inAsian ? "Asian" : "—"
+    fvgActive = 0
+    if array.size(fvg_state) > 0
+        for i = 0 to array.size(fvg_state) - 1
+            if array.get(fvg_state, i) < 2
+                fvgActive += 1
+    rbActive = 0
+    if array.size(rb_invalid) > 0
+        for i = 0 to array.size(rb_invalid) - 1
+            if not array.get(rb_invalid, i)
+                rbActive += 1
+    txtCol = color.new(#212121, 0)
+    _bias_cell(dash, 0, "Bias 15m", b15, bias_ok15)
+    _bias_cell(dash, 1, "Bias 1H",  b1h, bias_ok1h)
+    _bias_cell(dash, 2, "Bias 4H",  b4h, bias_ok4h)
+    _bias_cell(dash, 3, "Bias 1D",  b1d, bias_ok1d)
+    if fib_show
+        fibTxt = not fib_ok ? "—" :
+             f_fib_band(fib_retr) + (fib_bull_leg ? " ▲" : " ▼") + (fib_in_ote ? " OTE" : "")
+        fibCol = fib_in_ote ? color.new(#B8860B, 0) : txtCol
+        fibTip = not fib_ok ? "Wykres > 15m lub brak potwierdzonych swingów" :
+             "Retr: " + str.tostring(fib_retr * 100, "#.#") + "%" +
+             "\nLeg H: " + str.tostring(fib_h, format.mintick) +
+             "\nLeg L: " + str.tostring(fib_l, format.mintick) +
+             "\n" + (fib_premium ? "Premium" : "Discount") +
+             "\nNoga: " + fib_dir_src
+        table.cell(dash, 0, 4, "Fib 15m", text_color=txtCol, text_size=size.small, text_halign=text.align_left)
+        table.cell(dash, 1, 4, fibTxt, text_color=fibCol, text_size=size.small, tooltip=fibTip)
+    table.cell(dash, 0, 5, "Killzone", text_color=txtCol,  text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 5, kzName,     text_color=txtCol,  text_size=size.small)
+    table.cell(dash, 0, 6, "FVG akt.", text_color=txtCol,  text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 6, str.tostring(fvgActive), text_color=txtCol, text_size=size.small)
+    table.cell(dash, 0, 7, "RB akt.",  text_color=txtCol,  text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 7, str.tostring(rbActive),  text_color=txtCol, text_size=size.small)
+    smtTxt = not smt_show   ? "—" :
+         smt_feed_bad       ? "brak danych" :
+         smt_dir == 0       ? "brak" :
+         (smt_dir > 0 ? "BULL ▲ " : "BEAR ▼ ") + str.tostring(bar_index - smt_bar) + " b."
+    smtCol = not smt_show or smt_feed_bad ? color.new(#9E9E9E, 0) :
+         smt_dir > 0 ? color.new(#2E7D32, 0) :
+         smt_dir < 0 ? color.new(#C62828, 0) : color.new(#9E9E9E, 0)
+    smtTip = not smt_show ? "SMT wyłączone" :
+         smt_feed_bad     ? "Symbol odniesienia (" + smt_sym + ") nie ma barów zgodnych z wykresem — zły symbol albo inne godziny sesji." :
+         smt_dir == 0     ? "Brak potwierdzonej rozbieżności względem " + smt_sym : smt_note
+    table.cell(dash, 0, 8, "SMT",   text_color=txtCol, text_size=size.small, text_halign=text.align_left)
+    table.cell(dash, 1, 8, smtTxt,  text_color=smtCol, text_size=size.small, tooltip=smtTip)
