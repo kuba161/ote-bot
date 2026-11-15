@@ -11,7 +11,8 @@ into a Pine Script indicator, ports the logic **1:1 to Python**, and then tries 
 > **Result first:** the strategy looked great in-sample (+$2,507, PF 2.48 on 25 trades). On data
 > collected *after* every parameter was frozen (30.06–31.10.2026) it stayed positive but thin:
 > **+$469, PF 1.34, 20 trades**, with almost all of that from one trade. Walk-forward out-of-sample is
-> close to zero (+$74, PF 1.07). In short: no proven edge yet. The interesting part is *how* that
+> close to zero (+$74, PF 1.07). The bootstrap 95% confidence interval of the forward expectancy is
+> **[−$58, +$114] per trade**, which includes zero. In short: no proven edge yet. The interesting part is *how* that
 > became visible, so that's what this repo documents.
 >
 > The official analysis window ends on **31 October 2026**. November 2026 was an abnormal volatility
@@ -117,7 +118,7 @@ To re-run the backtest you need your own candles in `data/`. See [`data/README.m
 python3 backtest/run_backtest.py          # headline + writes site/results.json
 python3 validate_wf.py                    # walk-forward
 python3 validate_mc.py                    # Monte Carlo
-python3 validate_forward.py               # forward test  → site/forward.json
+python3 validate_forward.py               # forward test + bootstrap 95% CI of expectancy → site/forward.json
 # all scripts use config.DATA_END (31.10.2026); add --full to include November
 ```
 

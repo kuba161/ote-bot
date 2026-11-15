@@ -12,6 +12,22 @@
   "fwd": -7.3
  },
  "expectancy_ratio": 0.23,
+ "expectancy_ci95": {
+  "is": {
+   "mean": 100.29,
+   "lo": -14.29,
+   "hi": 239.37,
+   "n": 25,
+   "n_boot": 10000
+  },
+  "fwd": {
+   "mean": 23.44,
+   "lo": -58.03,
+   "hi": 114.33,
+   "n": 20,
+   "n_boot": 10000
+  }
+ },
  "default": {
   "sides": {
    "long": {

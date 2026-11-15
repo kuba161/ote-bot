@@ -20,6 +20,7 @@ import argparse
 import json
 import math
 import pathlib
+import random
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -82,6 +83,19 @@ def bucket(trades, keyfn) -> dict:
     return dict(sorted(out.items()))
 
 
+def bootstrap_ci(pnls: list[float], n_boot: int = 10000, seed: int = 42) -> dict:
+    """95% przedzial ufnosci expectancy (srednia PnL na trade): losowanie trade'ow ze zwracaniem
+    n_boot razy, percentyle 2.5 / 97.5 sredniej. Staly seed = powtarzalny wynik. n < 2 -> brak przedzialu."""
+    n = len(pnls)
+    mean = round(sum(pnls) / n, 2) if n else None
+    if n < 2:
+        return {"mean": mean, "lo": None, "hi": None, "n": n, "n_boot": n_boot}
+    rng = random.Random(seed)
+    means = sorted(sum(rng.choices(pnls, k=n)) / n for _ in range(n_boot))
+    return {"mean": mean, "lo": round(means[int(0.025 * n_boot)], 2),
+            "hi": round(means[int(0.975 * n_boot) - 1], 2), "n": n, "n_boot": n_boot}
+
+
 def buy_hold_pct(m15, lo: int, hi: int, skip_ts=(MNQU_FRONT[1],)) -> float:
     """Zwrot % trzymania MNQ w [lo, hi], z pominieciem skoku na rolce kontraktu (MNQ1! jest
     nieadjustowany: 14.09 cena przeskakuje o spread wrzesien->grudzien, to nie ruch rynku)."""
@@ -135,7 +149,7 @@ def main() -> None:
                 row["fwd_months"] = bucket(fw_tr, lambda t: _et(t.entry_ts).strftime("%Y-%m"))
                 row["is_months"] = bucket(is_tr, lambda t: _et(t.entry_ts).strftime("%Y-%m"))
                 if name == "default":
-                    fw_default = fw_tr
+                    fw_default, is_default = fw_tr, is_tr
         row["verdict"], row["why"] = verdict(row["fwd"], row["fwd_months"])
         rows.append(row)
 
@@ -159,6 +173,12 @@ def main() -> None:
     ratio = round(fe / ie, 2) if ie else None
     print(f"  expectancy forward / IS = {ratio}  (avg R {d['is']['provable']['avg_r']} -> "
           f"{d['fwd']['provable']['avg_r']})")
+    # 95% CI expectancy (bootstrap) — dla okna oficjalnego (config.DATA_END), chyba ze --full
+    ci = {"is": bootstrap_ci([t.pnl for t in is_default]), "fwd": bootstrap_ci([t.pnl for t in fw_default])}
+    for k, c in ci.items():
+        if c["lo"] is not None:
+            print(f"  expectancy {k.upper():<3} ${c['mean']:+.2f}/tr, 95% CI [${c['lo']:+.2f}, ${c['hi']:+.2f}] "
+                  f"(bootstrap {c['n_boot']}x, {c['n']} tr)")
 
     print("\n=== 3. Hipotezy z R5 (zapisane przed tymi danymi) — default sie NIE zmienia ===")
     hdr = (f"  {'wariant':<13} | {'IS tr':>5} {'IS PnL':>7} {'PF':>5} | {'FWD tr':>6} {'deny':>7} "
@@ -188,6 +208,7 @@ def main() -> None:
             "is_period": [m15[0].ts, cut], "fwd_period": [f0, f1],
             "buy_hold_pct": {"is": bh_is, "fwd": bh_fw},
             "expectancy_ratio": ratio,
+            "expectancy_ci95": ci,
             "default": {"sides": sides, "filters": filters, "killzones": kzs,
                         "trades": [vars(t) for t in fw_default]},
             "variants": rows,

@@ -130,3 +130,18 @@ def test_buy_hold_skips_roll_jump():
     bars = [Bar(0, 100, 100, 100, 100, 0), Bar(900, 110, 110, 110, 110, 0),
             Bar(1800, 50, 50, 50, 50, 0)]   # bar 1800 = przeskok na rolce
     assert vf.buy_hold_pct(bars, 0, 1800, skip_ts=(1800,)) == 10.0
+
+
+# ---------- bootstrap 95% CI expectancy ----------
+
+def test_bootstrap_ci_is_deterministic_and_brackets_mean():
+    pnls = [100, -50, 200, -50, -50, 300, -50, 40]
+    a, b = vf.bootstrap_ci(pnls, n_boot=2000, seed=7), vf.bootstrap_ci(pnls, n_boot=2000, seed=7)
+    assert a == b
+    assert a["lo"] < a["mean"] < a["hi"] and a["n"] == 8
+    assert a["mean"] == round(sum(pnls) / len(pnls), 2)
+
+
+def test_bootstrap_ci_needs_two_trades():
+    assert vf.bootstrap_ci([50.0])["lo"] is None
+    assert vf.bootstrap_ci([])["mean"] is None

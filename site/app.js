@@ -19,6 +19,18 @@ fetch('results.json').then(r => r.json()).then(render).catch(e => {
 // test forward (validate_forward.py) — opcjonalny: bez pliku sekcja zostaje ukryta
 fetch('forward.json').then(r => r.ok ? r.json() : null).then(F => F && renderForward(F)).catch(() => {});
 
+// 95% przedzial ufnosci expectancy z bootstrapu (validate_forward.py); brak klucza = starszy plik
+function ciLine(ci) {
+  if (!ci) return '';
+  const one = (k, c) => c && c.lo !== null
+    ? `${k}: <b class="${cls(c.mean)}">${usd(c.mean)}</b>/trade, 95% CI ` +
+      `[<span class="${cls(c.lo)}">${usd(c.lo)}</span>, <span class="${cls(c.hi)}">${usd(c.hi)}</span>] (${c.n} tr)`
+    : '';
+  return `<br>Expectancy z przedziałem ufności (bootstrap ${ci.fwd.n_boot.toLocaleString('pl-PL')}×): ` +
+    [one('forward', ci.fwd), one('IS', ci.is)].filter(Boolean).join(' · ') +
+    ` — przedział obejmujący zero = brak dowodu przewagi`;
+}
+
 function renderForward(F) {
   const pf = s => s.profit_factor ?? '∞';
   const d = F.variants[0], fp = d.fwd.provable, ip = d.is.provable;
@@ -46,7 +58,7 @@ function renderForward(F) {
     `${row('FORWARD deny', d.fwd.deny)}${row('FORWARD allow', d.fwd.allow)}</table>` +
     `<div class="note">Miesiące forward: ${months}<br>` +
     `Expectancy forward / IS = <b>${F.expectancy_ratio}</b> · buy&amp;hold MNQ: IS ${F.buy_hold_pct.is}% / ` +
-    `forward ${F.buy_hold_pct.fwd}%</div>` +
+    `forward ${F.buy_hold_pct.fwd}%` + ciLine(F.expectancy_ci95) + `</div>` +
     `<h2 style="margin-top:20px">Hipotezy z R5 (zapisane przed tymi danymi, default się NIE zmienia)</h2>` +
     `<table><tr><th>wariant</th><th>IS tr</th><th>IS PnL</th><th>FWD tr</th><th>FWD deny</th>` +
     `<th>FWD allow</th><th>PF</th><th>mies+</th><th>werdykt</th></tr>${vars}</table>`;
