@@ -38,8 +38,9 @@ liquidity (prior day high/low, opposite end of the leg), with risk-based positio
 | `validate_mc.py` | Monte Carlo: bootstrap of trades, drawdown permutations, risk of ruin |
 | `validate_wf.py` | Anchored walk-forward: parameters picked **only** on train, scored on a disjoint test set |
 | `validate_forward.py` | True forward test on data collected *after* the parameters were frozen |
+| `validate_random.py` | Random-entry benchmark: 1,000 runs with the same sessions, sizing and exit rules, only the entry timing and side are random |
 | `merge_data.py` | Stitches TradingView exports and **refuses** to merge if OHLC on the overlap disagrees (catches mixing different contracts) |
-| `backtest/test_*.py` | 66 unit/e2e tests on synthetic bars (fills, gaps, intrabar rules, sizing, exits, entry confirmation) |
+| `backtest/test_*.py` | 75 unit/e2e tests on synthetic bars (fills, gaps, intrabar rules, sizing, exits, entry confirmation, bootstrap, random benchmark) |
 | `site/` | Static dashboard (vanilla JS) with the latest results: equity curve, trade list, forward-test card |
 
 ## Methodology — ten rounds
@@ -89,6 +90,22 @@ scale-in zone) is also negative on the forward test.
     percentile of the prior 252 days. It flags 5 of 10 November sessions and roughly halves the November
     losses. But no variant beats the default on *both* periods, so the default stays.
 
+### Random-entry benchmark
+Does choosing *when* and *which way* to enter add anything, or would the sessions, sizing and exits
+make or lose money on their own? `validate_random.py` gives a random trader exactly the same rules:
+same sessions, same risk-based sizing, same stop and liquidity target, same gap guard, costs and
+trade management. Only the entry bar (calibrated to the strategy's trade count) and the side (50/50)
+are random. Over 1,000 runs:
+
+| | strategy | percentile among random runs |
+|---|---|---|
+| whole window (01.03–31.10) | 45 trades, +$66 / trade | **96.7th** |
+| forward only (30.06–31.10) | 20 trades, +$23 / trade | **68.5th** |
+
+On the whole window the strategy looks clearly better than chance. But that window includes the
+period the parameters were tuned on. On the forward part, the only honest one, it can't be told apart
+from random entries. That agrees with the confidence interval and the walk-forward.
+
 ### Lessons I'd keep
 - **Monte Carlo on your own backtest trades is not validation.** It only tells you about the
   in-sample distribution.
@@ -119,6 +136,7 @@ python3 backtest/run_backtest.py          # headline + writes site/results.json
 python3 validate_wf.py                    # walk-forward
 python3 validate_mc.py                    # Monte Carlo
 python3 validate_forward.py               # forward test + bootstrap 95% CI of expectancy → site/forward.json
+python3 validate_random.py                # random-entry benchmark (1,000 runs) → site/random.json
 # all scripts use config.DATA_END (31.10.2026); add --full to include November
 ```
 
