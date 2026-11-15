@@ -6,7 +6,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
 import config
 import engine
-from engine import (Backtester, Bar, compute_fvgs, compute_key_opens,
+from engine import (Backtester, Bar, Trade, make_config, compute_fvgs, compute_key_opens,
                     compute_leg_states, ema_series)
 
 TS0 = 1772420400  # 2026-03-01 22:00 ET (niedziela); bar i=8 zaczyna sie o 00:00 ET
@@ -582,3 +582,62 @@ def test_instrument_point_value_scales_pnl():
     t_mnq = _bt(bars, POINT_VALUE=2.0).run()[0]
     t_mes = _bt(bars, POINT_VALUE=5.0).run()[0]
     assert abs(t_mes.pnl / t_mnq.pnl - 2.5) < 1e-9
+
+
+# ---------- R8: partial / BE na R / MFE na barze wejscia ----------
+
+def _mgr(**ov):
+    from engine import Backtester
+    import config as _c
+    bt = Backtester.__new__(Backtester)
+    bt.cfg = make_config(_c, {"COMMISSION_RT": 0.0, "SLIPPAGE_TICKS_STOP": 0, **ov})
+    return bt
+
+
+def _long(contracts=2, fill_at_open=False):
+    # entry 100, SL 90 (risk 10), TP 140
+    return Trade("long", 0, 100.0, 90.0, 140.0, contracts=contracts, fill_at_open=fill_at_open)
+
+
+def test_entry_bar_mfe_ignores_pre_fill_extreme():
+    bt = _mgr()
+    pos = _long()
+    bt._manage(pos, Bar(0, 115, 115, 99, 101, 0), [], entry_bar=True)   # high 115 sprzed limitu
+    assert pos.mfe_pt == 0.0
+    pos2 = _long(fill_at_open=True)
+    bt._manage(pos2, Bar(0, 100, 115, 99, 101, 0), [], entry_bar=True)
+    assert pos2.mfe_pt == 15.0
+
+
+def test_partial_at_1r_then_be_rest():
+    bt = _mgr(PARTIAL_R=1.0, PARTIAL_FRAC=0.5)
+    pos, out = _long(contracts=2), []
+    assert bt._manage(pos, Bar(900, 101, 111, 100, 108, 0), out) is pos     # +1R dotkniete
+    assert pos.partial_contracts == 1 and pos.partial_pnl == 10 * bt.cfg.POINT_VALUE
+    assert pos.sl == 100.0 and pos.be_moved                                  # reszta na BE
+    bt._manage(pos, Bar(1800, 104, 105, 99, 99, 0), out)                     # BE trafione
+    assert out and out[0].pnl == 10 * bt.cfg.POINT_VALUE                     # zostaje sam partial
+
+
+def test_partial_not_on_bar_that_also_hits_sl():
+    bt = _mgr(PARTIAL_R=1.0)
+    pos, out = _long(contracts=2), []
+    bt._manage(pos, Bar(900, 100, 111, 89, 95, 0), out)                      # 1R i SL w jednym barze
+    assert out[0].result == "sl" and out[0].partial_contracts == 0
+    assert out[0].pnl == -10 * bt.cfg.POINT_VALUE * 2
+
+
+def test_partial_single_contract_is_be_only():
+    bt = _mgr(PARTIAL_R=1.0)
+    pos = _long(contracts=1)
+    bt._manage(pos, Bar(900, 101, 111, 100, 108, 0), [])
+    assert pos.partial_contracts == 0 and pos.be_moved and pos.sl == 100.0
+
+
+def test_be_at_r_moves_after_closed_bar():
+    bt = _mgr(BE_AT_R=1.0)
+    pos = _long()
+    bt._manage(pos, Bar(900, 101, 109, 100, 108, 0), [])                     # 0.9R — nic
+    assert not pos.be_moved
+    bt._manage(pos, Bar(1800, 108, 110, 104, 109, 0), [])                    # 1R
+    assert pos.be_moved and pos.sl == 100.0

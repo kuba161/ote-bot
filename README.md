@@ -34,7 +34,7 @@ liquidity (prior day high/low, opposite end of the leg), with risk-based positio
 | `WIEDZA.md`, `docs/INSTRUKCJA_PL.md` | Full research log and user manual (Polish) |
 | `REQUIREMENTS.md`, `AUTOMATION.md` | Spec and the path to paper trading (Polish) |
 
-## Methodology — seven rounds
+## Methodology — eight rounds
 
 1. **Engine rebuild.** Intrabar ambiguity is shown as a *deny/allow bracket* (worst/best case for
    bars where both TP and SL were touched), not hidden. It adds a gap guard, MAE/MFE and "shadow
@@ -57,12 +57,23 @@ liquidity (prior day high/low, opposite end of the leg), with risk-based positio
 Every hypothesis variant written down *before* the forward data arrived (4-TF bias, pivot 3/4,
 scale-in zone) is also negative on the forward test.
 
+8. **Trying to fix the exits (R8).** The trade log said 14 of 20 forward losers had been +1R in profit
+   before stopping out, so partial profit at 1R, break-even at 1R and a closer target looked like
+   obvious fixes. They weren't. **The diagnosis was a measurement artefact.** For limit fills in the
+   middle of a bar, the engine counted that bar's whole high/low as favourable excursion, including
+   the move *before* the fill. With that fixed, only 6 of 20 losers had ever been +1R. The losers go
+   straight to the stop, so the problem is the entries. No variant passed the acceptance criterion.
+   Pivot 4 + break-even at 1R was the only one positive on forward in both brackets (+$131 / +$580),
+   but with only 1 of 5 positive months it fails the stability bar, and the default stays.
+
 ### Lessons I'd keep
 - **Monte Carlo on your own backtest trades is not validation.** It only tells you about the
   in-sample distribution.
 - **What optimisation rejected in-sample sometimes generalised better.** That's the classic
   overfitting signature.
 - **Freeze parameters, then wait for new data.** It's the only test you can't fool yourself on.
+- **Check your metrics before you trust a diagnosis.** One wrong excursion measure would have sent me
+  optimising the wrong half of the strategy.
 - **Write down rejected ideas with their numbers** (see "Cmentarz pomysłów" in `WIEDZA.md`), so
   you don't re-test them six weeks later.
 

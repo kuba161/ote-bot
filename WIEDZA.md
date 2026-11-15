@@ -50,6 +50,7 @@ Pełna specyfikacja: **`REQUIREMENTS.md`**. Parametry: **`backtest/config.py`** 
 | **R5** | 27.06.2026 | **Walk-forward out-of-sample** | **NO-GO** |
 | **R6** | 18.10.2026 | Nowe dane do 16.10, **test forward** na zamrożonych parametrach | +$469, PF 1.34, 20 tr — **GO\* graniczny** |
 | **R7** | 15.11.2026 | Dane do 13.11, forward przedłużony | −$540, PF 0.77, 26 tr — **NO-GO** (listopad: 6 shortów, 6× SL) |
+| **R8** | 15.11.2026 | Partial/BE/bliższy TP + pivot 4 | nic nie przeszło kryterium; H4 pivot4+BE1R jedyny + na fwd (+$131/+$580) ale 1/5 mies. |
 
 ### R1 — przebudowa silnika (12.06)
 Punkt wyjścia był zły nie dlatego, że strategia nie działa, tylko dlatego, że **silnik mierzył źle**:
@@ -185,6 +186,32 @@ Miesiące 07 +395 / 08 −17 / 09 −479 / 10 +570 / **11 −1009**. Long 16 tr 
 Walk-forward 60/40 na całości: OOS −$935, PF 0.56, 21 tr. Headline całości: 51 tr, +$1967, PF 1.48.
 Wniosek: przewaga z mar–kwi **nie przenosi się** na kolejne 4,5 miesiąca. Defaultów nie zmieniam.
 
+### R8 — próba poprawy wyjść (15.11) → **nic nie przeszło kryterium**
+Hipoteza z diagnozy R7: „14/20 przegranych w forward było najpierw ≥1R na plusie” → częściowe zamknięcie
+albo BE na 1R powinno je uratować. Zarejestrowane przed liczeniem: H1 partial 1R + BE, H2 BE na 1R,
+H3 `TP_MAX_R` 2.5, H4 pivot 4 + najlepszy z H1–H3.
+
+**Diagnoza była błędna — artefakt pomiaru.** 12 z 14 takich trade'ów „było na +1R” wyłącznie na
+**barze wejścia, zanim limit się wypełnił** (cena była wysoko, zjechała do 0.79, wypełniła się i
+poszła na SL). Silnik wliczał ekstremum całego bara wejścia do MFE. Poprawka w `_manage`: MFE z bara
+wejścia tylko przy fillu na open (PnL bez zmian, tylko statystyka). Po poprawce: na +1R przed stratą
+było 6/20 przegranych w forward i 3/15 w IS. **Problemem są wejścia, nie wyjścia** — przegrane idą
+prosto na SL.
+
+| wariant | IS | forward deny / allow | PF fwd | mies.+ | WF OOS (60/40) |
+|---|---|---|---|---|---|
+| default | +$2507 | −$540 / −$100 | 0.77 | 2/5 | −$935 |
+| H1 partial 1R | +$1699 | −$605 / +$456 | 0.69 | 2/5 | — |
+| H2 BE 1R | +$2107 | −$405 / +$35 | 0.79 | 2/5 | −$887 |
+| H3 TP_MAX_R 2.5 | +$1859 | −$739 / +$43 | 0.68 | 2/5 | — |
+| pivot 4 (R6) | +$3234 | −$78 / +$371 | 0.97 | 2/5 | +$26 |
+| **H4 pivot 4 + BE 1R** | **+$2816** | **+$131 / +$580** | 1.07 | **1/5** | **+$148** |
+
+H4 jest jedynym wariantem dodatnim na forward w obu widełkach i jedynym z dodatnim WF OOS, ale
+1/5 miesięcy dodatnich (gorzej niż default) → **nie przechodzi kryterium stabilności**. Kandydat do
+decyzji Kuby, default NIE zmieniony. Uwaga: forward 30.06–13.11 jest już „widziany” (wybieraliśmy na nim
+spośród 4 hipotez) — prawdziwy test każdego wyboru to dane od 14.11.
+
 ## 4. Cmentarz pomysłów — sprawdzone i ODRZUCONE przez dane
 
 **Nie wracaj do tego bez nowych danych.** Każda z tych rzeczy brzmiała sensownie i każda została
@@ -201,6 +228,9 @@ zmierzona:
 | TP na 0.5 / 0.0 nogi | gorzej | — |
 | Break-even na 0.5 nogi | gorzej | Wyrzucał z trade'ów, które potem dochodziły do TP |
 | `EXIT_MODE="fib"` (stare wyjścia) | +$1401 vs +$2067 | Zastąpione przez liquidity |
+| R8 `PARTIAL_R=1.0` (pół pozycji na +1R, reszta BE) | IS +$1699, fwd **−$605** | Diagnoza stała na artefakcie MFE (patrz R8). Ucina runnery, a przegrane i tak idą prosto na SL |
+| R8 `TP_MAX_R=2.5` (bliższy target) | IS +$1859, fwd **−$739** | Ucina runnery, które niosą cały zysk |
+| R8 `BE_AT_R=1.0` (sam BE na +1R) | IS +$2107, fwd −$405 | Lekko lepiej na forward, gorzej na IS — nie przechodzi kryterium |
 
 Dwie rzeczy **nie** są na tej liście, choć wyglądają podobnie — bo są tylko odłożone, nie odrzucone:
 **strefa OTE `(0.705, 0.79)`** (przechodzi kryterium, ale to kompromis PF/DD — decyzja Kuby: default

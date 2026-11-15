@@ -337,6 +337,9 @@ class Trade:
     be_moved: bool = False    # SL przesuniety na entry po osiagnieciu BE_AT_FIB
     contracts: int = 1        # wielkosc pozycji (sizing wg ryzyka)
     bars_held: int = 0        # liczba domknietych barow trzymania (dla MAX_HOLD_BARS)
+    partial_done: bool = False  # PARTIAL_R osiagniete (czesc zamknieta albo tylko BE przy 1 kontrakcie)
+    partial_contracts: int = 0  # ile kontraktow zamknieto na PARTIAL_R
+    partial_pnl: float = 0.0    # zrealizowany PnL czesci (z prowizja tych kontraktow)
 
     def __post_init__(self):
         if self.risk_pt == 0.0:
@@ -685,14 +688,19 @@ class Backtester:
         tick = cfg.TICK
         if not entry_bar:
             pos.bars_held += 1
+        # MFE na barze wejscia tylko przy fillu na open: przy fillu limitem w srodku bara jego
+        # ekstremum w strone zysku bywa SPRZED wejscia (R8: 12/14 "przegranych na +1R" to byl ten artefakt)
+        mfe_ok = (not entry_bar) or pos.fill_at_open
         if pos.side == "short":
             pos.mae_pt = max(pos.mae_pt, b.h - pos.entry)
-            pos.mfe_pt = max(pos.mfe_pt, pos.entry - b.l)
+            if mfe_ok:
+                pos.mfe_pt = max(pos.mfe_pt, pos.entry - b.l)
             hit_sl = b.h >= pos.sl
             hit_tp = b.l <= pos.tp
         else:
             pos.mae_pt = max(pos.mae_pt, pos.entry - b.l)
-            pos.mfe_pt = max(pos.mfe_pt, b.h - pos.entry)
+            if mfe_ok:
+                pos.mfe_pt = max(pos.mfe_pt, b.h - pos.entry)
             hit_sl = b.l <= pos.sl
             hit_tp = b.h >= pos.tp
         if entry_bar:
@@ -705,6 +713,32 @@ class Backtester:
                 hit_tp = hit_tp and pos.fill_at_open and not hit_sl
         if hit_sl and hit_tp and cfg.BOTH_HIT_RULE != "sl_first" and not entry_bar:
             hit_sl = False   # tryb optymistyczny (nieuzywany domyslnie)
+        # R8/H1: czesciowe zamkniecie na PARTIAL_R. Konserwatywnie: bar, ktory dotyka i SL, nie
+        # realizuje partiala (SL pierwszy); na barze wejscia te same reguly co dla TP.
+        pr = getattr(cfg, "PARTIAL_R", None)
+        if pr and not pos.partial_done and not hit_sl:
+            if pos.side == "short":
+                lvl = pos.entry - pr * pos.risk_pt
+                touched = b.l <= lvl
+            else:
+                lvl = pos.entry + pr * pos.risk_pt
+                touched = b.h >= lvl
+            if entry_bar:
+                mode = getattr(cfg, "ENTRY_BAR_TP", "deny")
+                if mode == "deny":
+                    touched = False
+                elif mode == "provable":
+                    touched = touched and pos.fill_at_open
+            if touched:
+                pc = int(pos.contracts * getattr(cfg, "PARTIAL_FRAC", 0.5))
+                if pc >= 1:
+                    # luka przez poziom -> limit wypelnia sie korzystniej (na open)
+                    px = min(lvl, b.o) if pos.side == "short" else max(lvl, b.o)
+                    sgn = 1 if pos.side == "long" else -1
+                    pos.partial_pnl = (sgn * (px - pos.entry) * cfg.POINT_VALUE * pc
+                                       - cfg.COMMISSION_RT * pc)
+                    pos.partial_contracts = pc
+                pos.partial_done = True
         if hit_sl:
             slip = cfg.SLIPPAGE_TICKS_STOP * tick
             if pos.side == "short":
@@ -742,11 +776,26 @@ class Backtester:
                     if trig:
                         pos.sl = pos.entry
                         pos.be_moved = True
+                # R8/H2: BE po domknietym barze, ktory doszedl do BE_AT_R (w R od wejscia)
+                ber = getattr(cfg, "BE_AT_R", None)
+                if ber is not None and not entry_bar and not pos.be_moved:
+                    if pos.side == "short":
+                        trig = b.l <= pos.entry - ber * pos.risk_pt
+                    else:
+                        trig = b.h >= pos.entry + ber * pos.risk_pt
+                    if trig:
+                        pos.sl = pos.entry
+                        pos.be_moved = True
+                # R8/H1: po partialu reszta na BE od nastepnego bara
+                if pos.partial_done and not pos.be_moved:
+                    pos.sl = pos.entry
+                    pos.be_moved = True
                 return pos
         pos.exit_ts = b.ts
         sign = 1 if pos.side == "long" else -1
-        pos.pnl = (sign * (pos.exit - pos.entry) * cfg.POINT_VALUE * pos.contracts
-                   - cfg.COMMISSION_RT * pos.contracts)
+        rest = pos.contracts - pos.partial_contracts
+        pos.pnl = (sign * (pos.exit - pos.entry) * cfg.POINT_VALUE * rest
+                   - cfg.COMMISSION_RT * rest + pos.partial_pnl)
         risk = pos.risk_pt * cfg.POINT_VALUE * pos.contracts
         pos.r = pos.pnl / risk if risk > 0 else 0.0
         trades.append(pos)

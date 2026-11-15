@@ -1,6 +1,7 @@
 {
  "config": {
   "BE_AT_FIB": null,
+  "BE_AT_R": null,
   "BIAS_AT": "prev_close",
   "BIAS_METHOD": "BOS",
   "BIAS_TFS": [
@@ -50,6 +51,8 @@
   "MAX_RISK_USD": 400.0,
   "MIN_LEG_PT": 0.0,
   "NWOG_KEEP": 3,
+  "PARTIAL_FRAC": 0.5,
+  "PARTIAL_R": null,
   "PIVOT_LEN": 5,
   "POINT_VALUE": 2.0,
   "POST_EXIT_BARS": 12,
@@ -484,7 +487,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -502,13 +508,16 @@
    "leg_l": 24447.75,
    "kz": "NY AM",
    "mae_pt": 87.49499999999898,
-   "mfe_pt": 71.25500000000102,
+   "mfe_pt": 0.0,
    "post_tp_bars": 2,
    "risk_pt": 34.74499999999898,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -526,13 +535,16 @@
    "leg_l": 24344.75,
    "kz": "NY AM",
    "mae_pt": 62.8025000000016,
-   "mfe_pt": 108.4474999999984,
+   "mfe_pt": 0.0,
    "post_tp_bars": 1,
    "risk_pt": 32.8025000000016,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -556,7 +568,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 8
+   "bars_held": 8,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -580,7 +595,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 287
+   "bars_held": 287,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -604,7 +622,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 3
+   "bars_held": 3,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -628,7 +649,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 48
+   "bars_held": 48,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -646,13 +670,16 @@
    "leg_l": 26430.25,
    "kz": "NY PM",
    "mae_pt": 58.17499999999927,
-   "mfe_pt": 34.57500000000073,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 20.674999999999272,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -676,7 +703,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 5
+   "bars_held": 5,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -700,7 +730,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 8
+   "bars_held": 8,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -718,13 +751,16 @@
    "leg_l": 26680.25,
    "kz": "NY AM",
    "mae_pt": 98.85749999999825,
-   "mfe_pt": 30.642500000001746,
+   "mfe_pt": 10.392500000001746,
    "post_tp_bars": null,
    "risk_pt": 31.857499999998254,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -748,7 +784,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 4,
-   "bars_held": 4
+   "bars_held": 4,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -772,7 +811,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -796,7 +838,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 14
+   "bars_held": 14,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -820,7 +865,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 35
+   "bars_held": 35,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -844,7 +892,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -868,7 +919,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 5
+   "bars_held": 5,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -892,7 +946,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -910,13 +967,16 @@
    "leg_l": 27804.75,
    "kz": "NY PM",
    "mae_pt": 29.792499999999563,
-   "mfe_pt": 44.45750000000044,
+   "mfe_pt": 1.4575000000004366,
    "post_tp_bars": 2,
    "risk_pt": 21.042499999999563,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -940,7 +1000,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -964,7 +1027,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 19
+   "bars_held": 19,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -982,13 +1048,16 @@
    "leg_l": 29902.75,
    "kz": "London",
    "mae_pt": 33.62250000000131,
-   "mfe_pt": 27.87749999999869,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 20.62250000000131,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -1006,13 +1075,16 @@
    "leg_l": 29946.75,
    "kz": "NY AM",
    "mae_pt": 18.082500000000437,
-   "mfe_pt": 12.167499999999563,
+   "mfe_pt": 1.6674999999995634,
    "post_tp_bars": 4,
    "risk_pt": 10.332500000000437,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 5,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -1030,13 +1102,16 @@
    "leg_l": 30502.5,
    "kz": "NY AM",
    "mae_pt": 36.81750000000102,
-   "mfe_pt": 18.68249999999898,
+   "mfe_pt": 0.0,
    "post_tp_bars": 3,
    "risk_pt": 16.31750000000102,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -1054,13 +1129,16 @@
    "leg_l": 28638.25,
    "kz": "NY AM",
    "mae_pt": 158.3149999999987,
-   "mfe_pt": 149.9350000000013,
+   "mfe_pt": 0.0,
    "post_tp_bars": 4,
    "risk_pt": 59.31499999999869,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -1078,13 +1156,16 @@
    "leg_l": 29967.25,
    "kz": "London",
    "mae_pt": 59.25249999999869,
-   "mfe_pt": 48.49750000000131,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 21.25249999999869,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -1108,7 +1189,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 28
+   "bars_held": 28,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -1132,7 +1216,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 25
+   "bars_held": 25,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -1150,13 +1237,16 @@
    "leg_l": 27986.75,
    "kz": "NY PM",
    "mae_pt": 73.72750000000087,
-   "mfe_pt": 89.52249999999913,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 46.97750000000087,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -1180,7 +1270,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 7
+   "bars_held": 7,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -1198,13 +1291,16 @@
    "leg_l": 30206.75,
    "kz": "NY AM",
    "mae_pt": 20.904999999998836,
-   "mfe_pt": 48.345000000001164,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 18.154999999998836,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -1228,7 +1324,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 7,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -1252,7 +1351,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -1276,7 +1378,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 9
+   "bars_held": 9,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -1300,7 +1405,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 10,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -1324,7 +1432,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -1348,7 +1459,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 10,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -1366,13 +1480,16 @@
    "leg_l": 30758.0,
    "kz": "London",
    "mae_pt": 67.24499999999898,
-   "mfe_pt": 27.50500000000102,
+   "mfe_pt": 3.5050000000010186,
    "post_tp_bars": null,
    "risk_pt": 34.74499999999898,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 8
+   "bars_held": 8,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -1390,13 +1507,16 @@
    "leg_l": 30990.5,
    "kz": "Asian",
    "mae_pt": 25.402500000000146,
-   "mfe_pt": 50.347499999999854,
+   "mfe_pt": 14.597499999999854,
    "post_tp_bars": null,
    "risk_pt": 19.152500000000146,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 3
+   "bars_held": 3,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -1420,7 +1540,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 2
+   "bars_held": 2,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -1444,7 +1567,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 8
+   "bars_held": 8,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -1462,13 +1588,16 @@
    "leg_l": 31120.0,
    "kz": "Asian",
    "mae_pt": 41.840000000000146,
-   "mfe_pt": 39.909999999999854,
+   "mfe_pt": 10.159999999999854,
    "post_tp_bars": null,
    "risk_pt": 23.090000000000146,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -1486,13 +1615,16 @@
    "leg_l": 31003.75,
    "kz": "London",
    "mae_pt": 22.05500000000029,
-   "mfe_pt": 52.94499999999971,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 21.30500000000029,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -1516,7 +1648,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 4
+   "bars_held": 4,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -1534,13 +1669,16 @@
    "leg_l": 31325.25,
    "kz": "Asian",
    "mae_pt": 35.0724999999984,
-   "mfe_pt": 26.9275000000016,
+   "mfe_pt": 6.177500000001601,
    "post_tp_bars": 6,
    "risk_pt": 19.5724999999984,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 4
+   "bars_held": 4,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -1558,13 +1696,16 @@
    "leg_l": 28213.0,
    "kz": "NY AM",
    "mae_pt": 62.33499999999913,
-   "mfe_pt": 93.16500000000087,
+   "mfe_pt": 58.16500000000087,
    "post_tp_bars": null,
    "risk_pt": 46.08499999999913,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 2
+   "bars_held": 2,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -1588,7 +1729,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 7
+   "bars_held": 7,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -1612,7 +1756,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 29
+   "bars_held": 29,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -1636,7 +1783,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -1660,7 +1810,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 2
+   "bars_held": 2,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -1678,13 +1831,16 @@
    "leg_l": 27960.5,
    "kz": "NY PM",
    "mae_pt": 77.52999999999884,
-   "mfe_pt": 53.970000000001164,
+   "mfe_pt": 0.0,
    "post_tp_bars": 1,
    "risk_pt": 20.779999999998836,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   }
  ],
  "variant_deny": {
@@ -1750,13 +1906,16 @@
    "leg_l": 24498.5,
    "kz": "London",
    "mae_pt": 118.95750000000044,
-   "mfe_pt": 46.29249999999956,
+   "mfe_pt": 14.792499999999563,
    "post_tp_bars": null,
    "risk_pt": 65.45750000000044,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 2
+   "bars_held": 2,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -1780,7 +1939,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 4,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -1804,7 +1966,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 3
+   "bars_held": 3,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -1822,13 +1987,16 @@
    "leg_l": 24575.5,
    "kz": "NY PM",
    "mae_pt": 246.89500000000044,
-   "mfe_pt": 51.35499999999956,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 37.89500000000044,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -1852,7 +2020,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -1876,7 +2047,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 4,
-   "bars_held": 8
+   "bars_held": 8,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -1894,13 +2068,16 @@
    "leg_l": 24474.5,
    "kz": "Asian",
    "mae_pt": 25.604999999999563,
-   "mfe_pt": 5.895000000000437,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 11.854999999999563,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 4,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -1924,7 +2101,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 2
+   "bars_held": 2,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -1948,7 +2128,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 292
+   "bars_held": 292,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -1966,13 +2149,16 @@
    "leg_l": 23839.25,
    "kz": "Asian",
    "mae_pt": 17.172500000000582,
-   "mfe_pt": 28.077499999999418,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 11.172500000000582,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 5,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -1996,7 +2182,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 4,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2020,7 +2209,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 6,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2044,7 +2236,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 10,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2068,7 +2263,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2086,13 +2284,16 @@
    "leg_l": 25995.0,
    "kz": "Asian",
    "mae_pt": 15.592499999998836,
-   "mfe_pt": 7.657500000001164,
+   "mfe_pt": 0.0,
    "post_tp_bars": 10,
    "risk_pt": 11.592499999998836,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 4,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2110,13 +2311,16 @@
    "leg_l": 26416.5,
    "kz": "London",
    "mae_pt": 20.857499999998254,
-   "mfe_pt": 33.392500000001746,
+   "mfe_pt": 9.642500000001746,
    "post_tp_bars": null,
    "risk_pt": 16.107499999998254,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 2
+   "bars_held": 2,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2134,13 +2338,16 @@
    "leg_l": 26364.25,
    "kz": "NY AM",
    "mae_pt": 36.0625,
-   "mfe_pt": 71.9375,
+   "mfe_pt": 0.0,
    "post_tp_bars": 0,
    "risk_pt": 18.3125,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2158,13 +2365,16 @@
    "leg_l": 26455.75,
    "kz": "Asian",
    "mae_pt": 10.819999999999709,
-   "mfe_pt": 16.93000000000029,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 10.069999999999709,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 5,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2188,7 +2398,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 6,
-   "bars_held": 2
+   "bars_held": 2,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2212,7 +2425,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 8
+   "bars_held": 8,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2230,13 +2446,16 @@
    "leg_l": 26797.0,
    "kz": "NY AM",
    "mae_pt": 93.04999999999927,
-   "mfe_pt": 53.95000000000073,
+   "mfe_pt": 22.700000000000728,
    "post_tp_bars": null,
    "risk_pt": 23.299999999999272,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 4
+   "bars_held": 4,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2254,13 +2473,16 @@
    "leg_l": 26600.0,
    "kz": "NY PM",
    "mae_pt": 86.35250000000087,
-   "mfe_pt": 150.14749999999913,
+   "mfe_pt": 0.0,
    "post_tp_bars": 0,
    "risk_pt": 39.10250000000087,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2284,7 +2506,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 2
+   "bars_held": 2,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2302,13 +2527,16 @@
    "leg_l": 26977.75,
    "kz": "Asian",
    "mae_pt": 76.40250000000015,
-   "mfe_pt": 87.34749999999985,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 34.902500000000146,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2332,7 +2560,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 2
+   "bars_held": 2,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2356,7 +2587,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 3
+   "bars_held": 3,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2374,13 +2608,16 @@
    "leg_l": 27185.5,
    "kz": "NY AM",
    "mae_pt": 98.97999999999956,
-   "mfe_pt": 103.27000000000044,
+   "mfe_pt": 41.52000000000044,
    "post_tp_bars": 3,
    "risk_pt": 77.47999999999956,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 2
+   "bars_held": 2,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2398,13 +2635,16 @@
    "leg_l": 27554.75,
    "kz": "London",
    "mae_pt": 34.7400000000016,
-   "mfe_pt": 24.0099999999984,
+   "mfe_pt": 17.7599999999984,
    "post_tp_bars": null,
    "risk_pt": 26.2400000000016,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 5
+   "bars_held": 5,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2422,13 +2662,16 @@
    "leg_l": 27871.75,
    "kz": "London",
    "mae_pt": 25.49499999999898,
-   "mfe_pt": 24.75500000000102,
+   "mfe_pt": 0.0,
    "post_tp_bars": 6,
    "risk_pt": 18.99499999999898,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2446,13 +2689,16 @@
    "leg_l": 28650.0,
    "kz": "Asian",
    "mae_pt": 22.592499999998836,
-   "mfe_pt": 35.907500000001164,
+   "mfe_pt": 21.907500000001164,
    "post_tp_bars": 6,
    "risk_pt": 11.592499999998836,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 4,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2476,7 +2722,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 14
+   "bars_held": 14,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2500,7 +2749,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2524,7 +2776,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 5
+   "bars_held": 5,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2548,7 +2803,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 2
+   "bars_held": 2,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2572,7 +2830,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 4,
-   "bars_held": 2
+   "bars_held": 2,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2596,7 +2857,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 42
+   "bars_held": 42,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2620,7 +2884,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2638,13 +2905,16 @@
    "leg_l": 29259.0,
    "kz": "NY AM",
    "mae_pt": 49.68249999999898,
-   "mfe_pt": 121.81750000000102,
+   "mfe_pt": 77.31750000000102,
    "post_tp_bars": 1,
    "risk_pt": 38.68249999999898,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2662,13 +2932,16 @@
    "leg_l": 29320.75,
    "kz": "Asian",
    "mae_pt": 34.00749999999971,
-   "mfe_pt": 17.74250000000029,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 29.75749999999971,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2686,13 +2959,16 @@
    "leg_l": 29226.75,
    "kz": "London",
    "mae_pt": 41.97999999999956,
-   "mfe_pt": 29.520000000000437,
+   "mfe_pt": 5.770000000000437,
    "post_tp_bars": null,
    "risk_pt": 30.229999999999563,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 2
+   "bars_held": 2,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2710,13 +2986,16 @@
    "leg_l": 29481.0,
    "kz": "NY AM",
    "mae_pt": 28.229999999999563,
-   "mfe_pt": 60.27000000000044,
+   "mfe_pt": 25.270000000000437,
    "post_tp_bars": 3,
    "risk_pt": 24.979999999999563,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2740,7 +3019,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 5
+   "bars_held": 5,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2758,13 +3040,16 @@
    "leg_l": 29193.25,
    "kz": "NY AM",
    "mae_pt": 28.854999999999563,
-   "mfe_pt": 29.395000000000437,
+   "mfe_pt": 0.0,
    "post_tp_bars": 4,
    "risk_pt": 22.354999999999563,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2788,7 +3073,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 12
+   "bars_held": 12,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2806,13 +3094,16 @@
    "leg_l": 29630.75,
    "kz": "NY PM",
    "mae_pt": 31.31999999999971,
-   "mfe_pt": 34.18000000000029,
+   "mfe_pt": 19.43000000000029,
    "post_tp_bars": 10,
    "risk_pt": 25.81999999999971,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 2
+   "bars_held": 2,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2830,13 +3121,16 @@
    "leg_l": 30055.5,
    "kz": "NY AM",
    "mae_pt": 160.14500000000044,
-   "mfe_pt": 68.35499999999956,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 69.39500000000044,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2854,13 +3148,16 @@
    "leg_l": 30276.0,
    "kz": "Asian",
    "mae_pt": 24.387500000000728,
-   "mfe_pt": 6.612499999999272,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 19.887500000000728,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2878,13 +3175,16 @@
    "leg_l": 30294.25,
    "kz": "NY AM",
    "mae_pt": 55.965000000000146,
-   "mfe_pt": 92.28499999999985,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 51.965000000000146,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2908,7 +3208,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 15
+   "bars_held": 15,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2926,13 +3229,16 @@
    "leg_l": 30536.25,
    "kz": "London",
    "mae_pt": 36.95750000000044,
-   "mfe_pt": 25.542499999999563,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 12.957500000000437,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 4,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2956,7 +3262,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 7,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -2980,7 +3289,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 60
+   "bars_held": 60,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3004,7 +3316,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 2
+   "bars_held": 2,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3022,13 +3337,16 @@
    "leg_l": 30152.25,
    "kz": "Asian",
    "mae_pt": 115.95999999999913,
-   "mfe_pt": 17.290000000000873,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 95.95999999999913,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 3
+   "bars_held": 3,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -3046,13 +3364,16 @@
    "leg_l": 28533.0,
    "kz": "Asian",
    "mae_pt": 92.90499999999884,
-   "mfe_pt": 43.345000000001164,
+   "mfe_pt": 10.845000000001164,
    "post_tp_bars": null,
    "risk_pt": 49.654999999998836,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 3
+   "bars_held": 3,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -3070,13 +3391,16 @@
    "leg_l": 28688.25,
    "kz": "London",
    "mae_pt": 35.595000000001164,
-   "mfe_pt": 27.904999999998836,
+   "mfe_pt": 18.904999999998836,
    "post_tp_bars": null,
    "risk_pt": 26.345000000001164,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -3100,7 +3424,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 25
+   "bars_held": 25,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3118,13 +3445,16 @@
    "leg_l": 29919.25,
    "kz": "NY AM",
    "mae_pt": 93.35499999999956,
-   "mfe_pt": 222.39500000000044,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 85.35499999999956,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3142,13 +3472,16 @@
    "leg_l": 29855.75,
    "kz": "Asian",
    "mae_pt": 11.290000000000873,
-   "mfe_pt": 160.45999999999913,
+   "mfe_pt": 149.45999999999913,
    "post_tp_bars": null,
    "risk_pt": 27.290000000000873,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3166,13 +3499,16 @@
    "leg_l": 29677.75,
    "kz": "Asian",
    "mae_pt": 32.44499999999971,
-   "mfe_pt": 70.55500000000029,
+   "mfe_pt": 0.0,
    "post_tp_bars": 0,
    "risk_pt": 17.94499999999971,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3190,13 +3526,16 @@
    "leg_l": 29593.5,
    "kz": "London",
    "mae_pt": 67.38000000000102,
-   "mfe_pt": 50.36999999999898,
+   "mfe_pt": 13.119999999998981,
    "post_tp_bars": null,
    "risk_pt": 43.88000000000102,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 2
+   "bars_held": 2,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -3214,13 +3553,16 @@
    "leg_l": 28961.25,
    "kz": "NY AM",
    "mae_pt": 57.5724999999984,
-   "mfe_pt": 38.9275000000016,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 45.8224999999984,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -3244,7 +3586,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -3268,7 +3613,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 3
+   "bars_held": 3,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -3292,7 +3640,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -3316,7 +3667,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 3
+   "bars_held": 3,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -3334,13 +3688,16 @@
    "leg_l": 27337.0,
    "kz": "London",
    "mae_pt": 53.402500000000146,
-   "mfe_pt": 78.84749999999985,
+   "mfe_pt": 42.347499999999854,
    "post_tp_bars": null,
    "risk_pt": 45.402500000000146,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 3
+   "bars_held": 3,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3358,13 +3715,16 @@
    "leg_l": 30141.0,
    "kz": "Asian",
    "mae_pt": 36.215000000000146,
-   "mfe_pt": 9.284999999999854,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 20.465000000000146,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3382,13 +3742,16 @@
    "leg_l": 30206.75,
    "kz": "NY AM",
    "mae_pt": 53.904999999998836,
-   "mfe_pt": 45.595000000001164,
+   "mfe_pt": 0.0,
    "post_tp_bars": 1,
    "risk_pt": 18.154999999998836,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3412,7 +3775,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 4,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3430,13 +3796,16 @@
    "leg_l": 30053.25,
    "kz": "Asian",
    "mae_pt": 27.909999999999854,
-   "mfe_pt": 26.590000000000146,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 16.159999999999854,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3460,7 +3829,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3484,7 +3856,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 6
+   "bars_held": 6,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3508,7 +3883,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 10,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3532,7 +3910,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 6,
-   "bars_held": 3
+   "bars_held": 3,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3556,7 +3937,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 9,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3574,13 +3958,16 @@
    "leg_l": 29592.5,
    "kz": "NY AM",
    "mae_pt": 49.097499999999854,
-   "mfe_pt": 89.65250000000015,
+   "mfe_pt": 0.0,
    "post_tp_bars": 0,
    "risk_pt": 20.097499999999854,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3598,13 +3985,16 @@
    "leg_l": 29447.5,
    "kz": "London",
    "mae_pt": 43.68500000000131,
-   "mfe_pt": 73.06499999999869,
+   "mfe_pt": 5.06499999999869,
    "post_tp_bars": null,
    "risk_pt": 27.18500000000131,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3622,13 +4012,16 @@
    "leg_l": 29616.25,
    "kz": "NY AM",
    "mae_pt": 101.58750000000146,
-   "mfe_pt": 85.91249999999854,
+   "mfe_pt": 0.0,
    "post_tp_bars": 0,
    "risk_pt": 18.837500000001455,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3646,13 +4039,16 @@
    "leg_l": 29502.0,
    "kz": "NY AM",
    "mae_pt": 43.650000000001455,
-   "mfe_pt": 56.099999999998545,
+   "mfe_pt": 2.099999999998545,
    "post_tp_bars": 8,
    "risk_pt": 41.150000000001455,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3670,13 +4066,16 @@
    "leg_l": 29477.75,
    "kz": "NY PM",
    "mae_pt": 28.332500000000437,
-   "mfe_pt": 5.917499999999563,
+   "mfe_pt": 0.0,
    "post_tp_bars": 9,
    "risk_pt": 26.082500000000437,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3700,7 +4099,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 4,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3718,13 +4120,16 @@
    "leg_l": 29672.5,
    "kz": "Asian",
    "mae_pt": 18.900000000001455,
-   "mfe_pt": 27.349999999998545,
+   "mfe_pt": 20.599999999998545,
    "post_tp_bars": 10,
    "risk_pt": 9.650000000001455,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 5,
-   "bars_held": 2
+   "bars_held": 2,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3742,13 +4147,16 @@
    "leg_l": 30218.25,
    "kz": "NY AM",
    "mae_pt": 28.639999999999418,
-   "mfe_pt": 27.860000000000582,
+   "mfe_pt": 8.360000000000582,
    "post_tp_bars": 1,
    "risk_pt": 13.639999999999418,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 4,
-   "bars_held": 2
+   "bars_held": 2,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3772,7 +4180,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 10
+   "bars_held": 10,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3790,13 +4201,16 @@
    "leg_l": 30900.0,
    "kz": "NY AM",
    "mae_pt": 43.18500000000131,
-   "mfe_pt": 15.56499999999869,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 21.93500000000131,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3820,7 +4234,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 10,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3838,13 +4255,16 @@
    "leg_l": 30780.0,
    "kz": "Asian",
    "mae_pt": 32.80500000000029,
-   "mfe_pt": 51.44499999999971,
+   "mfe_pt": 19.69499999999971,
    "post_tp_bars": null,
    "risk_pt": 26.55500000000029,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 2
+   "bars_held": 2,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3862,13 +4282,16 @@
    "leg_l": 30761.5,
    "kz": "NY PM",
    "mae_pt": 103.22249999999985,
-   "mfe_pt": 58.777500000000146,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 22.722499999999854,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3886,13 +4309,16 @@
    "leg_l": 30724.5,
    "kz": "London",
    "mae_pt": 17.657500000001164,
-   "mfe_pt": 154.34249999999884,
+   "mfe_pt": 92.34249999999884,
    "post_tp_bars": null,
    "risk_pt": 90.65750000000116,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 3
+   "bars_held": 3,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3910,13 +4336,16 @@
    "leg_l": 30782.25,
    "kz": "NY AM",
    "mae_pt": 83.42499999999927,
-   "mfe_pt": 41.57500000000073,
+   "mfe_pt": 40.32500000000073,
    "post_tp_bars": null,
    "risk_pt": 36.42499999999927,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 3
+   "bars_held": 3,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3940,7 +4369,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3958,13 +4390,16 @@
    "leg_l": 31481.0,
    "kz": "NY PM",
    "mae_pt": 29.86750000000029,
-   "mfe_pt": 29.13249999999971,
+   "mfe_pt": 15.382499999999709,
    "post_tp_bars": null,
    "risk_pt": 17.36750000000029,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 3,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -3988,7 +4423,10 @@
    "fill_at_open": true,
    "be_moved": false,
    "contracts": 10,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "long",
@@ -4006,13 +4444,16 @@
    "leg_l": 29755.75,
    "kz": "Asian",
    "mae_pt": 23.395000000000437,
-   "mfe_pt": 35.10499999999956,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 22.145000000000437,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -4030,13 +4471,16 @@
    "leg_l": 28685.5,
    "kz": "NY AM",
    "mae_pt": 64.97750000000087,
-   "mfe_pt": 95.02249999999913,
+   "mfe_pt": 0.0,
    "post_tp_bars": 0,
    "risk_pt": 25.977500000000873,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -4060,7 +4504,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 57
+   "bars_held": 57,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -4078,13 +4525,16 @@
    "leg_l": 28639.75,
    "kz": "NY AM",
    "mae_pt": 91.23500000000058,
-   "mfe_pt": 50.26499999999942,
+   "mfe_pt": 0.0,
    "post_tp_bars": 6,
    "risk_pt": 43.98500000000058,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 0
+   "bars_held": 0,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -4108,7 +4558,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 2,
-   "bars_held": 11
+   "bars_held": 11,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -4126,13 +4579,16 @@
    "leg_l": 28035.25,
    "kz": "London",
    "mae_pt": 53.087500000001455,
-   "mfe_pt": 18.912499999998545,
+   "mfe_pt": 0.0,
    "post_tp_bars": null,
    "risk_pt": 50.337500000001455,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -4156,7 +4612,10 @@
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 5
+   "bars_held": 5,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -4174,13 +4633,16 @@
    "leg_l": 27611.5,
    "kz": "London",
    "mae_pt": 216.89500000000044,
-   "mfe_pt": 70.10499999999956,
+   "mfe_pt": 12.854999999999563,
    "post_tp_bars": null,
    "risk_pt": 190.14500000000044,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 8
+   "bars_held": 8,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   },
   {
    "side": "short",
@@ -4198,13 +4660,16 @@
    "leg_l": 27598.5,
    "kz": "NY AM",
    "mae_pt": 139.65999999999985,
-   "mfe_pt": 196.09000000000015,
+   "mfe_pt": 0.0,
    "post_tp_bars": 10,
    "risk_pt": 94.90999999999985,
    "fill_at_open": false,
    "be_moved": false,
    "contracts": 1,
-   "bars_held": 1
+   "bars_held": 1,
+   "partial_done": false,
+   "partial_contracts": 0,
+   "partial_pnl": 0.0
   }
  ]
 }

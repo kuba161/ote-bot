@@ -44,6 +44,11 @@ VARIANTS = [
     ("4xTF+pivot3", {"BIAS_TFS": ("15m", "1h", "4h", "1d"), "PIVOT_LEN": 3}),
     ("4xTF+pivot4", {"BIAS_TFS": ("15m", "1h", "4h", "1d"), "PIVOT_LEN": 4}),
     ("zone_705_79", {"ENTRY_FIBS": (0.705, 0.79)}),
+    # R8 (15.11) — zarzadzanie pozycja; zarejestrowane przed liczeniem (diagnoza MFE przegranych)
+    ("H1_partial1R", {"PARTIAL_R": 1.0, "PARTIAL_FRAC": 0.5}),
+    ("H2_BE1R", {"BE_AT_R": 1.0}),
+    ("H3_tpmax2.5", {"TP_MAX_R": 2.5}),
+    ("H4_pivot4+BE1R", {"PIVOT_LEN": 4, "BE_AT_R": 1.0}),
 ]
 MODES = ("deny", "provable", "allow")
 

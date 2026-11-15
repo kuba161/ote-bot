@@ -18,6 +18,11 @@ SKIP_FIRST_BAR_AFTER_WEEKEND = False  # nie otwieraj pozycji na 1. barze po week
 # --- zarzadzanie pozycja ---
 BE_AT_FIB = None          # None = off; np. 0.5: gdy domkniety bar osiagnie 0.5 nogi,
                           # SL przesuwa sie na entry (od nastepnego bara)
+# R8 (2026-11-15) — zarzadzanie pozycja. Diagnoza R7: 14/20 przegranych w forward i 11/15 w IS
+# bylo najpierw >= 1R na plusie. Hipotezy zarejestrowane PRZED testem, default OFF.
+PARTIAL_R = None          # np. 1.0: zamknij PARTIAL_FRAC kontraktow na +1R, reszta na BE od nast. bara
+PARTIAL_FRAC = 0.5        # czesc pozycji zamykana na PARTIAL_R (int(contracts*frac); 1 kontrakt = tylko BE)
+BE_AT_R = None            # np. 1.0: SL -> entry po domknietym barze, ktory doszedl do +1R
 
 # --- metoda biasu (parytet z indykatorem Pine: input "Metoda biasu") ---
 # "BOS":   stanowy break of structure — bias trzyma kierunek dopoki close nie zlamie

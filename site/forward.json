@@ -81,13 +81,16 @@
     "leg_l": 29967.25,
     "kz": "London",
     "mae_pt": 59.25249999999869,
-    "mfe_pt": 48.49750000000131,
+    "mfe_pt": 0.0,
     "post_tp_bars": null,
     "risk_pt": 21.25249999999869,
     "fill_at_open": false,
     "be_moved": false,
     "contracts": 2,
-    "bars_held": 0
+    "bars_held": 0,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "short",
@@ -111,7 +114,10 @@
     "fill_at_open": false,
     "be_moved": false,
     "contracts": 1,
-    "bars_held": 28
+    "bars_held": 28,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "short",
@@ -135,7 +141,10 @@
     "fill_at_open": false,
     "be_moved": false,
     "contracts": 1,
-    "bars_held": 25
+    "bars_held": 25,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "short",
@@ -153,13 +162,16 @@
     "leg_l": 27986.75,
     "kz": "NY PM",
     "mae_pt": 73.72750000000087,
-    "mfe_pt": 89.52249999999913,
+    "mfe_pt": 0.0,
     "post_tp_bars": null,
     "risk_pt": 46.97750000000087,
     "fill_at_open": false,
     "be_moved": false,
     "contracts": 1,
-    "bars_held": 1
+    "bars_held": 1,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "short",
@@ -183,7 +195,10 @@
     "fill_at_open": false,
     "be_moved": false,
     "contracts": 1,
-    "bars_held": 7
+    "bars_held": 7,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "long",
@@ -201,13 +216,16 @@
     "leg_l": 30206.75,
     "kz": "NY AM",
     "mae_pt": 20.904999999998836,
-    "mfe_pt": 48.345000000001164,
+    "mfe_pt": 0.0,
     "post_tp_bars": null,
     "risk_pt": 18.154999999998836,
     "fill_at_open": false,
     "be_moved": false,
     "contracts": 3,
-    "bars_held": 0
+    "bars_held": 0,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "long",
@@ -231,7 +249,10 @@
     "fill_at_open": true,
     "be_moved": false,
     "contracts": 7,
-    "bars_held": 0
+    "bars_held": 0,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "long",
@@ -255,7 +276,10 @@
     "fill_at_open": false,
     "be_moved": false,
     "contracts": 2,
-    "bars_held": 1
+    "bars_held": 1,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "long",
@@ -279,7 +303,10 @@
     "fill_at_open": false,
     "be_moved": false,
     "contracts": 2,
-    "bars_held": 9
+    "bars_held": 9,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "long",
@@ -303,7 +330,10 @@
     "fill_at_open": true,
     "be_moved": false,
     "contracts": 10,
-    "bars_held": 0
+    "bars_held": 0,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "long",
@@ -327,7 +357,10 @@
     "fill_at_open": true,
     "be_moved": false,
     "contracts": 3,
-    "bars_held": 0
+    "bars_held": 0,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "long",
@@ -351,7 +384,10 @@
     "fill_at_open": true,
     "be_moved": false,
     "contracts": 10,
-    "bars_held": 0
+    "bars_held": 0,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "long",
@@ -369,13 +405,16 @@
     "leg_l": 30758.0,
     "kz": "London",
     "mae_pt": 67.24499999999898,
-    "mfe_pt": 27.50500000000102,
+    "mfe_pt": 3.5050000000010186,
     "post_tp_bars": null,
     "risk_pt": 34.74499999999898,
     "fill_at_open": false,
     "be_moved": false,
     "contracts": 1,
-    "bars_held": 8
+    "bars_held": 8,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "long",
@@ -393,13 +432,16 @@
     "leg_l": 30990.5,
     "kz": "Asian",
     "mae_pt": 25.402500000000146,
-    "mfe_pt": 50.347499999999854,
+    "mfe_pt": 14.597499999999854,
     "post_tp_bars": null,
     "risk_pt": 19.152500000000146,
     "fill_at_open": false,
     "be_moved": false,
     "contracts": 3,
-    "bars_held": 3
+    "bars_held": 3,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "long",
@@ -423,7 +465,10 @@
     "fill_at_open": true,
     "be_moved": false,
     "contracts": 1,
-    "bars_held": 2
+    "bars_held": 2,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "long",
@@ -447,7 +492,10 @@
     "fill_at_open": true,
     "be_moved": false,
     "contracts": 2,
-    "bars_held": 8
+    "bars_held": 8,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "long",
@@ -465,13 +513,16 @@
     "leg_l": 31120.0,
     "kz": "Asian",
     "mae_pt": 41.840000000000146,
-    "mfe_pt": 39.909999999999854,
+    "mfe_pt": 10.159999999999854,
     "post_tp_bars": null,
     "risk_pt": 23.090000000000146,
     "fill_at_open": false,
     "be_moved": false,
     "contracts": 2,
-    "bars_held": 1
+    "bars_held": 1,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "long",
@@ -489,13 +540,16 @@
     "leg_l": 31003.75,
     "kz": "London",
     "mae_pt": 22.05500000000029,
-    "mfe_pt": 52.94499999999971,
+    "mfe_pt": 0.0,
     "post_tp_bars": null,
     "risk_pt": 21.30500000000029,
     "fill_at_open": false,
     "be_moved": false,
     "contracts": 2,
-    "bars_held": 0
+    "bars_held": 0,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "long",
@@ -519,7 +573,10 @@
     "fill_at_open": false,
     "be_moved": false,
     "contracts": 2,
-    "bars_held": 4
+    "bars_held": 4,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "long",
@@ -537,13 +594,16 @@
     "leg_l": 31325.25,
     "kz": "Asian",
     "mae_pt": 35.0724999999984,
-    "mfe_pt": 26.9275000000016,
+    "mfe_pt": 6.177500000001601,
     "post_tp_bars": 6,
     "risk_pt": 19.5724999999984,
     "fill_at_open": false,
     "be_moved": false,
     "contracts": 3,
-    "bars_held": 4
+    "bars_held": 4,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "short",
@@ -561,13 +621,16 @@
     "leg_l": 28213.0,
     "kz": "NY AM",
     "mae_pt": 62.33499999999913,
-    "mfe_pt": 93.16500000000087,
+    "mfe_pt": 58.16500000000087,
     "post_tp_bars": null,
     "risk_pt": 46.08499999999913,
     "fill_at_open": false,
     "be_moved": false,
     "contracts": 1,
-    "bars_held": 2
+    "bars_held": 2,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "short",
@@ -591,7 +654,10 @@
     "fill_at_open": true,
     "be_moved": false,
     "contracts": 1,
-    "bars_held": 7
+    "bars_held": 7,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "short",
@@ -615,7 +681,10 @@
     "fill_at_open": false,
     "be_moved": false,
     "contracts": 1,
-    "bars_held": 29
+    "bars_held": 29,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "short",
@@ -639,7 +708,10 @@
     "fill_at_open": true,
     "be_moved": false,
     "contracts": 1,
-    "bars_held": 0
+    "bars_held": 0,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "short",
@@ -663,7 +735,10 @@
     "fill_at_open": true,
     "be_moved": false,
     "contracts": 1,
-    "bars_held": 2
+    "bars_held": 2,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    },
    {
     "side": "short",
@@ -681,13 +756,16 @@
     "leg_l": 27960.5,
     "kz": "NY PM",
     "mae_pt": 77.52999999999884,
-    "mfe_pt": 53.970000000001164,
+    "mfe_pt": 0.0,
     "post_tp_bars": 1,
     "risk_pt": 20.779999999998836,
     "fill_at_open": false,
     "be_moved": false,
     "contracts": 2,
-    "bars_held": 0
+    "bars_held": 0,
+    "partial_done": false,
+    "partial_contracts": 0,
+    "partial_pnl": 0.0
    }
   ]
  },
@@ -1598,6 +1676,516 @@
    },
    "verdict": "NO-GO",
    "why": "deny $-918 / allow $-698, miesiace dodatnie 2/5, 49 tr"
+  },
+  {
+   "name": "H1_partial1R",
+   "overrides": {
+    "PARTIAL_R": 1.0,
+    "PARTIAL_FRAC": 0.5
+   },
+   "is": {
+    "deny": {
+     "trades": 25,
+     "wins": 10,
+     "losses": 15,
+     "winrate": 40.0,
+     "pnl_total": 1699.05,
+     "profit_factor": 2.24,
+     "expectancy": 67.96,
+     "avg_r": 0.302,
+     "max_drawdown": 531.16
+    },
+    "provable": {
+     "trades": 25,
+     "wins": 10,
+     "losses": 15,
+     "winrate": 40.0,
+     "pnl_total": 1699.05,
+     "profit_factor": 2.24,
+     "expectancy": 67.96,
+     "avg_r": 0.302,
+     "max_drawdown": 531.16
+    },
+    "allow": {
+     "trades": 25,
+     "wins": 12,
+     "losses": 13,
+     "winrate": 48.0,
+     "pnl_total": 1972.6,
+     "profit_factor": 2.68,
+     "expectancy": 78.9,
+     "avg_r": 0.423,
+     "max_drawdown": 364.66
+    }
+   },
+   "fwd": {
+    "deny": {
+     "trades": 26,
+     "wins": 6,
+     "losses": 20,
+     "winrate": 23.1,
+     "pnl_total": -604.81,
+     "profit_factor": 0.69,
+     "expectancy": -23.26,
+     "avg_r": -0.26,
+     "max_drawdown": 1086.54
+    },
+    "provable": {
+     "trades": 26,
+     "wins": 6,
+     "losses": 20,
+     "winrate": 23.1,
+     "pnl_total": -609.81,
+     "profit_factor": 0.69,
+     "expectancy": -23.45,
+     "avg_r": -0.262,
+     "max_drawdown": 1091.54
+    },
+    "allow": {
+     "trades": 26,
+     "wins": 10,
+     "losses": 16,
+     "winrate": 38.5,
+     "pnl_total": 456.1,
+     "profit_factor": 1.33,
+     "expectancy": 17.54,
+     "avg_r": 0.147,
+     "max_drawdown": 572.8
+    }
+   },
+   "fwd_months": {
+    "2026-07": {
+     "trades": 5,
+     "wins": 2,
+     "pnl": 481.72
+    },
+    "2026-08": {
+     "trades": 4,
+     "wins": 1,
+     "pnl": -289.29
+    },
+    "2026-09": {
+     "trades": 5,
+     "wins": 0,
+     "pnl": -478.89
+    },
+    "2026-10": {
+     "trades": 6,
+     "wins": 3,
+     "pnl": 323.61
+    },
+    "2026-11": {
+     "trades": 6,
+     "wins": 0,
+     "pnl": -646.97
+    }
+   },
+   "is_months": {
+    "2026-03": {
+     "trades": 7,
+     "wins": 4,
+     "pnl": 1445.86
+    },
+    "2026-04": {
+     "trades": 11,
+     "wins": 5,
+     "pnl": 335.39
+    },
+    "2026-05": {
+     "trades": 5,
+     "wins": 1,
+     "pnl": 139.29
+    },
+    "2026-06": {
+     "trades": 2,
+     "wins": 0,
+     "pnl": -221.5
+    }
+   },
+   "verdict": "NO-GO",
+   "why": "deny $-605 / allow $456, miesiace dodatnie 2/5, 26 tr"
+  },
+  {
+   "name": "H2_BE1R",
+   "overrides": {
+    "BE_AT_R": 1.0
+   },
+   "is": {
+    "deny": {
+     "trades": 25,
+     "wins": 8,
+     "losses": 17,
+     "winrate": 32.0,
+     "pnl_total": 2107.35,
+     "profit_factor": 2.54,
+     "expectancy": 84.29,
+     "avg_r": 0.489,
+     "max_drawdown": 531.16
+    },
+    "provable": {
+     "trades": 25,
+     "wins": 8,
+     "losses": 17,
+     "winrate": 32.0,
+     "pnl_total": 2107.35,
+     "profit_factor": 2.54,
+     "expectancy": 84.29,
+     "avg_r": 0.489,
+     "max_drawdown": 531.16
+    },
+    "allow": {
+     "trades": 25,
+     "wins": 8,
+     "losses": 17,
+     "winrate": 32.0,
+     "pnl_total": 2107.35,
+     "profit_factor": 2.54,
+     "expectancy": 84.29,
+     "avg_r": 0.489,
+     "max_drawdown": 531.16
+    }
+   },
+   "fwd": {
+    "deny": {
+     "trades": 26,
+     "wins": 5,
+     "losses": 21,
+     "winrate": 19.2,
+     "pnl_total": -405.4,
+     "profit_factor": 0.79,
+     "expectancy": -15.59,
+     "avg_r": -0.176,
+     "max_drawdown": 887.13
+    },
+    "provable": {
+     "trades": 26,
+     "wins": 5,
+     "losses": 21,
+     "winrate": 19.2,
+     "pnl_total": -405.4,
+     "profit_factor": 0.79,
+     "expectancy": -15.59,
+     "avg_r": -0.176,
+     "max_drawdown": 887.13
+    },
+    "allow": {
+     "trades": 26,
+     "wins": 6,
+     "losses": 20,
+     "winrate": 23.1,
+     "pnl_total": 34.6,
+     "profit_factor": 1.02,
+     "expectancy": 1.33,
+     "avg_r": -0.0,
+     "max_drawdown": 768.12
+    }
+   },
+   "fwd_months": {
+    "2026-07": {
+     "trades": 5,
+     "wins": 2,
+     "pnl": 481.72
+    },
+    "2026-08": {
+     "trades": 4,
+     "wins": 0,
+     "pnl": -331.14
+    },
+    "2026-09": {
+     "trades": 5,
+     "wins": 0,
+     "pnl": -478.89
+    },
+    "2026-10": {
+     "trades": 6,
+     "wins": 3,
+     "pnl": 569.87
+    },
+    "2026-11": {
+     "trades": 6,
+     "wins": 0,
+     "pnl": -646.97
+    }
+   },
+   "is_months": {
+    "2026-03": {
+     "trades": 7,
+     "wins": 2,
+     "pnl": 1423.86
+    },
+    "2026-04": {
+     "trades": 11,
+     "wins": 5,
+     "pnl": 765.69
+    },
+    "2026-05": {
+     "trades": 5,
+     "wins": 1,
+     "pnl": 139.29
+    },
+    "2026-06": {
+     "trades": 2,
+     "wins": 0,
+     "pnl": -221.5
+    }
+   },
+   "verdict": "NO-GO",
+   "why": "deny $-405 / allow $35, miesiace dodatnie 2/5, 26 tr"
+  },
+  {
+   "name": "H3_tpmax2.5",
+   "overrides": {
+    "TP_MAX_R": 2.5
+   },
+   "is": {
+    "deny": {
+     "trades": 27,
+     "wins": 12,
+     "losses": 15,
+     "winrate": 44.4,
+     "pnl_total": 1859.01,
+     "profit_factor": 2.09,
+     "expectancy": 68.85,
+     "avg_r": 0.479,
+     "max_drawdown": 590.66
+    },
+    "provable": {
+     "trades": 27,
+     "wins": 12,
+     "losses": 15,
+     "winrate": 44.4,
+     "pnl_total": 1859.01,
+     "profit_factor": 2.09,
+     "expectancy": 68.85,
+     "avg_r": 0.479,
+     "max_drawdown": 590.66
+    },
+    "allow": {
+     "trades": 27,
+     "wins": 12,
+     "losses": 15,
+     "winrate": 44.4,
+     "pnl_total": 1859.01,
+     "profit_factor": 2.09,
+     "expectancy": 68.85,
+     "avg_r": 0.479,
+     "max_drawdown": 590.66
+    }
+   },
+   "fwd": {
+    "deny": {
+     "trades": 26,
+     "wins": 7,
+     "losses": 19,
+     "winrate": 26.9,
+     "pnl_total": -738.94,
+     "profit_factor": 0.68,
+     "expectancy": -28.42,
+     "avg_r": -0.176,
+     "max_drawdown": 1274.1
+    },
+    "provable": {
+     "trades": 26,
+     "wins": 7,
+     "losses": 19,
+     "winrate": 26.9,
+     "pnl_total": -738.94,
+     "profit_factor": 0.68,
+     "expectancy": -28.42,
+     "avg_r": -0.176,
+     "max_drawdown": 1274.1
+    },
+    "allow": {
+     "trades": 26,
+     "wins": 9,
+     "losses": 17,
+     "winrate": 34.6,
+     "pnl_total": 42.51,
+     "profit_factor": 1.02,
+     "expectancy": 1.63,
+     "avg_r": 0.11,
+     "max_drawdown": 1130.19
+    }
+   },
+   "fwd_months": {
+    "2026-07": {
+     "trades": 5,
+     "wins": 3,
+     "pnl": 535.16
+    },
+    "2026-08": {
+     "trades": 4,
+     "wins": 1,
+     "pnl": -126.89
+    },
+    "2026-09": {
+     "trades": 5,
+     "wins": 0,
+     "pnl": -478.89
+    },
+    "2026-10": {
+     "trades": 6,
+     "wins": 3,
+     "pnl": 340.71
+    },
+    "2026-11": {
+     "trades": 6,
+     "wins": 0,
+     "pnl": -1009.04
+    }
+   },
+   "is_months": {
+    "2026-03": {
+     "trades": 9,
+     "wins": 5,
+     "pnl": 1420.49
+    },
+    "2026-04": {
+     "trades": 11,
+     "wins": 6,
+     "pnl": 693.14
+    },
+    "2026-05": {
+     "trades": 5,
+     "wins": 1,
+     "pnl": -33.12
+    },
+    "2026-06": {
+     "trades": 2,
+     "wins": 0,
+     "pnl": -221.5
+    }
+   },
+   "verdict": "NO-GO",
+   "why": "deny $-739 / allow $43, miesiace dodatnie 2/5, 26 tr"
+  },
+  {
+   "name": "H4_pivot4+BE1R",
+   "overrides": {
+    "PIVOT_LEN": 4,
+    "BE_AT_R": 1.0
+   },
+   "is": {
+    "deny": {
+     "trades": 32,
+     "wins": 10,
+     "losses": 22,
+     "winrate": 31.2,
+     "pnl_total": 2411.48,
+     "profit_factor": 2.3,
+     "expectancy": 75.36,
+     "avg_r": 0.479,
+     "max_drawdown": 651.16
+    },
+    "provable": {
+     "trades": 32,
+     "wins": 11,
+     "losses": 21,
+     "winrate": 34.4,
+     "pnl_total": 2816.48,
+     "profit_factor": 2.6,
+     "expectancy": 88.02,
+     "avg_r": 0.628,
+     "max_drawdown": 651.16
+    },
+    "allow": {
+     "trades": 32,
+     "wins": 12,
+     "losses": 20,
+     "winrate": 37.5,
+     "pnl_total": 3018.48,
+     "profit_factor": 2.78,
+     "expectancy": 94.33,
+     "avg_r": 0.719,
+     "max_drawdown": 651.16
+    }
+   },
+   "fwd": {
+    "deny": {
+     "trades": 28,
+     "wins": 7,
+     "losses": 21,
+     "winrate": 25.0,
+     "pnl_total": 130.69,
+     "profit_factor": 1.07,
+     "expectancy": 4.67,
+     "avg_r": 0.07,
+     "max_drawdown": 503.56
+    },
+    "provable": {
+     "trades": 28,
+     "wins": 7,
+     "losses": 21,
+     "winrate": 25.0,
+     "pnl_total": 130.69,
+     "profit_factor": 1.07,
+     "expectancy": 4.67,
+     "avg_r": 0.07,
+     "max_drawdown": 503.56
+    },
+    "allow": {
+     "trades": 28,
+     "wins": 8,
+     "losses": 20,
+     "winrate": 28.6,
+     "pnl_total": 579.69,
+     "profit_factor": 1.32,
+     "expectancy": 20.7,
+     "avg_r": 0.236,
+     "max_drawdown": 503.56
+    }
+   },
+   "fwd_months": {
+    "2026-07": {
+     "trades": 4,
+     "wins": 1,
+     "pnl": -17.5
+    },
+    "2026-08": {
+     "trades": 6,
+     "wins": 1,
+     "pnl": -35.54
+    },
+    "2026-09": {
+     "trades": 6,
+     "wins": 1,
+     "pnl": -91.69
+    },
+    "2026-10": {
+     "trades": 7,
+     "wins": 4,
+     "pnl": 778.97
+    },
+    "2026-11": {
+     "trades": 5,
+     "wins": 0,
+     "pnl": -503.56
+    }
+   },
+   "is_months": {
+    "2026-03": {
+     "trades": 8,
+     "wins": 3,
+     "pnl": 1500.1
+    },
+    "2026-04": {
+     "trades": 14,
+     "wins": 5,
+     "pnl": 803.11
+    },
+    "2026-05": {
+     "trades": 8,
+     "wins": 3,
+     "pnl": 734.75
+    },
+    "2026-06": {
+     "trades": 2,
+     "wins": 0,
+     "pnl": -221.5
+    }
+   },
+   "verdict": "NO-GO (niestabilne)",
+   "why": "deny $131 / allow $580, miesiace dodatnie 1/5, 28 tr"
   }
  ],
  "min_trades": 20
