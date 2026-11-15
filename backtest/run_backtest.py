@@ -11,6 +11,7 @@ import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
 import config
+import engine
 from engine import (_et, _stats, load_csv, make_config, run_segmented,
                     summarize, write_outputs)
 
@@ -93,12 +94,14 @@ def main() -> None:
                     help="dodatkowo przelicz siatke wariantow parametrow")
     ap.add_argument("--instrument", default="mnq", choices=list(config.INSTRUMENTS),
                     help="instrument (dane data/{prefix}_*.csv + TICK/POINT_VALUE)")
+    ap.add_argument("--full", action="store_true", help="wszystkie dane (ignoruj config.DATA_END)")
     args = ap.parse_args()
 
     inst = config.INSTRUMENTS[args.instrument]
     global _INSTR_OVR
     _INSTR_OVR = {"TICK": inst["tick"], "POINT_VALUE": inst["point_value"]}
     data = tuple(load_csv(DATA / f"{inst['prefix']}_{tf}.csv") for tf in ("15m", "1h", "4h", "1d"))
+    data = engine.clip_end(data, None if args.full else config.DATA_END)
     m15 = data[0]
     print(f"Instrument: {args.instrument.upper()} (${inst['point_value']}/pkt)")
     print(f"Dane: 15m={len(m15)}  1H={len(data[1])}  4H={len(data[2])}  1D={len(data[3])}")

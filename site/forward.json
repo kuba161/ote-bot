@@ -5,13 +5,13 @@
  ],
  "fwd_period": [
   1782856800,
-  1794606300
+  1793393100
  ],
  "buy_hold_pct": {
   "is": 16.26,
-  "fwd": -9.31
+  "fwd": -7.3
  },
- "expectancy_ratio": -0.21,
+ "expectancy_ratio": 0.23,
  "default": {
   "sides": {
    "long": {
@@ -20,21 +20,21 @@
     "pnl": -13.35
    },
    "short": {
-    "trades": 10,
+    "trades": 4,
     "wins": 2,
-    "pnl": -526.86
+    "pnl": 482.18
    }
   },
   "filters": {
    "fvg": {
-    "trades": 23,
+    "trades": 18,
     "wins": 6,
-    "pnl": -270.83
+    "pnl": 668.97
    },
    "key_open": {
-    "trades": 2,
+    "trades": 1,
     "wins": 0,
-    "pnl": -181.89
+    "pnl": -112.65
    },
    "nwog": {
     "trades": 1,
@@ -44,24 +44,24 @@
   },
   "killzones": {
    "Asian": {
-    "trades": 7,
+    "trades": 5,
     "wins": 1,
-    "pnl": -411.23
+    "pnl": 76.32
    },
    "London": {
-    "trades": 8,
+    "trades": 7,
     "wins": 2,
-    "pnl": -380.87
+    "pnl": -107.63
    },
    "NY AM": {
-    "trades": 6,
+    "trades": 4,
     "wins": 1,
-    "pnl": -138.25
+    "pnl": 24.4
    },
    "NY PM": {
-    "trades": 5,
+    "trades": 4,
     "wins": 2,
-    "pnl": 390.14
+    "pnl": 475.74
    }
   },
   "trades": [
@@ -604,168 +604,6 @@
     "partial_done": false,
     "partial_contracts": 0,
     "partial_pnl": 0.0
-   },
-   {
-    "side": "short",
-    "entry_ts": 1793719800,
-    "entry": 28381.415,
-    "sl": 28427.5,
-    "tp": 28213.0,
-    "exit_ts": 1793721600,
-    "exit": 28427.75,
-    "result": "sl",
-    "pnl": -93.40999999999825,
-    "r": -1.0134534013236414,
-    "filter": "fvg",
-    "leg_h": 28426.5,
-    "leg_l": 28213.0,
-    "kz": "NY AM",
-    "mae_pt": 62.33499999999913,
-    "mfe_pt": 58.16500000000087,
-    "post_tp_bars": null,
-    "risk_pt": 46.08499999999913,
-    "fill_at_open": false,
-    "be_moved": false,
-    "contracts": 1,
-    "bars_held": 2,
-    "partial_done": false,
-    "partial_contracts": 0,
-    "partial_pnl": 0.0
-   },
-   {
-    "side": "short",
-    "entry_ts": 1793780100,
-    "entry": 28376.0,
-    "sl": 28512.0,
-    "tp": 28035.25,
-    "exit_ts": 1793786400,
-    "exit": 28512.25,
-    "result": "sl",
-    "pnl": -273.24,
-    "r": -1.0045588235294118,
-    "filter": "fvg",
-    "leg_h": 28511.0,
-    "leg_l": 27611.5,
-    "kz": "London",
-    "mae_pt": 162.75,
-    "mfe_pt": 67.0,
-    "post_tp_bars": null,
-    "risk_pt": 136.0,
-    "fill_at_open": true,
-    "be_moved": false,
-    "contracts": 1,
-    "bars_held": 7,
-    "partial_done": false,
-    "partial_contracts": 0,
-    "partial_pnl": 0.0
-   },
-   {
-    "side": "short",
-    "entry_ts": 1793930400,
-    "entry": 27009.4675,
-    "sl": 27181.5,
-    "tp": 26571.75,
-    "exit_ts": 1793956500,
-    "exit": 27181.75,
-    "result": "sl",
-    "pnl": -345.30500000000234,
-    "r": -1.0036039701800532,
-    "filter": "fvg",
-    "leg_h": 27180.5,
-    "leg_l": 26367.25,
-    "kz": "Asian",
-    "mae_pt": 181.78250000000116,
-    "mfe_pt": 205.71749999999884,
-    "post_tp_bars": null,
-    "risk_pt": 172.03250000000116,
-    "fill_at_open": false,
-    "be_moved": false,
-    "contracts": 1,
-    "bars_held": 29,
-    "partial_done": false,
-    "partial_contracts": 0,
-    "partial_pnl": 0.0
-   },
-   {
-    "side": "short",
-    "entry_ts": 1794322800,
-    "entry": 28011.5,
-    "sl": 28045.5,
-    "tp": 27876.75,
-    "exit_ts": 1794322800,
-    "exit": 28045.75,
-    "result": "sl",
-    "pnl": -69.24,
-    "r": -1.018235294117647,
-    "filter": "key_open",
-    "leg_h": 28044.5,
-    "leg_l": 27598.5,
-    "kz": "NY AM",
-    "mae_pt": 78.75,
-    "mfe_pt": 18.75,
-    "post_tp_bars": 2,
-    "risk_pt": 34.0,
-    "fill_at_open": true,
-    "be_moved": false,
-    "contracts": 1,
-    "bars_held": 0,
-    "partial_done": false,
-    "partial_contracts": 0,
-    "partial_pnl": 0.0
-   },
-   {
-    "side": "short",
-    "entry_ts": 1794358800,
-    "entry": 28020.75,
-    "sl": 28091.25,
-    "tp": 27740.0,
-    "exit_ts": 1794360600,
-    "exit": 28091.5,
-    "result": "sl",
-    "pnl": -142.24,
-    "r": -1.0087943262411347,
-    "filter": "fvg",
-    "leg_h": 28090.25,
-    "leg_l": 27517.5,
-    "kz": "Asian",
-    "mae_pt": 114.25,
-    "mfe_pt": 66.5,
-    "post_tp_bars": null,
-    "risk_pt": 70.5,
-    "fill_at_open": true,
-    "be_moved": false,
-    "contracts": 1,
-    "bars_held": 2,
-    "partial_done": false,
-    "partial_contracts": 0,
-    "partial_pnl": 0.0
-   },
-   {
-    "side": "short",
-    "entry_ts": 1794602700,
-    "entry": 28033.72,
-    "sl": 28054.5,
-    "tp": 27960.5,
-    "exit_ts": 1794602700,
-    "exit": 28054.75,
-    "result": "sl",
-    "pnl": -85.59999999999535,
-    "r": -1.0298363811357092,
-    "filter": "fvg",
-    "leg_h": 28053.5,
-    "leg_l": 27960.5,
-    "kz": "NY PM",
-    "mae_pt": 77.52999999999884,
-    "mfe_pt": 0.0,
-    "post_tp_bars": 1,
-    "risk_pt": 20.779999999998836,
-    "fill_at_open": false,
-    "be_moved": false,
-    "contracts": 2,
-    "bars_held": 0,
-    "partial_done": false,
-    "partial_contracts": 0,
-    "partial_pnl": 0.0
    }
   ]
  },
@@ -810,37 +648,37 @@
    },
    "fwd": {
     "deny": {
-     "trades": 26,
+     "trades": 20,
      "wins": 6,
-     "losses": 20,
-     "winrate": 23.1,
-     "pnl_total": -540.19,
-     "profit_factor": 0.77,
-     "expectancy": -20.78,
-     "avg_r": -0.114,
-     "max_drawdown": 1130.19
+     "losses": 14,
+     "winrate": 30.0,
+     "pnl_total": 468.84,
+     "profit_factor": 1.34,
+     "expectancy": 23.44,
+     "avg_r": 0.156,
+     "max_drawdown": 495.72
     },
     "provable": {
-     "trades": 26,
+     "trades": 20,
      "wins": 6,
-     "losses": 20,
-     "winrate": 23.1,
-     "pnl_total": -540.19,
-     "profit_factor": 0.77,
-     "expectancy": -20.78,
-     "avg_r": -0.114,
-     "max_drawdown": 1130.19
+     "losses": 14,
+     "winrate": 30.0,
+     "pnl_total": 468.84,
+     "profit_factor": 1.34,
+     "expectancy": 23.44,
+     "avg_r": 0.156,
+     "max_drawdown": 495.72
     },
     "allow": {
-     "trades": 26,
+     "trades": 20,
      "wins": 7,
-     "losses": 19,
-     "winrate": 26.9,
-     "pnl_total": -100.19,
-     "profit_factor": 0.96,
-     "expectancy": -3.85,
-     "avg_r": 0.062,
-     "max_drawdown": 1130.19
+     "losses": 13,
+     "winrate": 35.0,
+     "pnl_total": 908.84,
+     "profit_factor": 1.71,
+     "expectancy": 45.44,
+     "avg_r": 0.384,
+     "max_drawdown": 478.88
     }
    },
    "fwd_months": {
@@ -863,11 +701,6 @@
      "trades": 6,
      "wins": 3,
      "pnl": 569.87
-    },
-    "2026-11": {
-     "trades": 6,
-     "wins": 0,
-     "pnl": -1009.04
     }
    },
    "is_months": {
@@ -892,8 +725,8 @@
      "pnl": -221.5
     }
    },
-   "verdict": "NO-GO",
-   "why": "deny $-540 / allow $-100, miesiace dodatnie 2/5, 26 tr"
+   "verdict": "GO*",
+   "why": "deny $469 / allow $909, miesiace dodatnie 2/4, 20 tr"
   },
   {
    "name": "4xTF",
@@ -942,37 +775,37 @@
    },
    "fwd": {
     "deny": {
-     "trades": 19,
+     "trades": 14,
      "wins": 3,
-     "losses": 16,
-     "winrate": 15.8,
-     "pnl_total": -1355.63,
-     "profit_factor": 0.34,
-     "expectancy": -71.35,
-     "avg_r": -0.508,
-     "max_drawdown": 1355.63
+     "losses": 11,
+     "winrate": 21.4,
+     "pnl_total": -440.01,
+     "profit_factor": 0.61,
+     "expectancy": -31.43,
+     "avg_r": -0.327,
+     "max_drawdown": 749.29
     },
     "provable": {
-     "trades": 19,
+     "trades": 14,
      "wins": 3,
-     "losses": 16,
-     "winrate": 15.8,
-     "pnl_total": -1355.63,
-     "profit_factor": 0.34,
-     "expectancy": -71.35,
-     "avg_r": -0.508,
-     "max_drawdown": 1355.63
+     "losses": 11,
+     "winrate": 21.4,
+     "pnl_total": -440.01,
+     "profit_factor": 0.61,
+     "expectancy": -31.43,
+     "avg_r": -0.327,
+     "max_drawdown": 749.29
     },
     "allow": {
-     "trades": 19,
+     "trades": 14,
      "wins": 4,
-     "losses": 15,
-     "winrate": 21.1,
-     "pnl_total": -915.63,
-     "profit_factor": 0.53,
-     "expectancy": -48.19,
-     "avg_r": -0.267,
-     "max_drawdown": 1131.62
+     "losses": 10,
+     "winrate": 28.6,
+     "pnl_total": -0.01,
+     "profit_factor": 1.0,
+     "expectancy": -0.0,
+     "avg_r": -0.001,
+     "max_drawdown": 348.7
     }
    },
    "fwd_months": {
@@ -995,11 +828,6 @@
      "trades": 4,
      "wins": 2,
      "pnl": 309.29
-    },
-    "2026-11": {
-     "trades": 5,
-     "wins": 0,
-     "pnl": -915.63
     }
    },
    "is_months": {
@@ -1025,7 +853,7 @@
     }
    },
    "verdict": "NO-GO",
-   "why": "deny $-1356 / allow $-916, miesiace dodatnie 1/5, 19 tr"
+   "why": "deny $-440 / allow $-0, miesiace dodatnie 1/4, 14 tr"
   },
   {
    "name": "pivot3",
@@ -1069,37 +897,37 @@
    },
    "fwd": {
     "deny": {
-     "trades": 32,
+     "trades": 26,
      "wins": 7,
-     "losses": 25,
-     "winrate": 21.9,
-     "pnl_total": -624.76,
-     "profit_factor": 0.78,
-     "expectancy": -19.52,
-     "avg_r": -0.136,
-     "max_drawdown": 1002.56
+     "losses": 19,
+     "winrate": 26.9,
+     "pnl_total": 268.28,
+     "profit_factor": 1.14,
+     "expectancy": 10.32,
+     "avg_r": 0.068,
+     "max_drawdown": 617.74
     },
     "provable": {
-     "trades": 32,
+     "trades": 26,
      "wins": 7,
-     "losses": 25,
-     "winrate": 21.9,
-     "pnl_total": -624.76,
-     "profit_factor": 0.78,
-     "expectancy": -19.52,
-     "avg_r": -0.136,
-     "max_drawdown": 1002.56
+     "losses": 19,
+     "winrate": 26.9,
+     "pnl_total": 268.28,
+     "profit_factor": 1.14,
+     "expectancy": 10.32,
+     "avg_r": 0.068,
+     "max_drawdown": 617.74
     },
     "allow": {
-     "trades": 32,
+     "trades": 26,
      "wins": 7,
-     "losses": 25,
-     "winrate": 21.9,
-     "pnl_total": -615.76,
-     "profit_factor": 0.78,
-     "expectancy": -19.24,
-     "avg_r": -0.133,
-     "max_drawdown": 1002.56
+     "losses": 19,
+     "winrate": 26.9,
+     "pnl_total": 277.28,
+     "profit_factor": 1.14,
+     "expectancy": 10.66,
+     "avg_r": 0.071,
+     "max_drawdown": 617.74
     }
    },
    "fwd_months": {
@@ -1122,11 +950,6 @@
      "trades": 10,
      "wins": 4,
      "pnl": 475.21
-    },
-    "2026-11": {
-     "trades": 6,
-     "wins": 0,
-     "pnl": -893.04
     }
    },
    "is_months": {
@@ -1151,8 +974,8 @@
      "pnl": -335.72
     }
    },
-   "verdict": "NO-GO",
-   "why": "deny $-625 / allow $-616, miesiace dodatnie 2/5, 32 tr"
+   "verdict": "GO*",
+   "why": "deny $268 / allow $277, miesiace dodatnie 2/4, 26 tr"
   },
   {
    "name": "pivot4",
@@ -1196,37 +1019,37 @@
    },
    "fwd": {
     "deny": {
-     "trades": 28,
+     "trades": 23,
      "wins": 8,
-     "losses": 20,
-     "winrate": 28.6,
-     "pnl_total": -78.27,
-     "profit_factor": 0.97,
-     "expectancy": -2.8,
-     "avg_r": 0.098,
-     "max_drawdown": 939.79
+     "losses": 15,
+     "winrate": 34.8,
+     "pnl_total": 861.52,
+     "profit_factor": 1.57,
+     "expectancy": 37.46,
+     "avg_r": 0.34,
+     "max_drawdown": 451.31
     },
     "provable": {
-     "trades": 28,
+     "trades": 23,
      "wins": 8,
-     "losses": 20,
-     "winrate": 28.6,
-     "pnl_total": -78.27,
-     "profit_factor": 0.97,
-     "expectancy": -2.8,
-     "avg_r": 0.098,
-     "max_drawdown": 939.79
+     "losses": 15,
+     "winrate": 34.8,
+     "pnl_total": 861.52,
+     "profit_factor": 1.57,
+     "expectancy": 37.46,
+     "avg_r": 0.34,
+     "max_drawdown": 451.31
     },
     "allow": {
-     "trades": 28,
+     "trades": 23,
      "wins": 9,
-     "losses": 19,
-     "winrate": 32.1,
-     "pnl_total": 370.73,
-     "profit_factor": 1.16,
-     "expectancy": 13.24,
-     "avg_r": 0.265,
-     "max_drawdown": 939.79
+     "losses": 14,
+     "winrate": 39.1,
+     "pnl_total": 1310.52,
+     "profit_factor": 1.93,
+     "expectancy": 56.98,
+     "avg_r": 0.542,
+     "max_drawdown": 451.31
     }
    },
    "fwd_months": {
@@ -1249,11 +1072,6 @@
      "trades": 7,
      "wins": 4,
      "pnl": 778.97
-    },
-    "2026-11": {
-     "trades": 5,
-     "wins": 0,
-     "pnl": -939.8
     }
    },
    "is_months": {
@@ -1278,8 +1096,8 @@
      "pnl": -221.5
     }
    },
-   "verdict": "NO-GO",
-   "why": "deny $-78 / allow $371, miesiace dodatnie 2/5, 28 tr"
+   "verdict": "GO*",
+   "why": "deny $862 / allow $1311, miesiace dodatnie 2/4, 23 tr"
   },
   {
    "name": "4xTF+pivot3",
@@ -1329,37 +1147,37 @@
    },
    "fwd": {
     "deny": {
-     "trades": 21,
+     "trades": 16,
      "wins": 5,
-     "losses": 16,
-     "winrate": 23.8,
-     "pnl_total": -412.55,
-     "profit_factor": 0.79,
-     "expectancy": -19.65,
-     "avg_r": -0.1,
-     "max_drawdown": 799.62
+     "losses": 11,
+     "winrate": 31.2,
+     "pnl_total": 387.07,
+     "profit_factor": 1.34,
+     "expectancy": 24.19,
+     "avg_r": 0.187,
+     "max_drawdown": 529.47
     },
     "provable": {
-     "trades": 21,
+     "trades": 16,
      "wins": 5,
-     "losses": 16,
-     "winrate": 23.8,
-     "pnl_total": -412.55,
-     "profit_factor": 0.79,
-     "expectancy": -19.65,
-     "avg_r": -0.1,
-     "max_drawdown": 799.62
+     "losses": 11,
+     "winrate": 31.2,
+     "pnl_total": 387.07,
+     "profit_factor": 1.34,
+     "expectancy": 24.19,
+     "avg_r": 0.187,
+     "max_drawdown": 529.47
     },
     "allow": {
-     "trades": 21,
+     "trades": 16,
      "wins": 5,
-     "losses": 16,
-     "winrate": 23.8,
-     "pnl_total": -403.55,
-     "profit_factor": 0.79,
-     "expectancy": -19.22,
-     "avg_r": -0.096,
-     "max_drawdown": 799.62
+     "losses": 11,
+     "winrate": 31.2,
+     "pnl_total": 396.07,
+     "profit_factor": 1.34,
+     "expectancy": 24.75,
+     "avg_r": 0.193,
+     "max_drawdown": 529.47
     }
    },
    "fwd_months": {
@@ -1382,11 +1200,6 @@
      "trades": 5,
      "wins": 3,
      "pnl": 562.14
-    },
-    "2026-11": {
-     "trades": 5,
-     "wins": 0,
-     "pnl": -799.63
     }
    },
    "is_months": {
@@ -1411,8 +1224,8 @@
      "pnl": -335.72
     }
    },
-   "verdict": "NO-GO",
-   "why": "deny $-413 / allow $-404, miesiace dodatnie 2/5, 21 tr"
+   "verdict": "GO* (orientacyjny)",
+   "why": "deny $387 / allow $396, miesiace dodatnie 2/4, 16 tr"
   },
   {
    "name": "4xTF+pivot4",
@@ -1462,37 +1275,37 @@
    },
    "fwd": {
     "deny": {
-     "trades": 21,
+     "trades": 17,
      "wins": 6,
-     "losses": 15,
-     "winrate": 28.6,
-     "pnl_total": -316.18,
-     "profit_factor": 0.84,
-     "expectancy": -15.06,
-     "avg_r": 0.038,
-     "max_drawdown": 853.28
+     "losses": 11,
+     "winrate": 35.3,
+     "pnl_total": 530.2,
+     "profit_factor": 1.45,
+     "expectancy": 31.19,
+     "avg_r": 0.285,
+     "max_drawdown": 465.66
     },
     "provable": {
-     "trades": 21,
+     "trades": 17,
      "wins": 6,
-     "losses": 15,
-     "winrate": 28.6,
-     "pnl_total": -316.18,
-     "profit_factor": 0.84,
-     "expectancy": -15.06,
-     "avg_r": 0.038,
-     "max_drawdown": 853.28
+     "losses": 11,
+     "winrate": 35.3,
+     "pnl_total": 530.2,
+     "profit_factor": 1.45,
+     "expectancy": 31.19,
+     "avg_r": 0.285,
+     "max_drawdown": 465.66
     },
     "allow": {
-     "trades": 21,
+     "trades": 17,
      "wins": 7,
-     "losses": 14,
-     "winrate": 33.3,
-     "pnl_total": 132.82,
-     "profit_factor": 1.07,
-     "expectancy": 6.32,
-     "avg_r": 0.26,
-     "max_drawdown": 846.38
+     "losses": 10,
+     "winrate": 41.2,
+     "pnl_total": 979.2,
+     "profit_factor": 1.91,
+     "expectancy": 57.6,
+     "avg_r": 0.56,
+     "max_drawdown": 465.66
     }
    },
    "fwd_months": {
@@ -1515,11 +1328,6 @@
      "trades": 5,
      "wins": 3,
      "pnl": 518.39
-    },
-    "2026-11": {
-     "trades": 4,
-     "wins": 0,
-     "pnl": -846.39
     }
    },
    "is_months": {
@@ -1544,8 +1352,8 @@
      "pnl": -221.5
     }
    },
-   "verdict": "NO-GO",
-   "why": "deny $-316 / allow $133, miesiace dodatnie 2/5, 21 tr"
+   "verdict": "GO* (orientacyjny)",
+   "why": "deny $530 / allow $979, miesiace dodatnie 2/4, 17 tr"
   },
   {
    "name": "zone_705_79",
@@ -1592,37 +1400,37 @@
    },
    "fwd": {
     "deny": {
-     "trades": 49,
+     "trades": 40,
      "wins": 11,
-     "losses": 38,
-     "winrate": 22.4,
-     "pnl_total": -918.18,
-     "profit_factor": 0.7,
-     "expectancy": -18.74,
-     "avg_r": -0.169,
-     "max_drawdown": 1338.19
+     "losses": 29,
+     "winrate": 27.5,
+     "pnl_total": 318.14,
+     "profit_factor": 1.17,
+     "expectancy": 7.95,
+     "avg_r": 0.021,
+     "max_drawdown": 551.86
     },
     "provable": {
-     "trades": 49,
+     "trades": 40,
      "wins": 11,
-     "losses": 38,
-     "winrate": 22.4,
-     "pnl_total": -918.18,
-     "profit_factor": 0.7,
-     "expectancy": -18.74,
-     "avg_r": -0.169,
-     "max_drawdown": 1338.19
+     "losses": 29,
+     "winrate": 27.5,
+     "pnl_total": 318.14,
+     "profit_factor": 1.17,
+     "expectancy": 7.95,
+     "avg_r": 0.021,
+     "max_drawdown": 551.86
     },
     "allow": {
-     "trades": 49,
+     "trades": 40,
      "wins": 12,
-     "losses": 37,
-     "winrate": 24.5,
-     "pnl_total": -698.18,
-     "profit_factor": 0.77,
-     "expectancy": -14.25,
-     "avg_r": -0.076,
-     "max_drawdown": 1338.19
+     "losses": 28,
+     "winrate": 30.0,
+     "pnl_total": 538.14,
+     "profit_factor": 1.3,
+     "expectancy": 13.45,
+     "avg_r": 0.135,
+     "max_drawdown": 551.86
     }
    },
    "fwd_months": {
@@ -1645,11 +1453,6 @@
      "trades": 12,
      "wins": 6,
      "pnl": 758.62
-    },
-    "2026-11": {
-     "trades": 9,
-     "wins": 0,
-     "pnl": -1236.33
     }
    },
    "is_months": {
@@ -1674,8 +1477,8 @@
      "pnl": -739.87
     }
    },
-   "verdict": "NO-GO",
-   "why": "deny $-918 / allow $-698, miesiace dodatnie 2/5, 49 tr"
+   "verdict": "GO*",
+   "why": "deny $318 / allow $538, miesiace dodatnie 2/4, 40 tr"
   },
   {
    "name": "H1_partial1R",
@@ -1720,37 +1523,37 @@
    },
    "fwd": {
     "deny": {
-     "trades": 26,
+     "trades": 20,
      "wins": 6,
-     "losses": 20,
-     "winrate": 23.1,
-     "pnl_total": -604.81,
-     "profit_factor": 0.69,
-     "expectancy": -23.26,
-     "avg_r": -0.26,
-     "max_drawdown": 1086.54
+     "losses": 14,
+     "winrate": 30.0,
+     "pnl_total": 42.16,
+     "profit_factor": 1.03,
+     "expectancy": 2.11,
+     "avg_r": -0.093,
+     "max_drawdown": 768.17
     },
     "provable": {
-     "trades": 26,
+     "trades": 20,
      "wins": 6,
-     "losses": 20,
-     "winrate": 23.1,
-     "pnl_total": -609.81,
-     "profit_factor": 0.69,
-     "expectancy": -23.45,
-     "avg_r": -0.262,
-     "max_drawdown": 1091.54
+     "losses": 14,
+     "winrate": 30.0,
+     "pnl_total": 37.16,
+     "profit_factor": 1.03,
+     "expectancy": 1.86,
+     "avg_r": -0.096,
+     "max_drawdown": 768.17
     },
     "allow": {
-     "trades": 26,
+     "trades": 20,
      "wins": 10,
-     "losses": 16,
-     "winrate": 38.5,
-     "pnl_total": 456.1,
-     "profit_factor": 1.33,
-     "expectancy": 17.54,
-     "avg_r": 0.147,
-     "max_drawdown": 572.8
+     "losses": 10,
+     "winrate": 50.0,
+     "pnl_total": 1028.9,
+     "profit_factor": 2.24,
+     "expectancy": 51.44,
+     "avg_r": 0.395,
+     "max_drawdown": 360.25
     }
    },
    "fwd_months": {
@@ -1773,11 +1576,6 @@
      "trades": 6,
      "wins": 3,
      "pnl": 323.61
-    },
-    "2026-11": {
-     "trades": 6,
-     "wins": 0,
-     "pnl": -646.97
     }
    },
    "is_months": {
@@ -1802,8 +1600,8 @@
      "pnl": -221.5
     }
    },
-   "verdict": "NO-GO",
-   "why": "deny $-605 / allow $456, miesiace dodatnie 2/5, 26 tr"
+   "verdict": "GO*",
+   "why": "deny $42 / allow $1029, miesiace dodatnie 2/4, 20 tr"
   },
   {
    "name": "H2_BE1R",
@@ -1847,37 +1645,37 @@
    },
    "fwd": {
     "deny": {
-     "trades": 26,
+     "trades": 20,
      "wins": 5,
-     "losses": 21,
-     "winrate": 19.2,
-     "pnl_total": -405.4,
-     "profit_factor": 0.79,
-     "expectancy": -15.59,
-     "avg_r": -0.176,
-     "max_drawdown": 887.13
+     "losses": 15,
+     "winrate": 25.0,
+     "pnl_total": 241.57,
+     "profit_factor": 1.19,
+     "expectancy": 12.08,
+     "avg_r": 0.016,
+     "max_drawdown": 810.02
     },
     "provable": {
-     "trades": 26,
+     "trades": 20,
      "wins": 5,
-     "losses": 21,
-     "winrate": 19.2,
-     "pnl_total": -405.4,
-     "profit_factor": 0.79,
-     "expectancy": -15.59,
-     "avg_r": -0.176,
-     "max_drawdown": 887.13
+     "losses": 15,
+     "winrate": 25.0,
+     "pnl_total": 241.57,
+     "profit_factor": 1.19,
+     "expectancy": 12.08,
+     "avg_r": 0.016,
+     "max_drawdown": 810.02
     },
     "allow": {
-     "trades": 26,
+     "trades": 20,
      "wins": 6,
-     "losses": 20,
-     "winrate": 23.1,
-     "pnl_total": 34.6,
-     "profit_factor": 1.02,
-     "expectancy": 1.33,
-     "avg_r": -0.0,
-     "max_drawdown": 768.12
+     "losses": 14,
+     "winrate": 30.0,
+     "pnl_total": 681.57,
+     "profit_factor": 1.57,
+     "expectancy": 34.08,
+     "avg_r": 0.244,
+     "max_drawdown": 481.36
     }
    },
    "fwd_months": {
@@ -1900,11 +1698,6 @@
      "trades": 6,
      "wins": 3,
      "pnl": 569.87
-    },
-    "2026-11": {
-     "trades": 6,
-     "wins": 0,
-     "pnl": -646.97
     }
    },
    "is_months": {
@@ -1929,8 +1722,8 @@
      "pnl": -221.5
     }
    },
-   "verdict": "NO-GO",
-   "why": "deny $-405 / allow $35, miesiace dodatnie 2/5, 26 tr"
+   "verdict": "GO*",
+   "why": "deny $242 / allow $682, miesiace dodatnie 2/4, 20 tr"
   },
   {
    "name": "H3_tpmax2.5",
@@ -1974,37 +1767,37 @@
    },
    "fwd": {
     "deny": {
-     "trades": 26,
+     "trades": 20,
      "wins": 7,
-     "losses": 19,
-     "winrate": 26.9,
-     "pnl_total": -738.94,
-     "profit_factor": 0.68,
-     "expectancy": -28.42,
-     "avg_r": -0.176,
-     "max_drawdown": 1274.1
+     "losses": 13,
+     "winrate": 35.0,
+     "pnl_total": 270.09,
+     "profit_factor": 1.21,
+     "expectancy": 13.5,
+     "avg_r": 0.075,
+     "max_drawdown": 605.78
     },
     "provable": {
-     "trades": 26,
+     "trades": 20,
      "wins": 7,
-     "losses": 19,
-     "winrate": 26.9,
-     "pnl_total": -738.94,
-     "profit_factor": 0.68,
-     "expectancy": -28.42,
-     "avg_r": -0.176,
-     "max_drawdown": 1274.1
+     "losses": 13,
+     "winrate": 35.0,
+     "pnl_total": 270.09,
+     "profit_factor": 1.21,
+     "expectancy": 13.5,
+     "avg_r": 0.075,
+     "max_drawdown": 605.78
     },
     "allow": {
-     "trades": 26,
+     "trades": 20,
      "wins": 9,
-     "losses": 17,
-     "winrate": 34.6,
-     "pnl_total": 42.51,
-     "profit_factor": 1.02,
-     "expectancy": 1.63,
-     "avg_r": 0.11,
-     "max_drawdown": 1130.19
+     "losses": 11,
+     "winrate": 45.0,
+     "pnl_total": 1051.54,
+     "profit_factor": 1.98,
+     "expectancy": 52.58,
+     "avg_r": 0.447,
+     "max_drawdown": 360.25
     }
    },
    "fwd_months": {
@@ -2027,11 +1820,6 @@
      "trades": 6,
      "wins": 3,
      "pnl": 340.71
-    },
-    "2026-11": {
-     "trades": 6,
-     "wins": 0,
-     "pnl": -1009.04
     }
    },
    "is_months": {
@@ -2056,8 +1844,8 @@
      "pnl": -221.5
     }
    },
-   "verdict": "NO-GO",
-   "why": "deny $-739 / allow $43, miesiace dodatnie 2/5, 26 tr"
+   "verdict": "GO*",
+   "why": "deny $270 / allow $1052, miesiace dodatnie 2/4, 20 tr"
   },
   {
    "name": "H4_pivot4+BE1R",
@@ -2102,37 +1890,37 @@
    },
    "fwd": {
     "deny": {
-     "trades": 28,
+     "trades": 23,
      "wins": 7,
-     "losses": 21,
-     "winrate": 25.0,
-     "pnl_total": 130.69,
-     "profit_factor": 1.07,
-     "expectancy": 4.67,
-     "avg_r": 0.07,
-     "max_drawdown": 503.56
+     "losses": 16,
+     "winrate": 30.4,
+     "pnl_total": 634.24,
+     "profit_factor": 1.45,
+     "expectancy": 27.58,
+     "avg_r": 0.218,
+     "max_drawdown": 364.29
     },
     "provable": {
-     "trades": 28,
+     "trades": 23,
      "wins": 7,
-     "losses": 21,
-     "winrate": 25.0,
-     "pnl_total": 130.69,
-     "profit_factor": 1.07,
-     "expectancy": 4.67,
-     "avg_r": 0.07,
-     "max_drawdown": 503.56
+     "losses": 16,
+     "winrate": 30.4,
+     "pnl_total": 634.24,
+     "profit_factor": 1.45,
+     "expectancy": 27.58,
+     "avg_r": 0.218,
+     "max_drawdown": 364.29
     },
     "allow": {
-     "trades": 28,
+     "trades": 23,
      "wins": 8,
-     "losses": 20,
-     "winrate": 28.6,
-     "pnl_total": 579.69,
-     "profit_factor": 1.32,
-     "expectancy": 20.7,
-     "avg_r": 0.236,
-     "max_drawdown": 503.56
+     "losses": 15,
+     "winrate": 34.8,
+     "pnl_total": 1083.24,
+     "profit_factor": 1.82,
+     "expectancy": 47.1,
+     "avg_r": 0.421,
+     "max_drawdown": 364.29
     }
    },
    "fwd_months": {
@@ -2155,11 +1943,6 @@
      "trades": 7,
      "wins": 4,
      "pnl": 778.97
-    },
-    "2026-11": {
-     "trades": 5,
-     "wins": 0,
-     "pnl": -503.56
     }
    },
    "is_months": {
@@ -2185,7 +1968,7 @@
     }
    },
    "verdict": "NO-GO (niestabilne)",
-   "why": "deny $131 / allow $580, miesiace dodatnie 1/5, 28 tr"
+   "why": "deny $634 / allow $1083, miesiace dodatnie 1/4, 23 tr"
   },
   {
    "name": "H5_confirm1",
@@ -2230,37 +2013,37 @@
    },
    "fwd": {
     "deny": {
-     "trades": 8,
+     "trades": 7,
      "wins": 2,
-     "losses": 6,
-     "winrate": 25.0,
-     "pnl_total": -199.4,
-     "profit_factor": 0.77,
-     "expectancy": -24.93,
-     "avg_r": -0.149,
-     "max_drawdown": 498.42
+     "losses": 5,
+     "winrate": 28.6,
+     "pnl_total": -33.16,
+     "profit_factor": 0.95,
+     "expectancy": -4.74,
+     "avg_r": -0.027,
+     "max_drawdown": 419.46
     },
     "provable": {
-     "trades": 8,
+     "trades": 7,
      "wins": 2,
-     "losses": 6,
-     "winrate": 25.0,
-     "pnl_total": -199.4,
-     "profit_factor": 0.77,
-     "expectancy": -24.93,
-     "avg_r": -0.149,
-     "max_drawdown": 498.42
+     "losses": 5,
+     "winrate": 28.6,
+     "pnl_total": -33.16,
+     "profit_factor": 0.95,
+     "expectancy": -4.74,
+     "avg_r": -0.027,
+     "max_drawdown": 419.46
     },
     "allow": {
-     "trades": 8,
+     "trades": 7,
      "wins": 2,
-     "losses": 6,
-     "winrate": 25.0,
-     "pnl_total": -199.4,
-     "profit_factor": 0.77,
-     "expectancy": -24.93,
-     "avg_r": -0.149,
-     "max_drawdown": 498.42
+     "losses": 5,
+     "winrate": 28.6,
+     "pnl_total": -33.16,
+     "profit_factor": 0.95,
+     "expectancy": -4.74,
+     "avg_r": -0.027,
+     "max_drawdown": 419.46
     }
    },
    "fwd_months": {
@@ -2283,11 +2066,6 @@
      "trades": 3,
      "wins": 1,
      "pnl": -151.46
-    },
-    "2026-11": {
-     "trades": 1,
-     "wins": 0,
-     "pnl": -166.24
     }
    },
    "is_months": {
@@ -2308,7 +2086,7 @@
     }
    },
    "verdict": "NO-GO",
-   "why": "deny $-199 / allow $-199, miesiace dodatnie 1/5, 8 tr"
+   "why": "deny $-33 / allow $-33, miesiace dodatnie 1/4, 7 tr"
   },
   {
    "name": "H6_confirm3",
@@ -2353,36 +2131,36 @@
    },
    "fwd": {
     "deny": {
-     "trades": 11,
+     "trades": 10,
      "wins": 5,
-     "losses": 6,
-     "winrate": 45.5,
-     "pnl_total": 363.38,
-     "profit_factor": 1.42,
-     "expectancy": 33.03,
-     "avg_r": 0.355,
+     "losses": 5,
+     "winrate": 50.0,
+     "pnl_total": 529.62,
+     "profit_factor": 1.77,
+     "expectancy": 52.96,
+     "avg_r": 0.492,
      "max_drawdown": 341.22
     },
     "provable": {
-     "trades": 11,
+     "trades": 10,
      "wins": 5,
-     "losses": 6,
-     "winrate": 45.5,
-     "pnl_total": 363.38,
-     "profit_factor": 1.42,
-     "expectancy": 33.03,
-     "avg_r": 0.355,
+     "losses": 5,
+     "winrate": 50.0,
+     "pnl_total": 529.62,
+     "profit_factor": 1.77,
+     "expectancy": 52.96,
+     "avg_r": 0.492,
      "max_drawdown": 341.22
     },
     "allow": {
-     "trades": 11,
+     "trades": 10,
      "wins": 5,
-     "losses": 6,
-     "winrate": 45.5,
-     "pnl_total": 363.38,
-     "profit_factor": 1.42,
-     "expectancy": 33.03,
-     "avg_r": 0.355,
+     "losses": 5,
+     "winrate": 50.0,
+     "pnl_total": 529.62,
+     "profit_factor": 1.77,
+     "expectancy": 52.96,
+     "avg_r": 0.492,
      "max_drawdown": 341.22
     }
    },
@@ -2406,11 +2184,6 @@
      "trades": 4,
      "wins": 2,
      "pnl": -4.7
-    },
-    "2026-11": {
-     "trades": 1,
-     "wins": 0,
-     "pnl": -166.24
     }
    },
    "is_months": {
@@ -2430,8 +2203,494 @@
      "pnl": 138.38
     }
    },
-   "verdict": "NO-GO (niestabilne)",
-   "why": "deny $363 / allow $363, miesiace dodatnie 2/5, 11 tr"
+   "verdict": "GO* (orientacyjny)",
+   "why": "deny $530 / allow $530, miesiace dodatnie 2/4, 10 tr"
+  },
+  {
+   "name": "H7_vol90",
+   "overrides": {
+    "VOL_FILTER": true,
+    "VOL_PCTL": 90
+   },
+   "is": {
+    "deny": {
+     "trades": 23,
+     "wins": 10,
+     "losses": 13,
+     "winrate": 43.5,
+     "pnl_total": 2756.65,
+     "profit_factor": 2.9,
+     "expectancy": 119.85,
+     "avg_r": 0.842,
+     "max_drawdown": 529.92
+    },
+    "provable": {
+     "trades": 23,
+     "wins": 10,
+     "losses": 13,
+     "winrate": 43.5,
+     "pnl_total": 2756.65,
+     "profit_factor": 2.9,
+     "expectancy": 119.85,
+     "avg_r": 0.842,
+     "max_drawdown": 529.92
+    },
+    "allow": {
+     "trades": 23,
+     "wins": 10,
+     "losses": 13,
+     "winrate": 43.5,
+     "pnl_total": 2756.65,
+     "profit_factor": 2.9,
+     "expectancy": 119.85,
+     "avg_r": 0.842,
+     "max_drawdown": 529.92
+    }
+   },
+   "fwd": {
+    "deny": {
+     "trades": 18,
+     "wins": 5,
+     "losses": 13,
+     "winrate": 27.8,
+     "pnl_total": 373.15,
+     "profit_factor": 1.28,
+     "expectancy": 20.73,
+     "avg_r": 0.137,
+     "max_drawdown": 520.19
+    },
+    "provable": {
+     "trades": 18,
+     "wins": 5,
+     "losses": 13,
+     "winrate": 27.8,
+     "pnl_total": 373.15,
+     "profit_factor": 1.28,
+     "expectancy": 20.73,
+     "avg_r": 0.137,
+     "max_drawdown": 520.19
+    },
+    "allow": {
+     "trades": 18,
+     "wins": 6,
+     "losses": 12,
+     "winrate": 33.3,
+     "pnl_total": 813.15,
+     "profit_factor": 1.67,
+     "expectancy": 45.17,
+     "avg_r": 0.391,
+     "max_drawdown": 408.16
+    }
+   },
+   "fwd_months": {
+    "2026-07": {
+     "trades": 4,
+     "wins": 1,
+     "pnl": 228.26
+    },
+    "2026-08": {
+     "trades": 4,
+     "wins": 1,
+     "pnl": -16.84
+    },
+    "2026-09": {
+     "trades": 4,
+     "wins": 0,
+     "pnl": -408.16
+    },
+    "2026-10": {
+     "trades": 6,
+     "wins": 3,
+     "pnl": 569.87
+    }
+   },
+   "is_months": {
+    "2026-03": {
+     "trades": 6,
+     "wins": 3,
+     "pnl": 1597.4
+    },
+    "2026-04": {
+     "trades": 11,
+     "wins": 6,
+     "pnl": 1121.58
+    },
+    "2026-05": {
+     "trades": 5,
+     "wins": 1,
+     "pnl": 139.29
+    },
+    "2026-06": {
+     "trades": 1,
+     "wins": 0,
+     "pnl": -101.63
+    }
+   },
+   "verdict": "GO* (orientacyjny)",
+   "why": "deny $373 / allow $813, miesiace dodatnie 2/4, 18 tr"
+  },
+  {
+   "name": "H7b_vol80",
+   "overrides": {
+    "VOL_FILTER": true,
+    "VOL_PCTL": 80
+   },
+   "is": {
+    "deny": {
+     "trades": 21,
+     "wins": 9,
+     "losses": 12,
+     "winrate": 42.9,
+     "pnl_total": 1706.41,
+     "profit_factor": 2.24,
+     "expectancy": 81.26,
+     "avg_r": 0.802,
+     "max_drawdown": 529.92
+    },
+    "provable": {
+     "trades": 21,
+     "wins": 9,
+     "losses": 12,
+     "winrate": 42.9,
+     "pnl_total": 1706.41,
+     "profit_factor": 2.24,
+     "expectancy": 81.26,
+     "avg_r": 0.802,
+     "max_drawdown": 529.92
+    },
+    "allow": {
+     "trades": 21,
+     "wins": 9,
+     "losses": 12,
+     "winrate": 42.9,
+     "pnl_total": 1706.41,
+     "profit_factor": 2.24,
+     "expectancy": 81.26,
+     "avg_r": 0.802,
+     "max_drawdown": 529.92
+    }
+   },
+   "fwd": {
+    "deny": {
+     "trades": 17,
+     "wins": 5,
+     "losses": 12,
+     "winrate": 29.4,
+     "pnl_total": 461.41,
+     "profit_factor": 1.38,
+     "expectancy": 27.14,
+     "avg_r": 0.205,
+     "max_drawdown": 520.19
+    },
+    "provable": {
+     "trades": 17,
+     "wins": 5,
+     "losses": 12,
+     "winrate": 29.4,
+     "pnl_total": 461.41,
+     "profit_factor": 1.38,
+     "expectancy": 27.14,
+     "avg_r": 0.205,
+     "max_drawdown": 520.19
+    },
+    "allow": {
+     "trades": 17,
+     "wins": 6,
+     "losses": 11,
+     "winrate": 35.3,
+     "pnl_total": 901.41,
+     "profit_factor": 1.8,
+     "expectancy": 53.02,
+     "avg_r": 0.473,
+     "max_drawdown": 408.16
+    }
+   },
+   "fwd_months": {
+    "2026-07": {
+     "trades": 3,
+     "wins": 1,
+     "pnl": 316.53
+    },
+    "2026-08": {
+     "trades": 4,
+     "wins": 1,
+     "pnl": -16.84
+    },
+    "2026-09": {
+     "trades": 4,
+     "wins": 0,
+     "pnl": -408.16
+    },
+    "2026-10": {
+     "trades": 6,
+     "wins": 3,
+     "pnl": 569.87
+    }
+   },
+   "is_months": {
+    "2026-03": {
+     "trades": 4,
+     "wins": 2,
+     "pnl": 547.16
+    },
+    "2026-04": {
+     "trades": 11,
+     "wins": 6,
+     "pnl": 1121.58
+    },
+    "2026-05": {
+     "trades": 5,
+     "wins": 1,
+     "pnl": 139.29
+    },
+    "2026-06": {
+     "trades": 1,
+     "wins": 0,
+     "pnl": -101.63
+    }
+   },
+   "verdict": "GO* (orientacyjny)",
+   "why": "deny $461 / allow $901, miesiace dodatnie 2/4, 17 tr"
+  },
+  {
+   "name": "H6+H7_vol90",
+   "overrides": {
+    "CONFIRM_ENTRY": true,
+    "CONFIRM_BARS": 3,
+    "VOL_FILTER": true,
+    "VOL_PCTL": 90
+   },
+   "is": {
+    "deny": {
+     "trades": 12,
+     "wins": 10,
+     "losses": 2,
+     "winrate": 83.3,
+     "pnl_total": 1438.5,
+     "profit_factor": 6.14,
+     "expectancy": 119.88,
+     "avg_r": 1.173,
+     "max_drawdown": 206.74
+    },
+    "provable": {
+     "trades": 12,
+     "wins": 10,
+     "losses": 2,
+     "winrate": 83.3,
+     "pnl_total": 1388.63,
+     "profit_factor": 5.96,
+     "expectancy": 115.72,
+     "avg_r": 1.136,
+     "max_drawdown": 206.74
+    },
+    "allow": {
+     "trades": 12,
+     "wins": 10,
+     "losses": 2,
+     "winrate": 83.3,
+     "pnl_total": 1388.63,
+     "profit_factor": 5.96,
+     "expectancy": 115.72,
+     "avg_r": 1.136,
+     "max_drawdown": 206.74
+    }
+   },
+   "fwd": {
+    "deny": {
+     "trades": 9,
+     "wins": 4,
+     "losses": 5,
+     "winrate": 44.4,
+     "pnl_total": 222.86,
+     "profit_factor": 1.32,
+     "expectancy": 24.76,
+     "avg_r": 0.33,
+     "max_drawdown": 341.22
+    },
+    "provable": {
+     "trades": 9,
+     "wins": 4,
+     "losses": 5,
+     "winrate": 44.4,
+     "pnl_total": 222.86,
+     "profit_factor": 1.32,
+     "expectancy": 24.76,
+     "avg_r": 0.33,
+     "max_drawdown": 341.22
+    },
+    "allow": {
+     "trades": 9,
+     "wins": 4,
+     "losses": 5,
+     "winrate": 44.4,
+     "pnl_total": 222.86,
+     "profit_factor": 1.32,
+     "expectancy": 24.76,
+     "avg_r": 0.33,
+     "max_drawdown": 341.22
+    }
+   },
+   "fwd_months": {
+    "2026-07": {
+     "trades": 2,
+     "wins": 1,
+     "pnl": 299.02
+    },
+    "2026-08": {
+     "trades": 2,
+     "wins": 1,
+     "pnl": 31.02
+    },
+    "2026-09": {
+     "trades": 1,
+     "wins": 0,
+     "pnl": -102.48
+    },
+    "2026-10": {
+     "trades": 4,
+     "wins": 2,
+     "pnl": -4.7
+    }
+   },
+   "is_months": {
+    "2026-03": {
+     "trades": 4,
+     "wins": 3,
+     "pnl": 467.54
+    },
+    "2026-04": {
+     "trades": 7,
+     "wins": 6,
+     "pnl": 782.71
+    },
+    "2026-05": {
+     "trades": 1,
+     "wins": 1,
+     "pnl": 138.38
+    }
+   },
+   "verdict": "GO* (orientacyjny)",
+   "why": "deny $223 / allow $223, miesiace dodatnie 2/4, 9 tr"
+  },
+  {
+   "name": "H6+H7b_vol80",
+   "overrides": {
+    "CONFIRM_ENTRY": true,
+    "CONFIRM_BARS": 3,
+    "VOL_FILTER": true,
+    "VOL_PCTL": 80
+   },
+   "is": {
+    "deny": {
+     "trades": 11,
+     "wins": 9,
+     "losses": 2,
+     "winrate": 81.8,
+     "pnl_total": 1291.74,
+     "profit_factor": 5.61,
+     "expectancy": 117.43,
+     "avg_r": 1.137,
+     "max_drawdown": 206.74
+    },
+    "provable": {
+     "trades": 11,
+     "wins": 9,
+     "losses": 2,
+     "winrate": 81.8,
+     "pnl_total": 1241.87,
+     "profit_factor": 5.44,
+     "expectancy": 112.9,
+     "avg_r": 1.097,
+     "max_drawdown": 206.74
+    },
+    "allow": {
+     "trades": 11,
+     "wins": 9,
+     "losses": 2,
+     "winrate": 81.8,
+     "pnl_total": 1241.87,
+     "profit_factor": 5.44,
+     "expectancy": 112.9,
+     "avg_r": 1.097,
+     "max_drawdown": 206.74
+    }
+   },
+   "fwd": {
+    "deny": {
+     "trades": 8,
+     "wins": 4,
+     "losses": 4,
+     "winrate": 50.0,
+     "pnl_total": 382.1,
+     "profit_factor": 1.72,
+     "expectancy": 47.76,
+     "avg_r": 0.498,
+     "max_drawdown": 341.22
+    },
+    "provable": {
+     "trades": 8,
+     "wins": 4,
+     "losses": 4,
+     "winrate": 50.0,
+     "pnl_total": 382.1,
+     "profit_factor": 1.72,
+     "expectancy": 47.76,
+     "avg_r": 0.498,
+     "max_drawdown": 341.22
+    },
+    "allow": {
+     "trades": 8,
+     "wins": 4,
+     "losses": 4,
+     "winrate": 50.0,
+     "pnl_total": 382.1,
+     "profit_factor": 1.72,
+     "expectancy": 47.76,
+     "avg_r": 0.498,
+     "max_drawdown": 341.22
+    }
+   },
+   "fwd_months": {
+    "2026-07": {
+     "trades": 1,
+     "wins": 1,
+     "pnl": 458.26
+    },
+    "2026-08": {
+     "trades": 2,
+     "wins": 1,
+     "pnl": 31.02
+    },
+    "2026-09": {
+     "trades": 1,
+     "wins": 0,
+     "pnl": -102.48
+    },
+    "2026-10": {
+     "trades": 4,
+     "wins": 2,
+     "pnl": -4.7
+    }
+   },
+   "is_months": {
+    "2026-03": {
+     "trades": 3,
+     "wins": 2,
+     "pnl": 320.78
+    },
+    "2026-04": {
+     "trades": 7,
+     "wins": 6,
+     "pnl": 782.71
+    },
+    "2026-05": {
+     "trades": 1,
+     "wins": 1,
+     "pnl": 138.38
+    }
+   },
+   "verdict": "GO* (orientacyjny)",
+   "why": "deny $382 / allow $382, miesiace dodatnie 2/4, 8 tr"
   }
  ],
  "min_trades": 20

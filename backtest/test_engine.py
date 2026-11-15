@@ -675,3 +675,37 @@ def test_confirm_cancelled_when_sl_touched_first():
                         mk(12, 172, 201, 170, 199),   # SL 200 dotkniety przed potwierdzeniem
                         mk(13, 199, 199, 160, 165)]
     assert _bt(bars, CONFIRM_ENTRY=True, CONFIRM_BARS=3).run() == []
+
+
+# ---------- R10: okno DATA_END i filtr zmiennosci ----------
+
+def test_clip_end_cuts_at_next_midnight_et_and_none_keeps_all():
+    from engine import clip_end, ET
+    from datetime import datetime
+    t_in = int(datetime(2026, 10, 30, 16, 45, tzinfo=ET).timestamp())
+    t_out = int(datetime(2026, 11, 1, 18, 0, tzinfo=ET).timestamp())
+    bars = [Bar(t_in, 1, 1, 1, 1, 0), Bar(t_out, 1, 1, 1, 1, 0)]
+    (a,) = clip_end((bars,), "2026-10-31")
+    assert [b.ts for b in a] == [t_in]
+    assert clip_end((bars,), None) == (bars,)
+
+
+def test_vol_regime_threshold_from_past_and_reads_previous_day():
+    from engine import VolRegime
+    day = 86400
+    d1 = [Bar(i * day, 100, 101, 99, 100, 0) for i in range(20)]       # zakres 2%
+    d1.append(Bar(20 * day, 100, 110, 95, 100, 0))                      # dzien 20: 15% = goracy
+    d1.append(Bar(21 * day, 100, 101, 99, 100, 0))
+    vr = VolRegime(d1, lookback=20, pctl=90)
+    assert vr.flag[20] is True and vr.flag[21] is False
+    assert not vr.hot(20 * day + 3600)     # w trakcie goracego dnia — jeszcze nie wiadomo
+    assert vr.hot(21 * day + 3600)         # nastepny dzien czyta zamkniety, goracy dzien
+
+
+def test_vol_filter_blocks_entries(monkeypatch):
+    import engine as eng
+    monkeypatch.setattr(eng.VolRegime, "hot", lambda self, t: True)
+    bars = _prefix() + [mk(11, 160, 171, 158, 168), mk(12, 168, 169, 154, 156)]
+    bt = _bt(bars, VOL_FILTER=True)
+    assert bt.run() == [] and bt.funnel.get("rej_vol", 0) > 0
+    assert len(_bt(bars).run()) == 1

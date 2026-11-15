@@ -4,10 +4,16 @@ A research project that takes a discretionary trading idea I drew by hand on Tra
 into a Pine Script indicator, ports the logic **1:1 to Python**, and then tries hard to prove it
 **doesn't** work. It's a test of how I do the research, not a signal service.
 
-> **Result first:** the strategy looked great in-sample (+$2,507, PF 2.48 on 25 trades), survived
-> Monte Carlo, but failed honest out-of-sample validation. On 4.5 months of data it never saw,
-> with every parameter frozen, it lost money (**−$540, PF 0.77, 26 trades → NO-GO**).
-> The interesting part is *how* that became visible, so that's what this repo documents.
+> **Result first:** the strategy looked great in-sample (+$2,507, PF 2.48 on 25 trades). On data
+> collected *after* every parameter was frozen (30.06–31.10.2026) it stayed positive but thin:
+> **+$469, PF 1.34, 20 trades**, with almost all of that from one trade. Walk-forward out-of-sample is
+> close to zero (+$74, PF 1.07). In short: no proven edge yet. The interesting part is *how* that
+> became visible, so that's what this repo documents.
+>
+> The official analysis window ends on **31 October 2026**. November 2026 was an abnormal volatility
+> regime (median daily range 3.1% vs 1.3–2.5% in Jul–Oct). Including it, the forward test is
+> **−$540, PF 0.77, 26 trades**. I picked the window *after* seeing November, so a volatility rule set
+> in advance was tested on November too (round 10 below).
 
 ## The strategy (in two sentences)
 When market structure (break-of-structure bias) agrees on 1H, 4H and 1D, place a limit order at the
@@ -31,7 +37,7 @@ liquidity (prior day high/low, opposite end of the leg), with risk-based positio
 | `backtest/test_*.py` | 66 unit/e2e tests on synthetic bars (fills, gaps, intrabar rules, sizing, exits, entry confirmation) |
 | `site/` | Static dashboard (vanilla JS) with the latest results: equity curve, trade list, forward-test card |
 
-## Methodology — nine rounds
+## Methodology — ten rounds
 
 1. **Engine rebuild.** Intrabar ambiguity is shown as a *deny/allow bracket* (worst/best case for
    bars where both TP and SL were touched), not hidden. It adds a gap guard, MAE/MFE and "shadow
@@ -48,8 +54,8 @@ liquidity (prior day high/low, opposite end of the leg), with risk-based positio
 | | trades | PnL | PF | win rate | expectancy |
 |---|---|---|---|---|---|
 | In-sample (01.03–11.06) | 25 | +$2,507 | 2.48 | 40% | $100 / trade |
-| Forward, first look (to 16.10) | 20 | +$469 | 1.34 | 30% | $23 / trade |
-| **Forward, final (to 13.11)** | **26** | **−$540** | **0.77** | 23% | **−$21 / trade** |
+| **Forward, official window (to 31.10)** | **20** | **+$469** | **1.34** | 30% | **$23 / trade** |
+| Forward incl. November (to 13.11) | 26 | −$540 | 0.77 | 23% | −$21 / trade |
 
 Every hypothesis variant written down *before* the forward data arrived (4-TF bias, pivot 3/4,
 scale-in zone) is also negative on the forward test.
@@ -71,6 +77,12 @@ scale-in zone) is also negative on the forward test.
    intrabar ambiguity. But in-sample profit dropped from $2,507 to $1,316, and it rests on only 11
    forward trades. It fails the "better on *both* periods" criterion, so it's a candidate for the next
    round of fresh data, not a new default.
+
+10. **Analysis window and a volatility filter (R10).** I ended the official window on 31.10, because
+    November was an abnormal regime. Since that choice was made *after* seeing November, I also tested a
+    rule fixed in advance: no new entries when the previous day's range is above the 90th (or 80th)
+    percentile of the prior 252 days. It flags 5 of 10 November sessions and roughly halves the November
+    losses. But no variant beats the default on *both* periods, so the default stays.
 
 ### Lessons I'd keep
 - **Monte Carlo on your own backtest trades is not validation.** It only tells you about the
@@ -102,6 +114,7 @@ python3 backtest/run_backtest.py          # headline + writes site/results.json
 python3 validate_wf.py                    # walk-forward
 python3 validate_mc.py                    # Monte Carlo
 python3 validate_forward.py               # forward test  → site/forward.json
+# all scripts use config.DATA_END (31.10.2026); add --full to include November
 ```
 
 ## Why there is no price data

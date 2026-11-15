@@ -205,6 +205,38 @@ class HtfPrior:
         return self.hi[k - 1], self.lo[k - 1]
 
 
+def clip_end(data: tuple, end: str | None) -> tuple:
+    """R10: okno analizy do daty ET wlacznie (np. "2026-10-31") — bary z ts < polnocy ET dnia
+    nastepnego, osobno dla kazdego TF. None = bez ciecia. Dane w data/ zostaja nietkniete."""
+    if not end:
+        return data
+    y, m, d = map(int, end.split("-"))
+    cut = int((datetime(y, m, d, tzinfo=ET) + timedelta(days=1)).timestamp())
+    return tuple([b for b in bars if b.ts < cut] for bars in data)
+
+
+class VolRegime:
+    """R10: "goracy" dzien = zakres (h-l)/c ostatniego ZAMKNIETEGO dnia > percentyl VOL_PCTL
+    z poprzednich `lookback` dni (prog liczony wylacznie z przeszlosci — bez lookahead).
+    Semantyka odczytu jak HtfPrior.at: dzien biezacy nigdy nie wplywa na decyzje."""
+
+    def __init__(self, d1: list[Bar], lookback: int = 252, pctl: float = 90):
+        self.ts = [b.ts for b in d1]
+        rng = [(b.h - b.l) / b.c if b.c else 0.0 for b in d1]
+        self.flag = []
+        for k, r in enumerate(rng):
+            past = sorted(rng[max(0, k - lookback):k])
+            if len(past) < lookback // 2:
+                self.flag.append(False)           # za krotka historia -> nie blokuj
+                continue
+            thr = past[min(len(past) - 1, int(len(past) * pctl / 100))]
+            self.flag.append(r > thr)          # ostro: remis z progiem to nie skrajnosc
+
+    def hot(self, t: int) -> bool:
+        k = bisect_right(self.ts, t) - 1
+        return k >= 1 and self.flag[k - 1]
+
+
 @dataclass
 class Fvg:
     bull: bool
@@ -362,6 +394,8 @@ class Backtester:
         self.hs4 = HtfStruct(h4, _spl, _dm, _dl)
         self.hsd = HtfStruct(d1, _spl, _dm, _dl)
         self.pdhl = HtfPrior(d1)   # PDH/PDL = high/low poprzedniego bara dziennego
+        self.vol = (VolRegime(d1, getattr(cfg, "VOL_LOOKBACK", 252), getattr(cfg, "VOL_PCTL", 90))
+                    if getattr(cfg, "VOL_FILTER", False) else None)
         self.legs = compute_leg_states(m15, cfg.PIVOT_LEN)
         self.fvgs = compute_fvgs(m15, cfg.FVG_MIN_PT)
         self.nwogs = compute_nwogs(m15)
@@ -555,6 +589,10 @@ class Backtester:
                     killzone(b.ts) not in getattr(cfg, "TRADE_SESSIONS", ()):
                 # poza dozwolona sesja ICT (martwe godziny) — bez wejscia i bez shadow
                 self.funnel["rej_session"] += 1
+                continue
+            if self.vol is not None and self.vol.hot(b.ts):
+                # R10: poprzedni dzien skrajnie zmienny -> bez nowych wejsc (i bez shadow)
+                self._bump("rej_vol")
                 continue
             st = self.legs[i - 1]   # stan z zamknietego bara [1]
 

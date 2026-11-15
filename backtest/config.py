@@ -28,6 +28,14 @@ BE_AT_R = None            # np. 1.0: SL -> entry po domknietym barze, ktory dosz
 CONFIRM_ENTRY = False
 CONFIRM_BARS = 1          # ile barow od dotkniecia (lacznie z nim) moze dac potwierdzenie
 
+# R10 (2026-11-15) — okno analizy i filtr zmiennosci. Kuba: listopad 2026 to nietypowy rezim (mediana
+# dziennego zakresu 3,1% vs 1,3–2,5% lip–paz) -> oficjalne okno do 31.10; dane z listopada zostaja w data/
+# (--full w skryptach). Zamiast recznego wycinania miesiecy: regula zmiennosci ustalona z gory.
+DATA_END = "2026-10-31"   # data ET wlacznie; None = wszystkie dane
+VOL_FILTER = False        # nie otwieraj, gdy poprzedni dzien mial zakres >= VOL_PCTL percentyla
+VOL_LOOKBACK = 252        # z ilu poprzednich dni liczony prog (rok sesji)
+VOL_PCTL = 90
+
 # --- metoda biasu (parytet z indykatorem Pine: input "Metoda biasu") ---
 # "BOS":   stanowy break of structure — bias trzyma kierunek dopoki close nie zlamie
 #          ostatniego swing low (->short) / swing high (->long). Zawsze long/short po 1. zlamaniu.

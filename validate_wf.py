@@ -25,6 +25,7 @@ import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent / "backtest"))
 
 import config
+import engine
 from engine import _et, _stats, load_csv, make_config, run_segmented
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -296,10 +297,12 @@ def main() -> None:
     ap.add_argument("--instrument", default="mnq", choices=list(config.INSTRUMENTS))
     ap.add_argument("--frac", type=float, default=0.6, help="udzial train (anchored split)")
     ap.add_argument("--no-json", action="store_true", help="nie zapisuj site/wf.json")
+    ap.add_argument("--full", action="store_true", help="wszystkie dane (ignoruj config.DATA_END)")
     args = ap.parse_args()
 
     inst = config.INSTRUMENTS[args.instrument]
     data = tuple(load_csv(DATA / f"{inst['prefix']}_{tf}.csv") for tf in ("15m", "1h", "4h", "1d"))
+    data = engine.clip_end(data, None if args.full else config.DATA_END)
     cfg = make_config(config, {"TICK": inst["tick"], "POINT_VALUE": inst["point_value"]})
     print(f"Instrument: {args.instrument.upper()} (${inst['point_value']}/pkt)\n")
 

@@ -26,6 +26,7 @@ ROOT = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / "backtest"))
 
 import config
+import engine
 from engine import _et, _stats, load_csv, make_config, run_segmented
 from merge_data import MNQU_FRONT
 from validate_wf import _row
@@ -52,6 +53,11 @@ VARIANTS = [
     # R9 (15.11) — wejscie z potwierdzeniem zamiast slepego limitu; zarejestrowane przed liczeniem
     ("H5_confirm1", {"CONFIRM_ENTRY": True, "CONFIRM_BARS": 1}),
     ("H6_confirm3", {"CONFIRM_ENTRY": True, "CONFIRM_BARS": 3}),
+    # R10 (15.11) — filtr zmiennosci; okno do 31.10, listopad = sprawdzian (--full)
+    ("H7_vol90", {"VOL_FILTER": True, "VOL_PCTL": 90}),
+    ("H7b_vol80", {"VOL_FILTER": True, "VOL_PCTL": 80}),
+    ("H6+H7_vol90", {"CONFIRM_ENTRY": True, "CONFIRM_BARS": 3, "VOL_FILTER": True, "VOL_PCTL": 90}),
+    ("H6+H7b_vol80", {"CONFIRM_ENTRY": True, "CONFIRM_BARS": 3, "VOL_FILTER": True, "VOL_PCTL": 80}),
 ]
 MODES = ("deny", "provable", "allow")
 
@@ -102,9 +108,11 @@ def verdict(st: dict, months: dict) -> tuple[str, str]:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--no-json", action="store_true", help="nie zapisuj site/forward.json")
+    ap.add_argument("--full", action="store_true", help="wszystkie dane (ignoruj config.DATA_END)")
     args = ap.parse_args()
 
     data = tuple(load_csv(DATA / f"mnq_{tf}.csv") for tf in TFS)
+    data = engine.clip_end(data, None if args.full else config.DATA_END)
     m15 = data[0]
     cut = freeze_ts()
     fwd_bars = [b for b in m15 if b.ts > cut]

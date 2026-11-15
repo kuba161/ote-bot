@@ -15,6 +15,7 @@ import sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent / "backtest"))
 
 import config
+import engine
 from engine import _stats, load_csv, make_config, run_segmented
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -39,9 +40,11 @@ def _pct(sorted_arr: list[float], p: float) -> float:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--instrument", default="mnq", choices=list(config.INSTRUMENTS))
+    ap.add_argument("--full", action="store_true", help="wszystkie dane (ignoruj config.DATA_END)")
     args = ap.parse_args()
     inst = config.INSTRUMENTS[args.instrument]
     data = tuple(load_csv(DATA / f"{inst['prefix']}_{tf}.csv") for tf in ("15m", "1h", "4h", "1d"))
+    data = engine.clip_end(data, None if args.full else config.DATA_END)
     cfg = make_config(config, {"TICK": inst["tick"], "POINT_VALUE": inst["point_value"]})
     trades, _funnel, _shadow, _bt = run_segmented(cfg, *data)
     pnls = [t.pnl for t in trades if t.result]
