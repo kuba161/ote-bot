@@ -1,5 +1,7 @@
 # OTE Bot — backtesting an ICT "Fib OTE" strategy on Micro Nasdaq futures
 
+[![tests](https://github.com/kuba161/ote-bot/actions/workflows/tests.yml/badge.svg)](https://github.com/kuba161/ote-bot/actions/workflows/tests.yml)
+
 A research project that takes a discretionary trading idea I drew by hand on TradingView, turns it
 into a Pine Script indicator, ports the logic **1:1 to Python**, and then tries hard to prove it
 **doesn't** work. It's a test of how I do the research, not a signal service.
