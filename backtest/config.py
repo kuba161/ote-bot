@@ -1,4 +1,8 @@
-"""Parametry strategii "Fib OTE 0.79 + bias 4xTF" — patrz REQUIREMENTS.md."""
+"""Parametry strategii "Fib OTE 0.79 + bias struktury rynku (1h/4h/1d)" na MNQ.
+
+Odrzucone pomysly zostaja tu jako przelaczniki domyslnie wylaczone, z numerem rundy (R1-R10),
+w ktorej dane je odrzucily — zeby nikt nie testowal ich drugi raz przez przypadek.
+"""
 
 # --- poziomy fibo nogi ---
 ENTRY_FIB = 0.79          # pojedynczy limit (gdy ENTRY_FIBS ma 1 element); uzywany przez _fill_candidate
