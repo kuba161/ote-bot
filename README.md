@@ -28,13 +28,10 @@ liquidity (prior day high/low, opposite end of the leg), with risk-based positio
 | `validate_wf.py` | Anchored walk-forward: parameters picked **only** on train, scored on a disjoint test set |
 | `validate_forward.py` | True forward test on data collected *after* the parameters were frozen |
 | `merge_data.py` | Stitches TradingView exports and **refuses** to merge if OHLC on the overlap disagrees (catches mixing different contracts) |
-| `tools/tvexport.mjs` | Exports candles from TradingView Desktop over the Chrome DevTools Protocol |
-| `tools/pine_minify.py` | Strips comments/padding from Pine source to stay under TradingView's ~32 KB save limit |
-| `site/` | Static dashboard (vanilla JS) with the latest results: equity, trade list, walk-forward and forward cards |
-| `WIEDZA.md`, `docs/INSTRUKCJA_PL.md` | Full research log and user manual (Polish) |
-| `REQUIREMENTS.md`, `AUTOMATION.md` | Spec and the path to paper trading (Polish) |
+| `backtest/test_*.py` | 66 unit/e2e tests on synthetic bars (fills, gaps, intrabar rules, sizing, exits, entry confirmation) |
+| `site/` | Static dashboard (vanilla JS) with the latest results: equity curve, trade list, forward-test card |
 
-## Methodology — eight rounds
+## Methodology — nine rounds
 
 1. **Engine rebuild.** Intrabar ambiguity is shown as a *deny/allow bracket* (worst/best case for
    bars where both TP and SL were touched), not hidden. It adds a gap guard, MAE/MFE and "shadow
@@ -66,6 +63,15 @@ scale-in zone) is also negative on the forward test.
    Pivot 4 + break-even at 1R was the only one positive on forward in both brackets (+$131 / +$580),
    but with only 1 of 5 positive months it fails the stability bar, and the default stays.
 
+9. **Fixing the entries (R9).** With the losers going straight to the stop, the obvious fix was to stop
+   using a blind limit order. Instead the bot waits until a 15m candle closes back beyond the OTE level
+   (a rejection) and enters at the next open. With a 3-bar confirmation window, 23 setups that would have
+   hit the stop before confirming were filtered out. The forward test turned positive: **+$363, PF 1.42**,
+   and the deny/allow bracket collapsed to one number, because a market entry on the open leaves no
+   intrabar ambiguity. But in-sample profit dropped from $2,507 to $1,316, and it rests on only 11
+   forward trades. It fails the "better on *both* periods" criterion, so it's a candidate for the next
+   round of fresh data, not a new default.
+
 ### Lessons I'd keep
 - **Monte Carlo on your own backtest trades is not validation.** It only tells you about the
   in-sample distribution.
@@ -74,7 +80,7 @@ scale-in zone) is also negative on the forward test.
 - **Freeze parameters, then wait for new data.** It's the only test you can't fool yourself on.
 - **Check your metrics before you trust a diagnosis.** One wrong excursion measure would have sent me
   optimising the wrong half of the strategy.
-- **Write down rejected ideas with their numbers** (see "Cmentarz pomysłów" in `WIEDZA.md`), so
+- **Write down rejected ideas with their numbers** and the reason, so
   you don't re-test them six weeks later.
 
 ## Running it
@@ -93,7 +99,7 @@ To re-run the backtest you need your own candles in `data/`. See [`data/README.m
 
 ```bash
 python3 backtest/run_backtest.py          # headline + writes site/results.json
-python3 validate_wf.py                    # walk-forward  → site/wf.json
+python3 validate_wf.py                    # walk-forward
 python3 validate_mc.py                    # Monte Carlo
 python3 validate_forward.py               # forward test  → site/forward.json
 ```

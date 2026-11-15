@@ -49,6 +49,9 @@ VARIANTS = [
     ("H2_BE1R", {"BE_AT_R": 1.0}),
     ("H3_tpmax2.5", {"TP_MAX_R": 2.5}),
     ("H4_pivot4+BE1R", {"PIVOT_LEN": 4, "BE_AT_R": 1.0}),
+    # R9 (15.11) — wejscie z potwierdzeniem zamiast slepego limitu; zarejestrowane przed liczeniem
+    ("H5_confirm1", {"CONFIRM_ENTRY": True, "CONFIRM_BARS": 1}),
+    ("H6_confirm3", {"CONFIRM_ENTRY": True, "CONFIRM_BARS": 3}),
 ]
 MODES = ("deny", "provable", "allow")
 

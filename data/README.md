@@ -22,17 +22,9 @@ time,open,high,low,close,volume
 
 `time` is the bar **open** time in **UTC seconds**. The rows are ascending, with one file per timeframe.
 
-## Getting the data from TradingView Desktop
+## Getting the data
 
-1. Start TradingView Desktop with remote debugging (`--remote-debugging-port=9222`) and open a chart.
-2. `npm install chrome-remote-interface` (only dependency of the exporter).
-3. Run:
-   ```bash
-   node tools/tvexport.mjs 'CME_MINI_DL:MNQ1!' data/raw mnq 15 60 240 1D
-   python3 merge_data.py --check   # report overlaps / gaps
-   python3 merge_data.py           # write data/mnq_*.csv
-   ```
-
-TradingView only serves about 5,000 bars of 15m history (~2.5 months), so export at least every
-two months or you'll get gaps. `engine.run_segmented` handles gaps longer than 4 days by running each continuous
-piece separately.
+Any source works as long as it gives you the format above. I exported mine from TradingView.
+TradingView only serves about 5,000 bars of 15m history (~2.5 months), so export at least every two
+months. `merge_data.py` stitches the exports and stops if OHLC on the overlap doesn't match.
+`engine.run_segmented` handles gaps longer than 4 days by running each continuous piece separately.

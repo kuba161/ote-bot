@@ -495,6 +495,8 @@ class Backtester:
         self.shadow_trades = []
         shadow_open: list[Trade] = []
         shadow_legs: set[tuple] = set()
+        watch = None     # R9: noga dotknieta, czeka na zamkniecie z powrotem za E
+        pending = None   # R9: potwierdzone -> wejscie na open nastepnego bara
         self.funnel = {"bars": 0, "bias_aligned": 0, "cross": 0,
                        "rej_min_leg": 0, "rej_gap_guard": 0, "rej_maxrisk": 0, "rej_filter": 0,
                        "rej_weekend": 0, "rej_session": 0, "shadow": 0, "entries": 0}
@@ -519,6 +521,31 @@ class Backtester:
 
             if pos is not None:
                 continue
+
+            # R9: wejscie z potwierdzeniem (CONFIRM_ENTRY) — przed filtrem sesji, bo decyzja
+            # zapadla na barze w sesji; wejscie na open bara po potwierdzeniu
+            if pending is not None:
+                side, H, L, leg_key, f = pending
+                pending = None
+                entered = self._confirmed_entry(i, b, side, H, L, f, trades)
+                if entered is not None:
+                    pos = entered
+                    continue
+            if watch is not None:
+                side, H, L, leg_key, E, f, sl_lvl, i0 = watch
+                if i - i0 >= getattr(cfg, "CONFIRM_BARS", 1):
+                    watch = None
+                    self._bump("confirm_expired")
+                elif (b.h >= sl_lvl) if side == "short" else (b.l <= sl_lvl):
+                    watch = None
+                    self._bump("confirm_cancel")
+                elif (b.c < E) if side == "short" else (b.c > E):
+                    watch = None
+                    pending = (side, H, L, leg_key, f)
+                    self._bump("confirm_ok")
+                    continue
+                else:
+                    continue    # dalej czekamy na te noge
 
             self.funnel["bars"] += 1
             if getattr(cfg, "SKIP_FIRST_BAR_AFTER_WEEKEND", False) and i in self._weekend_open_idx:
@@ -582,6 +609,20 @@ class Backtester:
                         if sp is not None:
                             shadow_open.append(sp)
                     continue
+                if getattr(cfg, "CONFIRM_ENTRY", False):
+                    # zamiast limitu: czekamy, az bar zamknie sie z powrotem za poziomem OTE
+                    traded_legs.add(leg_key)
+                    E = (L + cfg.ENTRY_FIB * (H - L)) if side == "short" else (H - cfg.ENTRY_FIB * (H - L))
+                    if (b.h >= sl_level) if side == "short" else (b.l <= sl_level):
+                        self._bump("confirm_cancel")
+                    elif (b.c < E) if side == "short" else (b.c > E):
+                        pending = (side, H, L, leg_key, f)
+                        self._bump("confirm_ok")
+                    elif getattr(cfg, "CONFIRM_BARS", 1) > 1:
+                        watch = (side, H, L, leg_key, E, f, sl_level, i)
+                    else:
+                        self._bump("confirm_expired")
+                    break
                 pos = self._make_trade(side, b, fill, sl_level, tp_level, H, L, f, contracts)
                 traded_legs.add(leg_key)
                 self.funnel["entries"] += 1
@@ -591,6 +632,27 @@ class Backtester:
         self._post_exit_probe(trades)
         self._post_exit_probe(self.shadow_trades)
         return trades
+
+    def _bump(self, key: str) -> None:
+        self.funnel[key] = self.funnel.get(key, 0) + 1
+
+    def _confirmed_entry(self, i: int, b: Bar, side: str, H: float, L: float, f: str,
+                         trades: list[Trade]) -> Trade | None:
+        """R9: wejscie rynkowe na open bara po potwierdzeniu; SL/TP liczone od faktycznego fillu.
+        Te same bramki co przy limicie: gap-guard (open za SL = anuluj) i sizing/MAX_RISK."""
+        fill = b.o
+        sl_level, tp_level = self._exit_levels(i, side, H, L, fill)
+        beyond_sl = fill >= sl_level if side == "short" else fill <= sl_level
+        if getattr(self.cfg, "GAP_GUARD", True) and beyond_sl:
+            self.funnel["rej_gap_guard"] += 1
+            return None
+        contracts = self._position_size(abs(fill - sl_level))
+        if contracts is None:
+            self.funnel["rej_maxrisk"] += 1
+            return None
+        pos = self._make_trade(side, b, fill, sl_level, tp_level, H, L, f, contracts)
+        self.funnel["entries"] += 1
+        return self._manage(pos, b, trades, entry_bar=True, idx=i)
 
     def _make_trade(self, side: str, b: Bar, fill: float, sl_level: float,
                     tp_level: float, H: float, L: float, f: str, contracts: int = 1) -> Trade:

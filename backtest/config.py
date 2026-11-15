@@ -23,6 +23,10 @@ BE_AT_FIB = None          # None = off; np. 0.5: gdy domkniety bar osiagnie 0.5 
 PARTIAL_R = None          # np. 1.0: zamknij PARTIAL_FRAC kontraktow na +1R, reszta na BE od nast. bara
 PARTIAL_FRAC = 0.5        # czesc pozycji zamykana na PARTIAL_R (int(contracts*frac); 1 kontrakt = tylko BE)
 BE_AT_R = None            # np. 1.0: SL -> entry po domknietym barze, ktory doszedl do +1R
+# R9 (2026-11-15) — wejscie z potwierdzeniem zamiast slepego limitu na ENTRY_FIB: bar dotyka poziomu,
+# czekamy az 15m zamknie sie z powrotem za nim (odrzucenie), wejscie rynkowe na open nastepnego bara.
+CONFIRM_ENTRY = False
+CONFIRM_BARS = 1          # ile barow od dotkniecia (lacznie z nim) moze dac potwierdzenie
 
 # --- metoda biasu (parytet z indykatorem Pine: input "Metoda biasu") ---
 # "BOS":   stanowy break of structure — bias trzyma kierunek dopoki close nie zlamie

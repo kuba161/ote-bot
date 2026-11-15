@@ -641,3 +641,37 @@ def test_be_at_r_moves_after_closed_bar():
     assert not pos.be_moved
     bt._manage(pos, Bar(1800, 108, 110, 104, 109, 0), [])                    # 1R
     assert pos.be_moved and pos.sl == 100.0
+
+
+# ---------- R9: wejscie z potwierdzeniem (short, E=170, SL=200, TP=155) ----------
+
+def test_confirm_on_touch_bar_enters_next_open():
+    bars = _prefix() + [mk(11, 160, 171, 158, 168),   # dotyka E=170, zamyka 168 < E -> potwierdzone
+                        mk(12, 168, 169, 154, 156)]   # wejscie na open 168, TP 155
+    trades = _bt(bars, CONFIRM_ENTRY=True).run()
+    assert len(trades) == 1
+    t = trades[0]
+    assert t.entry == 168.0 and t.fill_at_open and t.entry_ts == bars[12].ts
+    assert t.result == "tp" and abs(t.pnl - (168 - 155) * 2.0) < 1e-9
+
+
+def test_confirm_missing_means_no_trade():
+    bars = _prefix() + [mk(11, 160, 175, 158, 172),   # zamyka nad E -> brak potwierdzenia
+                        mk(12, 172, 173, 154, 156)]
+    assert _bt(bars, CONFIRM_ENTRY=True).run() == []
+
+
+def test_confirm_window_confirms_on_later_bar():
+    bars = _prefix() + [mk(11, 160, 175, 158, 172),   # dotkniecie bez potwierdzenia
+                        mk(12, 172, 174, 165, 169),   # 2. bar okna: close < E -> potwierdzone
+                        mk(13, 168, 169, 154, 156)]   # wejscie 168, TP
+    trades = _bt(bars, CONFIRM_ENTRY=True, CONFIRM_BARS=3).run()
+    assert len(trades) == 1 and trades[0].entry_ts == bars[13].ts and trades[0].result == "tp"
+    assert _bt(bars, CONFIRM_ENTRY=True, CONFIRM_BARS=1).run() == []
+
+
+def test_confirm_cancelled_when_sl_touched_first():
+    bars = _prefix() + [mk(11, 160, 175, 158, 172),
+                        mk(12, 172, 201, 170, 199),   # SL 200 dotkniety przed potwierdzeniem
+                        mk(13, 199, 199, 160, 165)]
+    assert _bt(bars, CONFIRM_ENTRY=True, CONFIRM_BARS=3).run() == []

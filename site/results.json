@@ -12,6 +12,8 @@
   "BOS_DISPLACEMENT": false,
   "BOTH_HIT_RULE": "sl_first",
   "COMMISSION_RT": 0.74,
+  "CONFIRM_BARS": 1,
+  "CONFIRM_ENTRY": false,
   "CONTRACTS": 1,
   "DISP_ATR_LEN": 14,
   "DISP_ATR_MULT": 1.5,
